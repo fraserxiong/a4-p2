@@ -110,7 +110,7 @@ home-new #viewmore {
 /*
 * Styling for search
 */
-home-search{
+home-search > div{
     width: 100vw;
     height: 400px;
     overflow: hidden;
