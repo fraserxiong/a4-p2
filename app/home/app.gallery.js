@@ -2,7 +2,7 @@
   app.HomeGallery =
     ng.core.Component({
       selector: 'home-gallery',
-      templateUrl: "app/app.gallery.html"
+      templateUrl: "app/home/app.gallery.html"
     })
     .Class({
       constructor: function() {

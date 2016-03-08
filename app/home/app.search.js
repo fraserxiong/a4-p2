@@ -2,7 +2,7 @@
   app.HomeSearch =
     ng.core.Component({
       selector: 'home-search',
-      templateUrl: "app/app.search.html"
+      templateUrl: "app/home/app.search.html"
     })
     .Class({
         constructor: function() {},
