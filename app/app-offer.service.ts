@@ -97,7 +97,7 @@ export class AppOfferService{
 			},
 			{
 				id: 8,
-				url: "images/offer8.jpg",
+				url: "images/offer8.jpeg",
 	            location: "832 bay Street.",
 	            description: "Italian Plum Tomato Sauce, Cheese, Proscuitto, Slow Roasted Roma Tomatoes, Black Olives, Asiago Cheese, Roasted Garlic and sprinkled with Parsley.",
 	            name: "Yummy Pizza",
