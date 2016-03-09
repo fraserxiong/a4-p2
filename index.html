@@ -1,6 +1,7 @@
 <html>
   <head>
-    <title>Cook An' Roll</title>
+    <base href="/" />
+    <title>Homelicious</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Ravi+Prakash' rel='stylesheet' type='text/css'>
@@ -9,26 +10,34 @@
     <!-- 1. Load libraries -->
     <!-- IE required polyfill -->
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
 
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-    <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
 
-    <!-- 2. Load our 'modules' -->
-    <script src='app/home/app.home.js'></script>
-    <script src='app/home/app.gallery.js'></script>
-    <script src='app/home/app.new.js'></script>
-    <script src='app/home/app.search.js'></script>
-    <script src='app/app.footer.js'></script>
-    <script src='js/fake_api.js'></script>
-    <script src='js/main.js'></script>
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
 
   </head>
 
   <!-- 3. Display the application -->
   <body>
-    <home>Loading...</home>
+    <main-app>Loading...</main-app>
   </body>
 
 </html>

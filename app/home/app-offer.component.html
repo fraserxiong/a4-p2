@@ -1,5 +1,5 @@
 <div class="content center">
-    <h2>Thank you for choosing cook an' roll!</h2>
+    <h2>Thank you for choosing Homelicious!</h2>
     <h4>
         Unlike regular restaurants, our foods come from cook lovers. We try our
         best to ensure the food quality and we aim to provide the best food
@@ -8,15 +8,9 @@
     <h4>
         Feel free to click on the image to see the details.
     </h4>
-    <div id="post-container">
-        <div class="posts center">
-            <img id="offer1"/>
-        </div>
-        <div class="posts center">
-            <img id="offer2" />
-        </div>
-        <div class="posts center">
-            <img id="offer3" />
+    <div id="post-container" >
+        <div class="posts center" *ngFor="#offerImage of offerImages">
+            <img src={{offerImage.url}} />
         </div>
     </div>
     <button id="viewmore" class="center">VIEW MORE</button>
