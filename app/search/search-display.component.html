@@ -1,36 +1,11 @@
 <div>
+    <header></header>
     <div class="content center">
-        <div class="title">
-            {{get_result_length()}} results were found for "{{get_query()}}"...
-        </div>
-        <ul class="display">
-            <li *ngFor="#result of results" class="item">
-                <div>
-                    <div class="image_container">
-                        <img src="{{result.url}}"/>
-                    </div>
-                    <div class="content_container">
-                        <h4>{{result.name}}</h4>
-                        <div>
-                            {{result.location}}
-                        </div>
-                        <ul class="categories">
-                            <div *ngFor="#c of result.categories">{{c}}</div>
-                        </ul>
-                        <div>
-                            {{result.description}}
-                        </div>
-                        <div>
-                            {{result.price}}
-                        </div>
-                    </div>
-                </div>
-
-            </li>
-        </ul>
-<!--
         <div class="container">
-
+            <div class="searchDiv center">
+                <input id="searchQuery" class="input" placeholder="Keyword..."/>
+                <button (click)="start_query()">SEARCH</button>
+            </div>
             <hgroup class="mb20">
         		<h1>Search Results</h1>
         		<h2 class="lead">
@@ -48,22 +23,22 @@
         			</div>
         			<div class="col-xs-12 col-sm-12 col-md-2">
         				<ul class="meta-search">
-        					<li><i class="glyphicon glyphicon-calendar"></i> <span>{{result.location}}</span></li>
-        					<li><i class="glyphicon glyphicon-time"></i> <span>{{result.price}}</span></li>
-        					<li><i class="glyphicon glyphicon-tags"></i>
-                                <span *ngFor="#c of result.categories">{{c}}</span>
+        					<li><i class="glyphicon glyphicon-home"></i> <span>{{result.location}}</span></li>
+        					<li><i class="glyphicon glyphicon-usd"></i> <span>{{result.price}}</span></li>
+        					<li *ngFor="#c of result.categories">
+                                <i class="glyphicon glyphicon-tags"></i>
+                                <span >{{c}}</span>
                             </li>
         				</ul>
         			</div>
         			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
         				<h3><a href="#" >{{result.name}}</a></h3>
         				<p>{{result.description}}</p>
-                        <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
         			</div>
         			<span class="clearfix borda"></span>
         		</article>
             </section>
-        </div> -->
+        </div>
     </div>
     <footer></footer>
 </div>
