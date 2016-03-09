@@ -1,26 +1,69 @@
 <div>
     <div class="content center">
+        <div class="title">
+            {{get_result_length()}} results were found for "{{get_query()}}"...
+        </div>
         <ul class="display">
             <li *ngFor="#result of results" class="item">
                 <div>
-                    <img src="{{result.url}}"/>
-                    <h3>{{result.name}}</h3>
-                    <div>
-                        {{result.location}}
+                    <div class="image_container">
+                        <img src="{{result.url}}"/>
                     </div>
-                    <ul>
-                        <div *ngFor="#c of result.categories"<span>{{result.location}}</span>
-                    </ul>
-                    <div>
-                        {{result.description}}
-                    </div>
-                    <div>
-                        {{result.price}}
+                    <div class="content_container">
+                        <h4>{{result.name}}</h4>
+                        <div>
+                            {{result.location}}
+                        </div>
+                        <ul class="categories">
+                            <div *ngFor="#c of result.categories">{{c}}</div>
+                        </ul>
+                        <div>
+                            {{result.description}}
+                        </div>
+                        <div>
+                            {{result.price}}
+                        </div>
                     </div>
                 </div>
 
             </li>
         </ul>
+<!--
+        <div class="container">
+
+            <hgroup class="mb20">
+        		<h1>Search Results</h1>
+        		<h2 class="lead">
+                    <strong class="text-danger">{{get_result_length()}}</strong>
+                    results were found for the search for
+                    <strong class="text-danger">{{get_query()}}</strong></h2>
+        	</hgroup>
+
+            <section class="col-xs-12 col-sm-6 col-md-12">
+        		<article class="search-result row" *ngFor="#result of results">
+        			<div class="col-xs-12 col-sm-12 col-md-3">
+        				<a href="#" class="thumbnail">
+                            <img src="{{result.url}}" alt="Lorem ipsum" />
+                        </a>
+        			</div>
+        			<div class="col-xs-12 col-sm-12 col-md-2">
+        				<ul class="meta-search">
+        					<li><i class="glyphicon glyphicon-calendar"></i> <span>{{result.location}}</span></li>
+        					<li><i class="glyphicon glyphicon-time"></i> <span>{{result.price}}</span></li>
+        					<li><i class="glyphicon glyphicon-tags"></i>
+                                <span *ngFor="#c of result.categories">{{c}}</span>
+                            </li>
+        				</ul>
+        			</div>
+        			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+        				<h3><a href="#" >{{result.name}}</a></h3>
+        				<p>{{result.description}}</p>
+                        <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+        			</div>
+        			<span class="clearfix borda"></span>
+        		</article>
+            </section>
+        </div> -->
     </div>
     <footer></footer>
 </div>
