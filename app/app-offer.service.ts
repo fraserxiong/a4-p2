@@ -93,7 +93,7 @@ export class AppOfferService{
 	            description: "We offer a selection of French Macarons, ranging from our signature flavours to our limited edition macarons. Build a box using our roster of more than 50 fun flavours!",
 	            name: "Macarons",
 	            categories: ["French", "Desert"],
-	            price: 4.00/each, 16.00/box(5)
+	            price: 4.00
 			},
 			{
 				id: 8,
@@ -147,7 +147,7 @@ export class AppOfferService{
 	            description: "We believe that the secret of good sushi is to always select best ingredients, and never compromise on quality. Our Japanese supplier flies fish from Tokyo bay within 24 hours after it has been taken from the water. we serve fish in the evening that we has purchased the same morning, never keeping fish overnight.",
 	            name: "Sushi King",
 	            categories: ["Janpanese","Sushi"],
-	            price: 20/box(about 10 pieces)
+	            price: 20
 			}
 
 		]
