@@ -1,7 +1,7 @@
 import { Component }       from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import { AppHomeComponent} from './home/app-home.component';
-import {AdminMainComponent} from './admin/admin-main.component';
+import { AdminMainComponent} from './admin/admin-main.component';
 import { SearchComponent} from './search/search-display.component';
 import { UserProfileComponent} from './user/user-profile.component';
 
@@ -22,7 +22,7 @@ import { UserProfileComponent} from './user/user-profile.component';
 			useAsDefault: true
 		},
 		{
-			path: '/admin',
+			path: '/admin/...',
 			name: 'Admin',
 			component: AdminMainComponent
 		},
