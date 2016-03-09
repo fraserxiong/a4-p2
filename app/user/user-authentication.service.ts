@@ -21,4 +21,8 @@ export class UserAuthenticationService{
 	getCurUser(){
 		return this.curUser;
 	}
+
+	logOut(){
+		this.curUser = null;
+	}
 }

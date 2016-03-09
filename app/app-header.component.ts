@@ -1,5 +1,5 @@
 import { Component, OnInit }       from 'angular2/core';
-import { ROUTER_DIRECTIVES} from 'angular2/router';
+import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { UserAuthenticationService} from "./user/user-authentication.service";
 import {user} from './user/user.service';
 
@@ -14,9 +14,14 @@ import {user} from './user/user.service';
 export class AppHeaderComponent implements OnInit{
 	curUser: user;
 
-	constructor(private _userAuthenticator: UserAuthenticationService){}
+	constructor(private _userAuthenticator: UserAuthenticationService, private _router: Router){}
 
 	ngOnInit(){
 		this.curUser = this._userAuthenticator.getCurUser();
+	}
+
+	logOut() {
+		this._userAuthenticator.logOut();
+		this._router.navigate(['Home']);
 	}
 }
