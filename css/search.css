@@ -8,10 +8,45 @@ search .content {
     padding: 75px 0 100px 0;
 }
 
+search .searchDiv {
+    width: 100vw;
+    height: 60px;
+    position: absolute;
+    top: 70px;
+    left: 0%;
+    color: white;
+    text-align: center;
+}
+
+search input {
+    width: 600px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    padding: 10px;
+    color: #6b6b70;
+}
+
+search button {
+    width: 200px;
+    height: 51px;
+    margin-top: -5px;
+    font-size: 20px;
+    background-color: #b2bd0d;
+    color: white;
+    border: none;
+    font-family: 'Lato', sans-serif;
+}
+
+
+
+
+
+
 @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
 search .container {
-    margin-top: 20px;
+    margin-top: 0px;
     width: 100%;
 }
 
@@ -26,7 +61,7 @@ search hgroup {
 search hgroup h1 {
     font: 500 normal 1.625em "Roboto",Arial,Verdana,sans-serif;
     color: #2a3644;
-    margin-top: 0;
+    margin-top: 20;
     line-height: 1.15;
 }
 search hgroup h2.lead {

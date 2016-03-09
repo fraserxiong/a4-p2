@@ -3,13 +3,14 @@ import {AppFooterComponent} from '../app-footer.component';
 import {AppOfferService} from '../app-offer.service';
 import {FullOffer} from '../app-offer.service';
 import {RouteParams, Router} from 'angular2/router';
+import {AppHeaderComponent} from '../app-header.component';
 
 @Component(
 {
 	selector: "search",
 	templateUrl: "app/search/search-display.component.html",
 	styleUrls: ["css/search.css", "css/common.css"],
-	directives: [ AppFooterComponent],
+	directives: [AppHeaderComponent,AppFooterComponent],
 	providers: [AppOfferService]
 })
 
