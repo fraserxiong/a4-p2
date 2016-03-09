@@ -10,7 +10,7 @@
     </h4>
     <div id="post-container" >
         <div class="posts center" *ngFor="#offerImage of offerImages">
-            <img src={{offerImage.url}} />
+            <img src={{offerImage.url}} (click)="get_details(offerImage)"/>
         </div>
     </div>
     <button id="viewmore" class="center">VIEW MORE</button>

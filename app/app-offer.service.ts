@@ -20,14 +20,69 @@ export class AppOfferService{
 	get_hotest_offers(){
 		let images: OfferImage[] = [
 			{ id: 1, url: "images/offer1.jpg"},
-			{ id: 2, url: "images/offer2.jpg" },
-			{ id: 3, url: "images/offer3.jpg" },
+			{ id: 2, url: "images/offer2.jpg"},
+			{ id: 3, url: "images/offer3.jpg"},
 		];
 		return Promise.resolve(images);
 	}
 
-	get_post_details(){
-		return Promise.resolve(null);
+	get_post_details(id){
+
+		let post: FullOffer = {
+			id: 6,
+			url: "images/offer6.jpg",
+			location: "38 elm Street.",
+			description: "We make all our burgers fresh giving them the homemade taste that we all love. Try our original burger, cheese burger, bacon burger, chicken burger, fish burger or the Tat burger signature super burger. We also serve chicken, steaks, sandwiches, salads and much more.",
+			name: "super Hamburger",
+			categories: ["Lunch", "Perfect combo"],
+			price: 10.50
+		};
+
+		return Promise.resolve(post);
+	}
+
+	get_related_posts(id){
+		let results: FullOffer[] = [
+			{
+				id: 4,
+				url: "images/offer4.jpg",
+				location: "35 Hayden Street.",
+				description: "For a full on omega-3 fix, this bento is ideal. Marinate cooked shrimp overnight in an onion, garlic, oregano, and olive oil mixture. A starberry cake is aside and the meal’s done! A bed of salad greens adds a little color (and, well, good-for-you stuff including vitamins A, C, K, and folate).",
+				name: "Marinated Shrimp Salad",
+				categories: ["Lunch", "Perfect combo"],
+				price: 8.99
+			},
+			{
+				id: 5,
+				url: "images/offer5.jpg",
+				location: "1001 bay Street.",
+				description: "The perfect comfort food for cold winter days, these little nuggets of deliciousness will pack the perfect punch for you, whether you eat them straight up, with a side of vinegar, doused in soy sauce, or dipped in hot chilli sauce.",
+				name: "Delicious dumpling",
+				categories: ["Lunch", "Quick"],
+				price: 7.49
+			},
+			{
+				id: 7,
+				url: "images/offer7.jpg",
+				location: "777 bay Street.",
+				description: "We offer a selection of French Macarons, ranging from our signature flavours to our limited edition macarons. Build a box using our roster of more than 50 fun flavours!",
+				name: "Macarons",
+				categories: ["French", "Desert"],
+				price: 4.00
+			},
+			{
+				id: 8,
+				url: "images/offer8.jpeg",
+				location: "832 bay Street.",
+				description: "Italian Plum Tomato Sauce, Cheese, Proscuitto, Slow Roasted Roma Tomatoes, Black Olives, Asiago Cheese, Roasted Garlic and sprinkled with Parsley.",
+				name: "Yummy Pizza",
+				categories: ["Italian", "Pizza"],
+				price: 12.00
+			}
+		]
+
+		return Promise.resolve(results);
+
 	}
 
 	search_by_query(query){
