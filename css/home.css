@@ -19,9 +19,10 @@ home-gallery {
 
 home-gallery .display {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: url('../images/gallery.jpg');
     background-size: cover;
+    position: relative;
 }
 
 home-gallery .name {
