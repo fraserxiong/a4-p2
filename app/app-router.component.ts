@@ -3,6 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import { AppHomeComponent} from './home/app-home.component';
 import {AdminMainComponent} from './admin/admin-main.component';
 import { SearchComponent} from './search/search-display.component';
+import { UserProfileComponent} from './user/user-profile.component';
 
 @Component(
 {
@@ -29,7 +30,12 @@ import { SearchComponent} from './search/search-display.component';
 			path: '/search/:query',
 			name: 'Search',
 			component: SearchComponent,
-		}
+		},
+		{
+			path: '/user',
+			name: 'User',
+			component: UserProfileComponent,
+		},
 	]
 )
 

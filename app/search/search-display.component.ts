@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
 	){}
 
 	ngOnInit(){
-		this._offerService.search_by_query()
+		this._offerService.search_by_query(this.get_query())
 			.then(results => this.results = results);
 	}
 
