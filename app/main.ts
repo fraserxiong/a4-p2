@@ -1,5 +1,5 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {AppHomeComponent} from './home/app-home.component';
+import {AppRouterComponent} from './app-router.component';
 
-bootstrap(AppHomeComponent);
+bootstrap(AppRouterComponent);
 
