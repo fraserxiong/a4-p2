@@ -76,6 +76,10 @@ search .search-result h3 > a, .search-result i {
 search .search-result p {
     font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif;
 }
+
+search .search-result span {
+    font: normal lighter 12px "Roboto",Arial,Verdana,sans-serif;
+}
 search .search-result span.plus {
     position: absolute;
     right: 0;

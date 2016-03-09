@@ -22,8 +22,9 @@
         				<ul class="meta-search">
         					<li><i class="glyphicon glyphicon-home"></i> <span>{{result.location}}</span></li>
         					<li><i class="glyphicon glyphicon-usd"></i> <span>{{result.price}}</span></li>
-        					<li><i class="glyphicon glyphicon-tags"></i>
-                                <span *ngFor="#c of result.categories">{{c}}</span>
+        					<li *ngFor="#c of result.categories">
+                                <i class="glyphicon glyphicon-tags"></i>
+                                <span >{{c}}</span>
                             </li>
         				</ul>
         			</div>
