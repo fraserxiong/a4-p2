@@ -8,15 +8,9 @@
     <h4>
         Feel free to click on the image to see the details.
     </h4>
-    <div id="post-container">
-        <div class="posts center">
-            <img id="offer1"/>
-        </div>
-        <div class="posts center">
-            <img id="offer2" />
-        </div>
-        <div class="posts center">
-            <img id="offer3" />
+    <div id="post-container" >
+        <div class="posts center" *ngFor="#offerImage of offerImages">
+            <img src={{offerImage.url}} />
         </div>
     </div>
     <button id="viewmore" class="center">VIEW MORE</button>

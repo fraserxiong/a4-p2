@@ -50,23 +50,23 @@ home-gallery .name {
 /*
 * Styling for new posts
 */
-home-new {
+home-offer {
     background-color: #f2f2f2;
     text-align: center;
 }
 
-home-new #post-container {
+home-offer #post-container {
     display: table;
     box-sizing: border-box;
     width: 100%;
     max-height: 150px;
 }
 
-home-new h2 {
+home-offer h2 {
     font-size: 45px;
 }
 
-home-new h4{
+home-offer h4{
     width: 750px;
     margin-left: auto;
     margin-right: auto;
@@ -76,17 +76,17 @@ home-new h4{
     font-weight: lighter;
 }
 
-home-new #post-container {
+home-offer #post-container {
     margin-top: 50px;
 }
-home-new .posts {
+home-offer .posts {
     height: auto;
     width: 33.333333%;
     display: table-cell;
     text-align: center;
 }
 
-home-new .posts > img {
+home-offer .posts > img {
     max-width: 324px;
     max-height: 351px;
     width: 100%;
@@ -95,7 +95,7 @@ home-new .posts > img {
     background-repeat: no-repeat !important;
 }
 
-home-new #viewmore {
+home-offer #viewmore {
     width: 360px;
     height: 45px;
     margin-top: 75px;
