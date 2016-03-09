@@ -38,14 +38,9 @@ search button {
     font-family: 'Lato', sans-serif;
 }
 
-
-
-
-
-
 @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
-search .container {
+.content .container {
     margin-top: 0px;
     width: 100%;
 }
