@@ -150,7 +150,7 @@ export class user_db{
 						expire_date: "01/18"}]
 
 	}]
-}
+};
 
 
 }
