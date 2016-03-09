@@ -1,6 +1,7 @@
 import { Component, OnInit}       from 'angular2/core';
 import {AppOfferService} from '../app-offer.service';
 import {OfferImage} from '../app-offer.service';
+import { Router} from 'angular2/router';
 
 @Component(
 {
@@ -12,9 +13,10 @@ import {OfferImage} from '../app-offer.service';
 export class AppOfferComponent implements OnInit{
 	offerImages: OfferImage[];
 
-	constructor(private _offerService: AppOfferService){
-
-	}
+	constructor(
+		private _offerService: AppOfferService,
+		private _router: Router
+	){}
 
 	getOfferImages(){
 		this._offerService.get_hotest_offers().then(images => this.offerImages = images);
@@ -22,5 +24,9 @@ export class AppOfferComponent implements OnInit{
 
 	ngOnInit(){
 		this.getOfferImages();
+	}
+
+	get_details(post){
+		this._router.navigate(["Details", {id: post.id}]);
 	}
 }

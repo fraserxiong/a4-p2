@@ -1,0 +1,18 @@
+/*
+* Styling for gallery component
+*/
+post-details {
+    width: 100%;
+    height: 100%;
+}
+
+post-details .content {
+    max-width: 1100px;
+    padding: 75px 0 100px 0;
+}
+
+post-details .related-result .thumbnail {
+    border-radius: 0 !important;
+    height: 150px;
+    overflow: hidden;
+}

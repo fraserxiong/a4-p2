@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
 	}
 
 	get_query(){
-		return this._routeParams.get("query");
+		return decodeURIComponent(this._routeParams.get("query"));
 	}
 
 	get_result_length(){
