@@ -32,7 +32,7 @@ import { UserProfileComponent} from './user/user-profile.component';
 			component: SearchComponent,
 		},
 		{
-			path: '/user',
+			path: '/user/:id',
 			name: 'User',
 			component: UserProfileComponent,
 		},
