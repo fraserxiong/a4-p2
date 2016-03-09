@@ -16,7 +16,7 @@ export class AppSearchComponent implements OnInit{
 	ngOnInit(){}
 
 	start_query(){
-		this._router.navigate(["Search", { query: "abc"}])
+		this._router.navigate(["Search", { query: "best food in Toronto"}])
 	}
 
 }
