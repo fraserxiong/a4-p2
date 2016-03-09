@@ -11,7 +11,7 @@ export interface FullOffer {
 	name: string;
 	location: string;
 	description: string;
-	tags: string[];
+	categories: string[];
 	price: number;
 }
 
@@ -38,7 +38,7 @@ export class AppOfferService{
 	            location: "40 St. George Street.",
 	            description: "St George Homemade Burgers",
 	            name: "Burgers and Fries!",
-	            tags: ["Fast", "Cheap"],
+	            categories: ["Fast", "Cheap"],
 	            price: 4.99
 			},
 			{
@@ -47,7 +47,7 @@ export class AppOfferService{
 	            location: "1001 Bay Street.",
 	            description: "Homemade cheesecake for Valentine's!",
 	            name: "Best Cheesecake in history",
-	            tags: ["Sweet", "Desert"],
+	            categories: ["Sweet", "Desert"],
 	            price: 7.99
 			},
 			{
@@ -56,7 +56,7 @@ export class AppOfferService{
 	            location: "35 Hayden Street.",
 	            description: "Fish and Chips! The Perfect Combo!",
 	            name: "British tranditional food",
-	            tags: ["Main", "Perfect combo"],
+	            categories: ["Main", "Perfect combo"],
 	            price: 10.50
 			}
 		]

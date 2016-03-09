@@ -2,8 +2,23 @@
     <div class="content center">
         <ul class="display">
             <li *ngFor="#result of results" class="item">
-                <img src="{{result.url}}"/>
-                <!-- < -->
+                <div>
+                    <img src="{{result.url}}"/>
+                    <h3>{{result.name}}</h3>
+                    <div>
+                        {{result.location}}
+                    </div>
+                    <ul>
+                        <div *ngFor="#c of result.categories"<span>{{result.location}}</span>
+                    </ul>
+                    <div>
+                        {{result.description}}
+                    </div>
+                    <div>
+                        {{result.price}}
+                    </div>
+                </div>
+
             </li>
         </ul>
     </div>
