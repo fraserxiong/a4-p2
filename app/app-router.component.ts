@@ -2,6 +2,7 @@ import { Component }       from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import { AppHomeComponent} from './home/app-home.component';
 import {AdminMainComponent} from './admin/admin-main.component';
+import { SearchComponent} from './search/search-display.component';
 
 @Component(
 {
@@ -23,6 +24,11 @@ import {AdminMainComponent} from './admin/admin-main.component';
 			path: '/admin',
 			name: 'Admin',
 			component: AdminMainComponent
+		},
+		{
+			path: '/search/:query',
+			name: 'Search',
+			component: SearchComponent,
 		}
 	]
 )
@@ -30,4 +36,3 @@ import {AdminMainComponent} from './admin/admin-main.component';
 export class AppRouterComponent{
 
 }
-

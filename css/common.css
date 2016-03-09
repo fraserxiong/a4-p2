@@ -1,0 +1,45 @@
+body {
+    margin: 0px;
+    font-family: 'Lato', sans-serif;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+* Styling for footer
+*/
+footer .wrapper{
+    background-color: #222932;
+    color: white;
+}
+
+footer .image_wrapper{
+    text-align: center;
+    width: 33%;
+    display:inline-block;
+}
+
+footer .contact_wrapper {
+    width: 66%;
+    text-align: left;
+    display:inline-block;
+    float:right;
+}
+
+footer img {
+    height: 200px;
+    width: 200px;
+}
+
+footer .title {
+    font-size: 35px;
+}
+
+footer .text {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: lighter;
+}

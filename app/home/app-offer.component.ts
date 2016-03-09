@@ -1,6 +1,6 @@
 import { Component, OnInit}       from 'angular2/core';
-import {AppOfferService} from './app-offer.service';
-import {OfferImage} from './app-offer.service';
+import {AppOfferService} from '../app-offer.service';
+import {OfferImage} from '../app-offer.service';
 
 @Component(
 {

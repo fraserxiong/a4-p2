@@ -37,7 +37,7 @@ System.register(['angular2/core', './app-gallery.component', './app-offer.compon
                     core_1.Component({
                         selector: "home",
                         templateUrl: "app/home/app-home.component.html",
-                        styleUrls: ["css/style.css"],
+                        styleUrls: ["css/common.css", "css/home.css"],
                         directives: [app_gallery_component_1.AppGalleryComponent, app_offer_component_1.AppOfferComponent, app_search_component_1.AppSearchComponent, app_footer_component_1.AppFooterComponent]
                     }), 
                     __metadata('design:paramtypes', [])

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home/app-home.component', './admin/admin-main.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './home/app-home.component', './admin/admin-main.component', './search/search-display.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './home/app-home.component'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, app_home_component_1, admin_main_component_1;
+    var core_1, router_1, app_home_component_1, admin_main_component_1, search_display_component_1;
     var AppRouterComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', 'angular2/router', './home/app-home.component'
             },
             function (admin_main_component_1_1) {
                 admin_main_component_1 = admin_main_component_1_1;
+            },
+            function (search_display_component_1_1) {
+                search_display_component_1 = search_display_component_1_1;
             }],
         execute: function() {
             AppRouterComponent = (function () {
@@ -48,6 +51,11 @@ System.register(['angular2/core', 'angular2/router', './home/app-home.component'
                             path: '/admin',
                             name: 'Admin',
                             component: admin_main_component_1.AdminMainComponent
+                        },
+                        {
+                            path: '/search/:query',
+                            name: 'Search',
+                            component: search_display_component_1.SearchComponent,
                         }
                     ]), 
                     __metadata('design:paramtypes', [])

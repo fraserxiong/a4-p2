@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../app-offer.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../app-footer.component', '../app-offer.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,40 +10,43 @@ System.register(['angular2/core', '../app-offer.service'], function(exports_1, c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, app_offer_service_1;
-    var AppOfferComponent;
+    var core_1, app_footer_component_1, app_offer_service_1;
+    var SearchComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (app_footer_component_1_1) {
+                app_footer_component_1 = app_footer_component_1_1;
+            },
             function (app_offer_service_1_1) {
                 app_offer_service_1 = app_offer_service_1_1;
             }],
         execute: function() {
-            AppOfferComponent = (function () {
-                function AppOfferComponent(_offerService) {
+            SearchComponent = (function () {
+                function SearchComponent(_offerService) {
                     this._offerService = _offerService;
                 }
-                AppOfferComponent.prototype.getOfferImages = function () {
+                SearchComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this._offerService.get_hotest_offers().then(function (images) { return _this.offerImages = images; });
+                    this._offerService.search_by_query()
+                        .then(function (results) { return _this.results = results; });
                 };
-                AppOfferComponent.prototype.ngOnInit = function () {
-                    this.getOfferImages();
-                };
-                AppOfferComponent = __decorate([
+                SearchComponent = __decorate([
                     core_1.Component({
-                        selector: 'home-offer',
-                        templateUrl: "app/home/app-offer.component.html",
+                        selector: "search",
+                        templateUrl: "app/search/search-display.component.html",
+                        styleUrls: ["css/search.css", "css/common.css"],
+                        directives: [app_footer_component_1.AppFooterComponent],
                         providers: [app_offer_service_1.AppOfferService]
                     }), 
                     __metadata('design:paramtypes', [app_offer_service_1.AppOfferService])
-                ], AppOfferComponent);
-                return AppOfferComponent;
+                ], SearchComponent);
+                return SearchComponent;
             }());
-            exports_1("AppOfferComponent", AppOfferComponent);
+            exports_1("SearchComponent", SearchComponent);
         }
     }
 });
-//# sourceMappingURL=app-offer.component.js.map
+//# sourceMappingURL=search-display.component.js.map

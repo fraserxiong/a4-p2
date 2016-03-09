@@ -19,11 +19,25 @@
     <script src='js/fake_api.js'></script>
     <script src='js/main_search.js'></script>
 
+
+    <script>
+      System.config({
+        packages: {
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/search_main')
+            .then(null, console.error.bind(console));
+    </script>
+
   </head>
 
   <!-- 3. Display the application -->
   <body>
-    <!-- <home>Loading...</home> -->
+    <home>Loading...</home>
   </body>
 
 </html>

@@ -8,7 +8,7 @@ import {AppFooterComponent} from '../app-footer.component';
 {
 	selector: "home",
 	templateUrl: "app/home/app-home.component.html",
-	styleUrls: ["css/style.css"],
+	styleUrls: ["css/common.css", "css/home.css"],
 	directives: [AppGalleryComponent, AppOfferComponent, AppSearchComponent, AppFooterComponent]
 })
 
