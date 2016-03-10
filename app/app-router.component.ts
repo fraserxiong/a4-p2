@@ -8,6 +8,7 @@ import { UserProfileComponent} from './user/user-profile.component';
 import { UserLoginComponent} from './user/user-login.component';
 import { UserAuthenticationService} from "./user/user-authentication.service";
 import { user_db, user} from './user/user.service';
+import { AppLinksComponent} from './app-links.component';
 
 @Component(
 {
@@ -20,10 +21,15 @@ import { user_db, user} from './user/user.service';
 @RouteConfig(
 	[
 		{
+			path: '/allpage',
+			name: 'AllPage',
+			component: AppLinksComponent,
+			useAsDefault: true
+		},
+		{
 			path: '/home',
 			name: 'Home',
 			component: AppHomeComponent,
-			useAsDefault: true
 		},
 		{
 			path: '/login',
