@@ -99,12 +99,33 @@ home-offer #viewmore {
     font-family: 'Lato', sans-serif;
 }
 
+home-search input {
+    width: 600px;
+    height: 60px;
+    border: none;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    padding: 10px;
+    color: #6b6b70;
+}
+
+home-search button {
+    width: 200px;
+    height: 61px;
+    margin-top: -5px;
+    font-size: 20px;
+    background-color: #b2bd0d;
+    color: white;
+    border: none;
+    font-family: 'Lato', sans-serif;
+}
+
 /*
 * Styling for search
 */
 
 /*Responsive view for search*/
-@media only screen and (min-device-width : 300px) and (max-device-width :768px) {
+@media (max-width :768px) {
 
     home-search input {
         width: 60%;
@@ -127,29 +148,16 @@ home-offer #viewmore {
         font-family: 'Lato', sans-serif;
     }
 
+    home-gallery .name {
+        font-size: 100px;
+    }
 }
 
-@media only screen and (min-device-width : 768px){
+/*Responsive view for search*/
+@media (max-width :568px) {
 
-    home-search input {
-        width: 600px;
-        height: 60px;
-        border: none;
-        font-size: 20px;
-        font-family: 'Lato', sans-serif;
-        padding: 10px;
-        color: #6b6b70;
-    }
-
-    home-search button {
-        width: 200px;
-        height: 61px;
-        margin-top: -5px;
-        font-size: 20px;
-        background-color: #b2bd0d;
-        color: white;
-        border: none;
-        font-family: 'Lato', sans-serif;
+    home-gallery .name {
+        font-size: 50px;
     }
 }
 
@@ -177,4 +185,3 @@ home-search .searchDiv {
     color: white;
     text-align: center;
 }
-

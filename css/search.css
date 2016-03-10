@@ -130,3 +130,13 @@ search .search-result span.border {
     margin: 0 15px;
     border-bottom: 1px dotted #ccc;
 }
+
+@media (max-width: 800px) {
+    search input {
+        width: 60%;
+    }
+    search button {
+        width: 30%;
+
+    }
+}

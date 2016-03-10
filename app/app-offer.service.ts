@@ -15,6 +15,16 @@ export interface FullOffer {
 	price: number;
 }
 
+export interface Comment {
+	id: number;
+	user_id: number;
+	avatar_url: string;
+	user_name: string;
+	rating: number;
+	comment: string;
+	date: string;
+}
+
 @Injectable()
 export class AppOfferService{
 	get_hotest_offers(){
@@ -208,5 +218,38 @@ export class AppOfferService{
 		]
 
 		return Promise.resolve(results);
+	}
+
+	get_comments_for_post(id){
+		let comments: Comment[] = [
+			{
+				id: 1,
+				user_id: 10000,
+				avatar_url: "images/user10000.jpg",
+				user_name: "Bill Gates",
+				rating: 5,
+				date: "March 10, 2016",
+				comment: "Best burger that I have ever tried! Highly recommended."
+			},
+			{
+				id: 1,
+				user_id: 10003,
+				avatar_url: "images/user10003.jpg",
+				user_name: "Michael Jackson",
+				rating: 4,
+				date: "March 8, 2016",
+				comment: "Warning: makes you sleepy! Can't moonwalk!"
+			},
+			{
+				id: 1,
+				user_id: 10005,
+				avatar_url: "images/user10005.jpg",
+				user_name: "James Bond",
+				rating: 5,
+				date: "March 7, 2016",
+				comment: "Full of energy!"
+			}
+		];
+		return Promise.resolve(comments);
 	}
 }
