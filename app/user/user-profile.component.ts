@@ -14,8 +14,8 @@ import {AppHeaderComponent} from '../app-header.component';
 })
 
 export class UserProfileComponent implements OnInit{
- id: number;
- cur_user: user;
+	id: number;
+	cur_user: user;
 
 	constructor(
 		private _db: user_db,

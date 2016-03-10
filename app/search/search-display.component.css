@@ -1,14 +1,14 @@
-search {
+ admin-manage {
     width: 100%;
     height: 100%;
 }
 
-search .content {
+ admin-manage .content {
     max-width: 1100px;
     padding: 75px 0 100px 0;
 }
 
-search .searchDiv {
+ admin-manage .searchDiv {
     width: 100vw;
     height: 60px;
     position: absolute;
@@ -17,34 +17,9 @@ search .searchDiv {
     color: white;
     text-align: center;
 }
-@media only screen and (min-device-width : 300px) and (max-device-width :768px) {
 
-    search input {
-        width: 60%;
-        height: 50px;
-        font-size: 20px;
-        font-family: 'Lato', sans-serif;
-        padding: 10px;
-        color: #6b6b70;
-    }
-
-    search button {
-        width: 20%;
-        height: 51px;
-        margin-top: -5px;
-        font-size: 20px;
-        background-color: #b2bd0d;
-        color: white;
-        border: none;
-        font-family: 'Lato', sans-serif;
-    }
-
-}
-
-@media only screen and (min-device-width : 768px){
-
-    search input {
-    width: 60%;
+ admin-manage input {
+    width: 600px;
     height: 50px;
     font-size: 20px;
     font-family: 'Lato', sans-serif;
@@ -52,8 +27,8 @@ search .searchDiv {
     color: #6b6b70;
 }
 
-    search button {
-    width: 20%;
+ admin-manage button {
+    width: 200px;
     height: 51px;
     margin-top: -5px;
     font-size: 20px;
@@ -62,8 +37,6 @@ search .searchDiv {
     border: none;
     font-family: 'Lato', sans-serif;
 }
-}
-
 
 @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
@@ -72,98 +45,88 @@ search .searchDiv {
     width: 100%;
 }
 
-search .mb20 {
+ admin-manage .mb20 {
     margin-bottom: 20px;
 }
 
-search hgroup {
+ admin-manage hgroup {
     padding-left: 15px;
     border-bottom: 1px solid #ccc;
 }
-search hgroup h1 {
+ admin-manage hgroup h1 {
     font: 500 normal 1.625em "Roboto",Arial,Verdana,sans-serif;
     color: #2a3644;
     margin-top: 20;
     line-height: 1.15;
 }
-search hgroup h2.lead {
+ admin-manage hgroup h2.lead {
     font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif;
     color: #2a3644;
     margin: 0;
     padding-bottom: 10px;
 }
 
-search .search-result .thumbnail {
+ admin-manage .search-result .thumbnail {
     border-radius: 0 !important;
     height: 150px;
     overflow: hidden;
 }
-search .search-result:first-child {
+ admin-manage .search-result:first-child {
     margin-top: 0 !important;
 }
-search .search-result {
+ admin-manage .search-result {
     margin-top: 20px;
 }
-search .search-result .col-md-2 {
+ admin-manage .search-result .col-md-2 {
     border-right: 1px dotted #ccc;
     min-height: 150px;
 }
-search .search-result ul {
+ admin-manage .search-result ul {
      padding-left: 0 !important;
      list-style: none;
 }
-search .search-result ul li {
+ admin-manage .search-result ul li {
     font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;
     line-height: 30px;
 }
-search .search-result ul li i {
+ admin-manage .search-result ul li i {
     padding-right: 5px;
 }
-search .search-result .col-md-7 {
+ admin-manage .search-result .col-md-7 {
     position: relative;
 }
-search .search-result h3 {
+ admin-manage .search-result h3 {
     font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif;
     margin-top: 0 !important;
     margin-bottom: 10px !important;
 }
-search .search-result h3 > a, .search-result i {
+ admin-manage .search-result h3 > a, .search-result i {
     color: #248dc1 !important;
 }
-search .search-result p {
+ admin-manage .search-result p {
     font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif;
 }
 
-search .search-result span {
+ admin-manage .search-result span {
     font: normal lighter 12px "Roboto",Arial,Verdana,sans-serif;
 }
-search .search-result span.plus {
+ admin-manage .search-result span.plus {
     position: absolute;
     right: 0;
     top: 126px;
 }
-search .search-result span.plus a {
+ admin-manage .search-result span.plus a {
     background-color: #248dc1;
     padding: 5px 5px 3px 5px;
 }
-search .search-result span.plus a:hover {
+ admin-manage .search-result span.plus a:hover {
     background-color: #414141;
 }
-search .search-result span.plus a i {
+ admin-manage .search-result span.plus a i {
     color: #fff !important;
 }
-search .search-result span.border {
+ admin-manage .search-result span.border {
     display: block; width: 97%;
     margin: 0 15px;
     border-bottom: 1px dotted #ccc;
-}
-
-@media (max-width: 800px) {
-    search input {
-        width: 60%;
-    }
-    search button {
-        width: 30%;
-
-    }
 }

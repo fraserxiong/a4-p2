@@ -15,13 +15,13 @@ export interface user {
 	phone_number: string;
 	address: string;
 	postcode: string;
-  avatar_url: string;
+    avatar_url: string;
 	payment_info: credit_card[];
 }
 
 export class user_db{
 
-		public get_list(){
+		public get_list(): user[]{
 			return [{
 		id:10000,
 		name: "Bill Gates",
