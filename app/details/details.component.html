@@ -37,9 +37,18 @@
                 <div class="blog-comment">
                     <ul class="comments">
         				<li class="clearfix" *ngFor="#comment of comments">
-        				  <img src="http://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                            <img src="http://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                            <div class="ratings">
+                                <i class="glyphicon glyphicon-star" *ngFor="#i of [1,2,3,4,5]"></i>
+
+                            </div>
+
+
         				  <div class="post-comments">
-        				      <p class="meta">{{comment.date}}<a href="#"> {{comment.user_name}}</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+        				      <p class="meta">{{comment.date}}<a href="#"> {{comment.user_name}}</a> says : <i class="pull-right">
+
+                                        <a href="#"><small>Reply</small></a>
+                                    </i></p>
         				      <p>
         				          {{comment.comment}}
         				      </p>
