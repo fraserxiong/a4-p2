@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-      <li class="active"><a href="#">User <span class="sr-only">(current)</span></a></li>
-      <li><a>Food</a></li>
+      <li [ngClass]="{active: !showFood}" class="active"><a (click)="selectUser()" >User <span class="sr-only">(current)</span></a></li>
+      <li [ngClass]="{active: showFood}"><a (click)="selectFood()">Food</a></li>
     </ul>
   </div>
 
 
 
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main dashboard_user">
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main dashboard_user" *ngIf="!showFood">
     <div class="row placeholders">
         <div class="container-fluid profile" *ngFor="#user_obj of user_list">
                <div class="row">
@@ -65,7 +65,7 @@
 
 
 
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main dashboard_food">
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main dashboard_food" *ngIf="showFood">
     <div class="row placeholders">
         <article class="search-result row" *ngFor="#result of results">
           <div class="col-xs-12 col-sm-12 col-md-3">

@@ -14,18 +14,28 @@ import {user_db, user} from '../user/user.service';
 })
 
 export class AdminManageComponent implements OnInit{
+	showFood: boolean;
 
-		results: FullOffer[] = [];
-		user_list: user[] = [];
+	results: FullOffer[] = [];
+	user_list: user[] = [];
 
-		constructor(
-			private _offerService: AppOfferService,
-			private _db: user_db
-		){}
+	constructor(
+		private _offerService: AppOfferService,
+		private _db: user_db
+	){}
 
-		ngOnInit(){
-			this._offerService.search_by_query('abc')
-				.then(results => this.results = results);
-			this.user_list = this._db.get_list();
-		}
+	ngOnInit(){
+		this._offerService.search_by_query('abc')
+			.then(results => this.results = results);
+		this.user_list = this._db.get_list();
+		this.showFood = false;
+	}
+
+	selectUser(){
+		this.showFood = false;
+	}
+
+	selectFood(){
+		this.showFood = true;
+	}
 }
