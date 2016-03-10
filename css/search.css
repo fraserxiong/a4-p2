@@ -17,9 +17,34 @@ search .searchDiv {
     color: white;
     text-align: center;
 }
+@media only screen and (min-device-width : 300px) and (max-device-width :768px) {
 
-search input {
-    width: 600px;
+    search input {
+        width: 60%;
+        height: 50px;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        padding: 10px;
+        color: #6b6b70;
+    }
+
+    search button {
+        width: 20%;
+        height: 51px;
+        margin-top: -5px;
+        font-size: 20px;
+        background-color: #b2bd0d;
+        color: white;
+        border: none;
+        font-family: 'Lato', sans-serif;
+    }
+
+}
+
+@media only screen and (min-device-width : 768px){
+
+    search input {
+    width: 60%;
     height: 50px;
     font-size: 20px;
     font-family: 'Lato', sans-serif;
@@ -27,8 +52,8 @@ search input {
     color: #6b6b70;
 }
 
-search button {
-    width: 200px;
+    search button {
+    width: 20%;
     height: 51px;
     margin-top: -5px;
     font-size: 20px;
@@ -37,6 +62,8 @@ search button {
     border: none;
     font-family: 'Lato', sans-serif;
 }
+}
+
 
 @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
