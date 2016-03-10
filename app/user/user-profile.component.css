@@ -133,3 +133,7 @@ h1 {
 .dashboard_friend{
   margin: 5%;
 }
+
+user h2 {
+    font-size: 25px;
+}
