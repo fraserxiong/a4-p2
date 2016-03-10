@@ -118,3 +118,18 @@ ul.social-network li {
 #IdFooter a {
  background-color: #D3D3D3;
 }
+
+
+.friend {
+  width:256px;
+  float:left;
+  margin: 0px!important;
+}
+
+h1 {
+  text-align: center;
+}
+
+.dashboard_friend{
+  margin: 5%;
+}
