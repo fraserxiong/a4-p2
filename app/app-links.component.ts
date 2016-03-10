@@ -26,10 +26,6 @@ export class AppLinksComponent implements OnInit{
 				name: 'UserLogin',
 				text: 'User Login'
 			},
-			{
-				name: 'Admin',
-				text: 'Admin Page'
-			},
 			// {
 			// 	name: 'Search',
 			// 	text: 'Admin Login'
