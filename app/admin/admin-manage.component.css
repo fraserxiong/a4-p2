@@ -7,6 +7,10 @@ body {
   padding-top: 50px;
 }
 
+a{
+  cursor: pointer;
+}
+
 /*
  * Global add-ons
  */
@@ -72,6 +76,7 @@ body {
 
 .main {
   padding: 20px;
+  margin: auto;
 }
 @media (min-width: 768px) {
   .main {
@@ -91,6 +96,7 @@ body {
 .placeholders {
   margin-bottom: 30px;
   text-align: center;
+  margin: 30px;
 }
 .placeholders h4 {
   margin-bottom: 0;
