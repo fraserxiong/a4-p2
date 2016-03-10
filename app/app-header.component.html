@@ -12,7 +12,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Find Food</a></li>
-        <li><a href="#post-container">About</a></li>
+        <li *ngIf="showAbout"><a href="#post-container">About</a></li>
       </ul>
       <div *ngIf="!curUser">
         <ul class="nav navbar-nav navbar-right">
