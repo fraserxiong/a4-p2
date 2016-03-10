@@ -82,6 +82,7 @@ home-offer .posts > img {
     max-width: 324px;
     max-height: 351px;
     width: 100%;
+    cursor: pointer;
  /*   height: 100%;*/
     background-size: cover !important;
     background-repeat: no-repeat !important;

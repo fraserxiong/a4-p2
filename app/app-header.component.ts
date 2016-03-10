@@ -23,5 +23,6 @@ export class AppHeaderComponent implements OnInit{
 	logOut() {
 		this._userAuthenticator.logOut();
 		this._router.navigate(['Home']);
+		this.curUser = null;
 	}
 }
