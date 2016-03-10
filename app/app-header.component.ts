@@ -5,7 +5,7 @@ import {user} from './user/user.service';
 
 @Component(
 {
-	selector: "header",
+	selector: "custom-header",
 	templateUrl: "app/app-header.component.html",
   	styleUrls: ["app/app-header.component.css"],
   	directives: [ROUTER_DIRECTIVES]
