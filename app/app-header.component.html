@@ -11,7 +11,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Find Food</a></li>
+        <li class="active"><a [routerLink]="['Home']">Find Food</a></li>
         <li *ngIf="showAbout"><a href="#post-container">About</a></li>
       </ul>
       <div *ngIf="!curUser">

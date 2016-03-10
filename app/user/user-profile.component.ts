@@ -16,6 +16,7 @@ import {AppHeaderComponent} from '../app-header.component';
 export class UserProfileComponent implements OnInit{
 	id: number;
 	cur_user: user;
+	user_list: user[];
 
 	constructor(
 		private _db: user_db,
@@ -27,11 +28,13 @@ export class UserProfileComponent implements OnInit{
 
 	ngOnInit(){
 		this.id = + this._routeParams.get('id');
-		let user_list = this._db.get_list();
-		for(var i = 0; i < user_list.length; i++){
-			let u_obj = user_list[i];
+		this.user_list = this._db.get_list();
+		for(var i = 0; i < this.user_list.length; i++){
+			let u_obj = this.user_list[i];
 			if(u_obj.id == this.id){
 				this.cur_user = u_obj;
+				this.user_list = this.user_list.slice(i + 1,this.user_list.length);
+				return
 			}
 		}
 	}
