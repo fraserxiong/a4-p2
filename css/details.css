@@ -107,3 +107,9 @@ a {
 	line-height: 30px;
 	font-weight: 800;
 }
+
+post-details .ratings {
+    float: left;
+    width: 80px;
+    margin: 70px 0px 0px -65px;
+}
