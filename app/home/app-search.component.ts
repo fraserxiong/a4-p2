@@ -4,7 +4,8 @@ import { Router} from 'angular2/router';
 @Component(
 {
 	selector: "home-search",
-	templateUrl: "app/home/app-search.component.html"
+	templateUrl: "app/home/app-search.component.html",
+	styleUrls: ["app/home/app-search.component.css"]
 })
 
 export class AppSearchComponent implements OnInit{

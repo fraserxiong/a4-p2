@@ -1,4 +1,4 @@
-import { Component }       from 'angular2/core';
+import { Component, ViewEncapsulation }       from 'angular2/core';
 import {AppGalleryComponent} from './app-gallery.component';
 import {AppOfferComponent} from './app-offer.component';
 import {AppSearchComponent} from './app-search.component';
@@ -9,8 +9,8 @@ import {AppHeaderComponent} from '../app-header.component';
 {
 	selector: "home",
 	templateUrl: "app/home/app-home.component.html",
-	styleUrls: ["css/common.css", "css/home.css"],
-	directives: [AppHeaderComponent, AppGalleryComponent, AppOfferComponent, AppSearchComponent, AppFooterComponent]
+	styleUrls: ["app/home/app-home.component.css"],
+	directives: [AppHeaderComponent, AppGalleryComponent, AppOfferComponent, AppSearchComponent, AppFooterComponent],
 })
 
 export class AppHomeComponent{

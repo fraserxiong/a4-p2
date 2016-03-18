@@ -1,17 +1,19 @@
+<div class="home-offer">
 <div class="content center">
-    <h2>Thank you for choosing Homelicious!</h2>
-    <h4>
-        Unlike regular restaurants, our foods come from cook lovers. We try our
-        best to ensure the food quality and we aim to provide the best food
-        with an affordable price! Some of our offering are shown below.
-    </h4>
-    <h4>
-        Feel free to click on the image to see the details.
-    </h4>
-    <div id="post-container" >
-        <div class="posts center" *ngFor="#offerImage of offerImages">
-            <img src={{offerImage.url}} (click)="get_details(offerImage)"/>
+        <h2>Thank you for choosing Homelicious!</h2>
+        <h4>
+            Unlike regular restaurants, our foods come from cook lovers. We try our
+            best to ensure the food quality and we aim to provide the best food
+            with an affordable price! Some of our offering are shown below.
+        </h4>
+        <h4>
+            Feel free to click on the image to see the details.
+        </h4>
+        <div id="post-container" >
+            <div class="posts center" *ngFor="#offerImage of offerImages">
+                <img src={{offerImage.url}} (click)="get_details(offerImage)"/>
+            </div>
         </div>
+        <button id="viewmore" class="center">VIEW MORE</button>
     </div>
-    <button id="viewmore" class="center">VIEW MORE</button>
 </div>

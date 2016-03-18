@@ -7,6 +7,7 @@ import { Router} from 'angular2/router';
 {
 	selector: 'home-offer',
 	templateUrl: "app/home/app-offer.component.html",
+	styleUrls: ["app/home/app-offer.component.css"],
 	providers: [AppOfferService]
 })
 
