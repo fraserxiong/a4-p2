@@ -9,7 +9,7 @@ import {AppHeaderComponent} from '../app-header.component';
 {
 	selector: "search",
 	templateUrl: "app/search/search-display.component.html",
-	styleUrls: ["css/search.css", "css/common.css"],
+	styleUrls: ["app/search/search-display.component.css"],
 	directives: [AppHeaderComponent,AppFooterComponent],
 	providers: [AppOfferService]
 })

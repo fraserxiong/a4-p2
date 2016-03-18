@@ -9,7 +9,7 @@ import {AppHeaderComponent} from '../app-header.component';
 {
 	selector: "post-details",
 	templateUrl: "app/details/details.component.html",
-	styleUrls: ["css/details.css", "css/common.css"],
+	styleUrls: ["app/details/details.component.css"],
 	directives: [AppHeaderComponent, AppFooterComponent],
 	providers: [AppOfferService]
 })
