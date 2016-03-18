@@ -8,7 +8,7 @@ import {user_db, user} from '../user/user.service';
 @Component({
 	selector: 'admin-manage',
 	templateUrl: 'app/admin/admin-manage.component.html',
-	styleUrls:['app/admin/admin-manage.component.css', 'app/user/user-profile.component.css', 'app/search/search-display.component.css'],
+	styleUrls:['app/admin/admin-manage.component.css'],
 	directives: [AppHeaderComponent, AppFooterComponent],
 	providers: [AppOfferService, user_db]
 })
