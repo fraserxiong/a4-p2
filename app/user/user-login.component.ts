@@ -1,6 +1,6 @@
 import { Component }       from 'angular2/core';
 import { UserAuthenticationService} from "./user-authentication.service";
-import {Router} from 'angular2/router';
+import { Router} from 'angular2/router';
 
 @Component({
 	selector: "user-login",

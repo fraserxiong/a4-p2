@@ -1,69 +1,61 @@
-<div>
-    <custom-header></custom-header>
-    <div class="content center">
-        <!-- Page Content -->
-        <div class="container">
+<div class="content center">
+    <!-- Page Content -->
+    <div class="container">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">{{item.name}}
-                        <small>{{item.location}}</small>
-                    </h1>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{item.name}}
+                    <small>{{item.location}}</small>
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src="{{item.url}}" alt="{{item.name}}" />
             </div>
 
-            <div class="row">
-
-                <div class="col-md-8">
-                    <img class="img-responsive" src="{{item.url}}" alt="">
-                </div>
-
-                <div class="col-md-4">
-                    <h3>Description</h3>
-                    <p>{{item.description}}</p>
-                    <h3>Categories</h3>
-                    <ul>
-                        <li *ngFor="#category of item.categories">{{category}}</li>
-                    </ul>
-                </div>
-
+            <div class="col-md-4">
+                <h3>Description</h3>
+                <p>{{item.description}}</p>
+                <h3>Categories</h3>
+                <ul>
+                    <li *ngFor="#category of item.categories">{{category}}</li>
+                </ul>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header">Comments</h3>
-                </div>
+        </div>
 
-                <div class="blog-comment">
-                    <ul class="comments">
-                        <li class="clearfix" *ngFor="#comment of comments">
-                            <img src="http://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
-                            <div class="ratings">
-                                <i class="glyphicon glyphicon-star" *ngFor="#i of [1,2,3,4,5]"></i>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Comments</h3>
+            </div>
 
-                            </div>
+            <div class="blog-comment">
+                <ul class="comments">
+                    <li class="clearfix" *ngFor="#comment of comments">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                        <div class="ratings">
+                            <i class="glyphicon glyphicon-star" *ngFor="#i of [1,2,3,4,5]"></i>
+                        </div>
 
-
-                            <div class="post-comments">
-                              <p class="meta">{{comment.date}}<a href="#"> {{comment.user_name}}</a> says : <i class="pull-right">
-
-                                <a href="#"><small>Reply</small></a>
-                            </i></p>
-                            <p>
+                        <div class="post-comments">
+                          <p class="meta">
+                              {{comment.date}}<a href="#"> {{comment.user_name}}</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i>
+                          </p>
+                          <p>
                               {{comment.comment}}
                           </p>
                       </div>
-                  </ul>
-              </div>
-
+                  </li>
+              </ul>
           </div>
 
           <div class="row">
-
             <div class="col-lg-12">
                 <h3 class="page-header">Related Foods</h3>
             </div>
-
             <div class="related-result row">
                 <div class="col-xs-12 col-sm-12 col-md-3" *ngFor="#post of related">
                     <a href="#" class="thumbnail">
@@ -71,9 +63,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
-<custom-footer></custom-footer>
 </div>

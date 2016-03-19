@@ -1,14 +1,15 @@
 /*
 * Styling for footer
 */
-.wrapper{
+#footer_wrapper{
+    width: 100%;
     background-color: #222932;
     color: white;
 }
 
-.content {
-    max-width: 1100px;
-    padding: 75px 0 100px 0;
+.content{
+    display: table;
+    margin: auto;
 }
 
 img {
@@ -26,37 +27,27 @@ img {
     font-weight: lighter;
 }
 
-.image_wrapper{
+#footer_image_wrapper{
     text-align: center;
     width: 33%;
-    display:inline-block;
+    vertical-align: middle;
+    display:table-cell;
 }
 
-.contact_wrapper {
+#footer_content_wrapper {
     width: 66%;
-    text-align: left;
-    display:inline-block;
-    float:right;
+    vertical-align: middle;
+    text-align: center;
+    display:table-cell;
 }
 
 @media (max-width : 700px) {
 
-    .image_wrapper{
+    #footer_image_wrapper{
         display:none;
     }
-    .contact_wrapper {
-        width: 100%;
-        text-align: center;
-        padding: 0 20px 0 20px;
-        /*margin-left:20px;*/
-    }
-
-    .wrapper {
-        height: auto;
-    }
-
-    .contact_wrapper{
-        float: none;
+    #footer_content_wrapper {
+        padding: 0 5%;
     }
 
 }

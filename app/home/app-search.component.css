@@ -10,8 +10,7 @@ input {
 
 button {
     width: 200px;
-    height: 61px;
-    margin-top: -5px;
+    height: 60px;
     font-size: 20px;
     background-color: #b2bd0d;
     color: white;
@@ -19,34 +18,15 @@ button {
     font-family: 'Lato', sans-serif;
 }
 
-@media (max-width :768px) {
+@media (max-width :820px) {
 
     input {
-        width: 60%;
-        height: 60px;
-        border: none;
-        font-size: 20px;
-        font-family: 'Lato', sans-serif;
-        padding: 10px;
-        color: #6b6b70;
+        width: 65%;
     }
 
     button {
-        width: 30%;
-        height: 61px;
-        margin-top: -5px;
-        font-size: 20px;
-        background-color: #b2bd0d;
-        color: white;
-        border: none;
-        font-family: 'Lato', sans-serif;
+        width: 25%;
     }
-}
-
-.home-search > div{
-    width: 100vw;
-    overflow: hidden;
-    position: relative;
 }
 
 .display {
@@ -55,14 +35,16 @@ button {
     background: url("../images/search.jpg");
     background-size: cover;
     background-position: center;
+    display: table;
 }
 
 .searchDiv {
     width: 100vw;
     height: 70px;
-    position: absolute;
     top: 150px;
     left: 0%;
     color: white;
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
 }

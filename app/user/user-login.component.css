@@ -1,7 +1,13 @@
-#user-signin-form {
-  max-width: 330px;
-  padding: 15px;
+#user-signin-container{
   margin: 0 auto;
+  height: 100%;
+  display: table;
+}
+
+#user-signin-form {
+  display: table-cell;
+  width: 330px;
+  vertical-align: middle;
 }
 #user-signin-form .form-signin-heading,
 #signin-checkbox {

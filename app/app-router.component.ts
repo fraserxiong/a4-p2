@@ -9,27 +9,31 @@ import { UserLoginComponent} from './user/user-login.component';
 import { UserAuthenticationService} from "./user/user-authentication.service";
 import { user_db, user} from './user/user.service';
 import { AppLinksComponent} from './app-links.component';
+import { AppFooterComponent } from './app-footer.component';
+import { AppHeaderComponent} from './app-header.component';
 
 @Component(
 {
 	selector: "main-app",
-	template: '<router-outlet></router-outlet>',
+	templateUrl: "app/app-router.component.html",
+	styleUrls: ['app/app-router.component.css'],
 	providers: [ROUTER_PROVIDERS, UserAuthenticationService, user_db],
-	directives: [ROUTER_DIRECTIVES]
+	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent]
 })
 
 @RouteConfig(
 	[
-		{
-			path: '/allpage',
-			name: 'AllPage',
-			component: AppLinksComponent,
-			useAsDefault: true
-		},
+		// {
+		// 	path: '/allpage',
+		// 	name: 'AllPage',
+		// 	component: AppLinksComponent,
+		// 	useAsDefault: true
+		// },
 		{
 			path: '/home',
 			name: 'Home',
 			component: AppHomeComponent,
+			useAsDefault: true
 		},
 		{
 			path: '/login',
