@@ -1,0 +1,15 @@
+ <div id="signin-container">
+ 	<form id="signin-form" (ngSubmit)="onLogin(username.value, password.value)" #loginForm="ngForm">
+ 		<h2 class="form-signin-heading">Please sign in</h2>
+ 		<label for="signin-username" class="sr-only">Username</label>
+ 		<input #username type="text" id="signin-username" class="form-control" placeholder="{{usernameHint}}" required autofocus />
+ 		<label for="signin-password" class="sr-only">Password</label>
+ 		<input #password type="password" id="signin-password" class="form-control" placeholder="{{passwordHint}}" required />
+ 		<div id="signin-checkbox">
+ 			<label>
+ 				<input type="checkbox" value="remember-me" /> Remember me
+ 			</label>
+ 		</div>
+ 		<button id="signin-btn" type="submit">Sign in</button>
+ 	</form>
+ </div>

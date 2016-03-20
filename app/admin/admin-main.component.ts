@@ -1,15 +1,17 @@
-import { Component }       from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-import {AdminAuthenticationService} from './admin-authentication.service';
-import {AdminLoginComponent} from './admin-login.component';
-import {AdminManageComponent} from './admin-manage.component';
+import { Component, provide, OnInit, ViewChild, HostListener }       from 'angular2/core';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from 'angular2/router';
+import { AdminAuthenticationService } from './admin-authentication.service';
+import { AdminLoginComponent } from './admin-login.component';
+import { AdminManageComponent } from './admin-manage.component';
+import { Authenticator } from '../authentication/authentication.service';
+
 
 @Component(
 {
 	selector: 'admin-main',
 	templateUrl: 'app/admin/admin-main.component.html',
 	directives: [ROUTER_DIRECTIVES],
-	providers: [AdminAuthenticationService]
+	providers: [provide(Authenticator, {useClass: AdminAuthenticationService})]
 })
 
 @RouteConfig([
@@ -26,5 +28,4 @@ import {AdminManageComponent} from './admin-manage.component';
 	}
 ])
 
-export class AdminMainComponent{
-}
+export class AdminMainComponent{}

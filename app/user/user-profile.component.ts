@@ -1,15 +1,12 @@
 import { Component, OnInit}       from 'angular2/core';
 import {RouteParams}       from 'angular2/router';
 import {user_db, user} from './user.service';
-import {AppFooterComponent} from '../app-footer.component';
-import {AppHeaderComponent} from '../app-header.component';
 
 @Component(
 {
 	selector: 'user',
 	templateUrl: "app/user/user-profile.component.html",
-  styleUrls: ['app/user/user-profile.component.css'],
-	directives: [AppHeaderComponent, AppFooterComponent],
+  	styleUrls: ['app/user/user-profile.component.css'],
 	providers: [user_db]
 })
 
