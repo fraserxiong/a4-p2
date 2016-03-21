@@ -1,14 +1,13 @@
 import { Component, OnInit }       from 'angular2/core';
 import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
-import { UserAuthenticationService} from "./user/user-authentication.service";
-import { Authenticator } from "./authentication/authentication.service";
-import {user} from './user/user.service';
+import { Authenticator } from "../authentication/authentication.service";
+import {user} from '../user/user.service';
 
 @Component(
 {
 	selector: "custom-header",
-	templateUrl: "app/app-header.component.html",
-  	styleUrls: ["app/app-header.component.css"],
+	templateUrl: "app/header/app-header.component.html",
+  	styleUrls: ["app/header/app-header.component.css"],
   	directives: [ROUTER_DIRECTIVES]
 })
 

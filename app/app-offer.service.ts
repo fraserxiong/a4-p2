@@ -1,44 +1,21 @@
 import {Injectable} from 'angular2/core';
-
-export interface OfferImage{
-	id: number;
-	url: string;
-}
-
-export interface FullOffer {
-	id: number;
-	url: string;
-	name: string;
-	location: string;
-	description: string;
-	categories: string[];
-	price: number;
-}
-
-export interface Comment {
-	id: number;
-	user_id: number;
-	avatar_url: string;
-	user_name: string;
-	rating: number;
-	comment: string;
-	date: string;
-}
+import { Dish } from './model/dish';
+import { Comment } from './model/comment';
 
 @Injectable()
 export class AppOfferService{
-	get_hotest_offers(){
-		let images: OfferImage[] = [
+	get_hotest_offers() : Promise<Dish[]>{
+		let images: Dish[] = [
 			{ id: 1, url: "images/offer1.jpg"},
 			{ id: 2, url: "images/offer2.jpg"},
 			{ id: 3, url: "images/offer3.jpg"},
 		];
-		return Promise.resolve(images);
+		return Promise.resolve<Dish[]>(images);
 	}
 
-	get_post_details(id){
+	get_post_details(id) : Promise<Dish>{
 
-		let post: FullOffer = {
+		let post: Dish = {
 			id: 6,
 			url: "images/offer6.jpg",
 			location: "38 elm Street.",
@@ -48,11 +25,11 @@ export class AppOfferService{
 			price: 10.50
 		};
 
-		return Promise.resolve(post);
+		return Promise.resolve<Dish>(post);
 	}
 
-	get_related_posts(id){
-		let results: FullOffer[] = [
+	get_related_posts(id) : Promise<Dish[]>{
+		let results: Dish[] = [
 			{
 				id: 4,
 				url: "images/offer4.jpg",
@@ -91,12 +68,12 @@ export class AppOfferService{
 			}
 		]
 
-		return Promise.resolve(results);
+		return Promise.resolve<Dish[]>(results);
 
 	}
 
-	search_by_query(query){
-		let results: FullOffer[] = [
+	search_by_query(query) : Promise<Dish[]>{
+		let results: Dish[] = [
 			{
 				id: 1,
 				url: "images/offer1.jpg",
@@ -217,10 +194,10 @@ export class AppOfferService{
 
 		]
 
-		return Promise.resolve(results);
+		return Promise.resolve<Dish[]>(results);
 	}
 
-	get_comments_for_post(id){
+	get_comments_for_post(id) : Promise<Comment[]>{
 		let comments: Comment[] = [
 			{
 				id: 1,
@@ -250,6 +227,6 @@ export class AppOfferService{
 				comment: "Full of energy!"
 			}
 		];
-		return Promise.resolve(comments);
+		return Promise.resolve<Comment[]>(comments);
 	}
 }

@@ -8,9 +8,8 @@ import { UserProfileComponent} from './user/user-profile.component';
 import { UserLoginComponent} from './user/user-login.component';
 import { UserAuthenticationService} from "./user/user-authentication.service";
 import { user_db, user} from './user/user.service';
-import { AppLinksComponent} from './app-links.component';
-import { AppFooterComponent } from './app-footer.component';
-import { AppHeaderComponent} from './app-header.component';
+import { AppFooterComponent } from './footer/app-footer.component';
+import { AppHeaderComponent} from './header/app-header.component';
 import { LoginComponent } from './login/login.component';
 import { Authenticator } from './authentication/authentication.service';
 
@@ -25,12 +24,6 @@ import { Authenticator } from './authentication/authentication.service';
 
 @RouteConfig(
 	[
-		// {
-		// 	path: '/allpage',
-		// 	name: 'AllPage',
-		// 	component: AppLinksComponent,
-		// 	useAsDefault: true
-		// },
 		{
 			path: '/home',
 			name: 'Home',

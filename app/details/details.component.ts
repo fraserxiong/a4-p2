@@ -1,22 +1,20 @@
 import { Component, OnInit} from 'angular2/core';
-import {AppFooterComponent} from '../app-footer.component';
 import {AppOfferService} from '../app-offer.service';
-import {FullOffer, Comment} from '../app-offer.service';
+import {Dish} from '../model/dish';
+import {Comment} from '../model/comment';
 import {RouteParams, Router} from 'angular2/router';
-import {AppHeaderComponent} from '../app-header.component';
 
 @Component(
 {
 	selector: "post-details",
 	templateUrl: "app/details/details.component.html",
 	styleUrls: ["app/details/details.component.css"],
-	directives: [AppHeaderComponent, AppFooterComponent],
 	providers: [AppOfferService]
 })
 
 export class DetailsComponent implements OnInit {
 
-	item: FullOffer = {
+	item: Dish = {
 		id: 0,
 		url: "dummy",
 		location: "dummy",
@@ -25,7 +23,7 @@ export class DetailsComponent implements OnInit {
 		categories: [],
 		price: 0
 	};
-	related: FullOffer[] = [];
+	related: Dish[] = [];
 
 	comments: Comment[] = [];
 

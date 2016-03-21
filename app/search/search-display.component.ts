@@ -1,22 +1,21 @@
 import { Component, OnInit}       from 'angular2/core';
-import {AppFooterComponent} from '../app-footer.component';
-import {AppOfferService} from '../app-offer.service';
-import {FullOffer} from '../app-offer.service';
-import {RouteParams, Router} from 'angular2/router';
-import {AppHeaderComponent} from '../app-header.component';
+import { AppOfferService } from '../app-offer.service';
+import { Dish } from '../model/dish';
+import { RouteParams, Router} from 'angular2/router';
+import { DishListComponent} from '../dish/dish-list.component';
 
 @Component(
 {
 	selector: "search",
 	templateUrl: "app/search/search-display.component.html",
 	styleUrls: ["app/search/search-display.component.css"],
-	directives: [AppHeaderComponent,AppFooterComponent],
-	providers: [AppOfferService]
+	providers: [AppOfferService],
+	directives: [DishListComponent]
 })
 
 export class SearchComponent implements OnInit {
 
-	results: FullOffer[] = []
+	results: Dish[] = [];
 
 	constructor(
 		private _offerService: AppOfferService,

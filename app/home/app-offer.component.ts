@@ -1,6 +1,6 @@
 import { Component, OnInit}       from 'angular2/core';
 import {AppOfferService} from '../app-offer.service';
-import {OfferImage} from '../app-offer.service';
+import { Dish } from '../model/dish';
 import { Router} from 'angular2/router';
 
 @Component(
@@ -12,7 +12,7 @@ import { Router} from 'angular2/router';
 })
 
 export class AppOfferComponent implements OnInit{
-	offerImages: OfferImage[];
+	offerImages: Dish[];
 
 	constructor(
 		private _offerService: AppOfferService,

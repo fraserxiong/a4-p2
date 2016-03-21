@@ -1,0 +1,27 @@
+<article class="dish_overview">
+    <div class="dish_image">
+        <a [routerLink]="['Details', {id: dish.id}]">
+            <img class="thumbnail img-responsive" [src]="dish.url" alt="{{dish?.name}}" />
+        </a>
+    </div>
+    <div class="dish_tags">
+        <ul>
+            <li>
+                <i class="glyphicon glyphicon-home"></i>
+                <span>{{dish.location}}</span>
+            </li>
+            <li>
+                <i class="glyphicon glyphicon-usd"></i>
+                <span>{{dish.price}}</span>
+            </li>
+            <li *ngFor="#category of dish.categories">
+                <i class="glyphicon glyphicon-tags"></i>
+                <span >{{category}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="dish_description">
+        <h3><a [routerLink]="['Details', {id: dish.id}]" >{{dish.name}}</a></h3>
+        <p>{{dish.description}}</p>
+    </div>
+</article>

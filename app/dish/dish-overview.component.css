@@ -1,0 +1,86 @@
+.dish_overview{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.dish_image,
+.dish_tags{
+    flex: 1 0px;
+}
+
+.dish_image img{
+    object-fit: cover; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+}
+
+.dish_description{
+    flex: 3 0px;
+}
+
+.dish_description{
+    padding-left: 20px;
+}
+
+@media all and (max-width: 1024px){
+    .dish_overview{
+        flex-direction: column;
+    }
+    .dish_description{
+        display: none;
+    }
+    .dish_image,
+    .diash_tags{
+        flex: 1 auto;
+    }
+}
+
+.thumbnail {
+    border-radius: 0 !important;
+    width: 80%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.dish_tags {
+    border-right: 1px dotted #ccc;
+    min-height: 150px;
+}
+
+@media all and (max-width: 1024px){
+    .dish_tags{
+        border-right: none;
+    }
+}
+
+ul {
+     padding-left: 0 !important;
+     list-style: none;
+}
+
+ul li {
+    font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;
+    line-height: 30px;
+}
+
+ul li i {
+    padding-right: 5px;
+}
+
+h3 {
+    font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+h3 > a, i {
+    color: #248dc1 !important;
+}
+
+p {
+    font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif;
+}
+
+span {
+    font: normal lighter 12px "Roboto",Arial,Verdana,sans-serif;
+}

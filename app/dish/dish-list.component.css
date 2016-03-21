@@ -1,0 +1,32 @@
+.dish_list{
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+}
+
+dish-overview:not(:first-child){
+	margin-top: 20px;
+}
+
+@media all and (max-width: 1024px){
+	dish-overview:first-child{
+		margin-top: 20px;
+	}
+}
+
+dish-overview{
+	flex: 1 100%;
+}
+
+@media all and (max-width: 1024px){
+	dish-overview{
+		flex: 1 50%;
+	}
+}
+
+@media all and (max-width: 600px){
+	dish-overview{
+		flex: 1 100%;
+	}
+}
+

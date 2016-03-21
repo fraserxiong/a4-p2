@@ -1,11 +1,9 @@
 import { Component, OnInit}       from 'angular2/core';
-import {AppHeaderComponent} from '../app-header.component';
-import {AppFooterComponent} from '../app-footer.component';
 import {AppOfferService} from '../app-offer.service';
-import {FullOffer} from '../app-offer.service';
 import {user_db, user} from '../user/user.service';
 import {Router, OnActivate, ComponentInstruction} from 'angular2/router';
-import {Authenticator} from '../authentication/authentication.service'
+import {Authenticator} from '../authentication/authentication.service';
+import {Dish} from '../model/dish';
 
 enum State{
 	User,
@@ -16,11 +14,10 @@ enum State{
 	selector: 'admin-manage',
 	templateUrl: 'app/admin/admin-manage.component.html',
 	styleUrls:['app/admin/admin-manage.component.css'],
-	directives: [AppHeaderComponent, AppFooterComponent],
 	providers: [AppOfferService, user_db]
 })
 export class AdminManageComponent implements OnInit, OnActivate{
-	results: FullOffer[] = [];
+	results: Dish[] = [];
 	user_list: user[] = [];
 
 	stateEnum = State;

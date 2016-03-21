@@ -13,30 +13,7 @@
                     <strong class="text-danger">{{get_query()}}</strong></h2>
         	</hgroup>
 
-            <section class="col-xs-12 col-sm-6 col-md-12">
-        		<article class="search-result row" *ngFor="#result of results">
-        			<div class="col-xs-12 col-sm-12 col-md-3">
-        				<a href="#" class="thumbnail">
-                            <img src="{{result.url}}" alt="Lorem ipsum" />
-                        </a>
-        			</div>
-        			<div class="col-xs-12 col-sm-12 col-md-2">
-        				<ul class="meta-search">
-        					<li><i class="glyphicon glyphicon-home"></i> <span>{{result.location}}</span></li>
-        					<li><i class="glyphicon glyphicon-usd"></i> <span>{{result.price}}</span></li>
-        					<li *ngFor="#c of result.categories">
-                                <i class="glyphicon glyphicon-tags"></i>
-                                <span >{{c}}</span>
-                            </li>
-        				</ul>
-        			</div>
-        			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-        				<h3><a href="/details/2" >{{result.name}}</a></h3>
-        				<p>{{result.description}}</p>
-        			</div>
-        			<span class="clearfix borda"></span>
-        		</article>
-            </section>
+            <dish-list [dishes]="results"></dish-list>
         </div>
     </div>
 </div>
