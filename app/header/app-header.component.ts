@@ -1,7 +1,7 @@
 import { Component, OnInit }       from 'angular2/core';
 import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { Authenticator } from "../authentication/authentication.service";
-import {user} from '../user/user.service';
+import { User } from "../model/user";
 
 @Component(
 {
@@ -12,7 +12,7 @@ import {user} from '../user/user.service';
 })
 
 export class AppHeaderComponent implements OnInit{
-	curUser: user;
+	curUser: User;
 
 	constructor(private _authenticator: Authenticator, private _router: Router) { }
 

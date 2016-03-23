@@ -1,0 +1,59 @@
+.comment{
+	display: flex;
+	align-items: stretch;
+}
+
+article{
+	border: 1px solid #eee;
+    margin-bottom: 20px;
+    margin-left: 85px;
+	margin-right: 0px;
+    padding: 10px 20px;
+    border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+}
+
+aside img{
+	object-fit: scale-down;
+	object-position: center;
+}
+
+article header{
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 8px;
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+
+aside{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 0.1 10%;
+}
+
+aside img{
+	flex: 0.8 auto;
+}
+
+aside rating{
+	flex: 0.2 auto;
+}
+
+article{
+	flex: 0.9 90%;
+}
+
+article header{
+	display: flex;
+}
+
+article header span:nth-child(1){
+	flex: 0.9 0px;
+}
+
+article header span:nth-child(2){
+	flex: 0.1 0px;
+}

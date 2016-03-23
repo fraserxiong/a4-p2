@@ -1,0 +1,8 @@
+.rating{
+	display: flex;
+	justify-content: space-between;
+}
+
+.star{
+	flex: 1 20%;
+}

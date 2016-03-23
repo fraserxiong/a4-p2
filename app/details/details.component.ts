@@ -1,15 +1,20 @@
-import { Component, OnInit} from 'angular2/core';
-import {AppOfferService} from '../app-offer.service';
-import {Dish} from '../model/dish';
-import {Comment} from '../model/comment';
-import {RouteParams, Router} from 'angular2/router';
+import { Component, OnInit } from 'angular2/core';
+import { AppOfferService } from '../app-offer.service';
+import { Dish } from '../model/dish';
+import { Comment } from '../model/comment';
+import { RouteParams, Router } from 'angular2/router';
+import { RatingComponent } from '../comment/rating.component';
+import { CapitalizePipe } from '../pipe/capitalize.pipe';
+import { CommentService } from '../comment/comment.service';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component(
 {
 	selector: "post-details",
 	templateUrl: "app/details/details.component.html",
 	styleUrls: ["app/details/details.component.css"],
-	providers: [AppOfferService]
+	directives: [CommentComponent],
+	pipes: [CapitalizePipe]
 })
 
 export class DetailsComponent implements OnInit {
@@ -30,18 +35,22 @@ export class DetailsComponent implements OnInit {
 	constructor(
 		private _offerService: AppOfferService,
 		private _router: Router,
-		private _routeParams: RouteParams
+		private _routeParams: RouteParams,
+		private _commentService: CommentService
 	){}
 
 	ngOnInit(){
+		let id: number = + this._routeParams.get('id');
+
 		this._offerService.get_post_details(this.get_id())
 			.then(result => this.item = result);
 
 		this._offerService.get_related_posts(this.get_id())
 			.then(related => this.related = related);
 
-		this._offerService.get_comments_for_post(this.get_id())
+		this._commentService.getCommentForDish(id)
 			.then(comments => this.comments = comments);
+
 	}
 
 	get_id(){

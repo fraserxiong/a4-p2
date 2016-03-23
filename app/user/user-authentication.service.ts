@@ -1,21 +1,23 @@
 import {Injectable} from 'angular2/core';
-import {user, user_db} from './user.service';
+import {User} from '../model/user';
+import {UserProfileService} from './user-profile.service';
 import {Authenticator} from '../authentication/authentication.service';
 
 @Injectable()
 export class UserAuthenticationService extends Authenticator{
-	private curUser: user;
+	private curUser: User;
 
-	constructor(private _user_db: user_db){
+	constructor(private _userProfileService: UserProfileService) {
 		super();
 	}
 
 	authenticate(username: string, password: string): boolean {
-		let users = this._user_db.get_list();
+		let users = this._userProfileService.allUsers;
 		for (var i = 0; i < users.length; i++) {
 			if (users[i].email == username && users[i].password == password){
 				this.curUser = users[i];
 				this._isSignedIn = true;
+				return true;
 			}
 		}
 		return false;

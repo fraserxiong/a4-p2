@@ -1,38 +1,25 @@
 import { Component, OnInit}       from 'angular2/core';
-import {RouteParams}       from 'angular2/router';
-import {user_db, user} from './user.service';
+import { RouteParams }       from 'angular2/router';
+import { User } from '../model/user';
+import { UserProfileService } from './user-profile.service'
 
 @Component(
 {
 	selector: 'user',
 	templateUrl: "app/user/user-profile.component.html",
   	styleUrls: ['app/user/user-profile.component.css'],
-	providers: [user_db]
 })
 
 export class UserProfileComponent implements OnInit{
-	id: number;
-	cur_user: user;
-	user_list: user[];
+	private curUser: User;
+	user_list: User[];
 
 	constructor(
-		private _db: user_db,
+		private _profileService: UserProfileService,
 		private _routeParams: RouteParams){}
 
-	get_user(){
-		return this.cur_user;
-	}
-
 	ngOnInit(){
-		this.id = + this._routeParams.get('id');
-		this.user_list = this._db.get_list();
-		for(var i = 0; i < this.user_list.length; i++){
-			let u_obj = this.user_list[i];
-			if(u_obj.id == this.id){
-				this.cur_user = u_obj;
-				this.user_list = this.user_list.slice(i + 1,this.user_list.length);
-				return
-			}
-		}
+		let id: number = + this._routeParams.get('id');
+		this.curUser = this._profileService.findUserById(id);
 	}
 }

@@ -1,9 +1,9 @@
 export interface Comment {
 	id: number;
-	user_id: number;
-	avatar_url: string;
-	user_name: string;
+	target_id: number; //Id of the dish towards which this comment targets
+	user_id: number; //Id of the user who posts this comment
+	reply_to?: number; //Id of the comment to which this comment reply
 	rating: number;
-	comment: string;
+	message?: string;
 	date: string;
 }

@@ -7,18 +7,20 @@ import { DetailsComponent} from './details/details.component';
 import { UserProfileComponent} from './user/user-profile.component';
 import { UserLoginComponent} from './user/user-login.component';
 import { UserAuthenticationService} from "./user/user-authentication.service";
-import { user_db, user} from './user/user.service';
+import { UserProfileService } from './user/user-profile.service';
 import { AppFooterComponent } from './footer/app-footer.component';
 import { AppHeaderComponent} from './header/app-header.component';
 import { LoginComponent } from './login/login.component';
 import { Authenticator } from './authentication/authentication.service';
+import { AppOfferService } from './app-offer.service';
+import { CommentService } from './comment/comment.service';
 
 @Component(
 {
 	selector: "main-app",
 	templateUrl: "app/app-router.component.html",
 	styleUrls: ['app/app-router.component.css'],
-	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), user_db],
+	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService],
 	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent]
 })
 
