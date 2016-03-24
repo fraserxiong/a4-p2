@@ -28,7 +28,8 @@ export class UserProfileService{
 				name: "Bill Gates",
 				cvd: "001",
 				expire_date: "04/17"
-			}]
+			}],
+			friends: [10001, 10003]
 		}, {
 
 			id: 10001,

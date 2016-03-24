@@ -1,0 +1,11 @@
+<article class="well">
+	<header>
+		<a [routerLink]="['UserProfile', {id: curUser?.id}]"><img class="img-circle" [src]="curUser?.avatar_url" /></a>
+	</header>
+	<section>
+		<h2>{{curUser?.name}}</h2>
+		<p class="user_avatar_email"><span class="glyphicon glyphicon-envelope"></span>{{curUser?.email}}</p>
+		<p class="user_avatar_phone"><span class="glyphicon glyphicon-phone"></span>{{curUser?.phone_number}}</p>
+		<p class="user_avatar_address"><span class="glyphicon glyphicon-globe"></span>{{curUser?.address}},  {{curUser?.postcode}}</p>
+	</section>
+</article>

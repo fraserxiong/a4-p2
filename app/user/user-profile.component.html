@@ -1,61 +1,11 @@
 <div class="container-fluid profile">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-body text-left">
-                        <div class="row">
-                            <div class="col-md-12 ">
-                                <center>
-                                    <a class="">
-                                        <img class="media-object dp img-circle" [src]="curUser?.avatar_url" style="width: 180px;height:180px;" />
-                                    </a>
-                                </center>
-                            </div>
-                            <div class="col-md-12">
-                                <h2>{{curUser?.name}}</h2>
-                                <p>
-                                    <a class="remove-decoration"><span class="glyphicon glyphicon-envelope"></span> {{curUser?.email}}</a>
-                                    <br />
-                                    <a class="remove-decoration"> <span class="glyphicon glyphicon-phone"></span>{{curUser?.phone_number}}</a>
-                                    <br />
-                                    <a class="remove-decoration"><span class="glyphicon glyphicon-globe"></span> {{curUser?.address}},  {{curUser?.postcode}}</a>
-                                    <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-            </div>
-        </div>
-    </div>
+    <user-avatar [user]="curUser"></user-avatar>
 </div>
 
 
-<div class="main dashboard_friend">
+<article class="container-fluid dashboard_friends">
   <h1>My Friends:</h1>
-  <div class="row placeholders">
-      <div class="container-fluid friend" *ngFor="#user_obj of user_list">
-         <div class="row">
-             <div class="panel panel-default">
-                 <div class="panel-body text-left">
-                     <div class="row">
-                         <div class="col-md-12 ">
-                             <center>
-                                 <a class="">
-                                     <img class="media-object dp img-circle" src="{{user_obj.avatar_url}}" style="width: 180px;height:180px;" />
-                                 </a>
-                                 <h2>{{user_obj.name}}</h2>
-                             </center>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
+  <section class="friends_list">
+    <user-avatar *ngFor="#friend of friends" [user]="friend"></user-avatar>
+    </section>
+</article>
