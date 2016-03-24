@@ -1,4 +1,4 @@
-import { Component, OnInit }       from 'angular2/core';
+import { Component, OnInit, Input }       from 'angular2/core';
 import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { Authenticator } from "../authentication/authentication.service";
 import { User } from "../model/user";
@@ -12,7 +12,7 @@ import { User } from "../model/user";
 })
 
 export class AppHeaderComponent implements OnInit{
-	curUser: User;
+	@Input('user') curUser: User;
 
 	constructor(private _authenticator: Authenticator, private _router: Router) { }
 
@@ -23,6 +23,6 @@ export class AppHeaderComponent implements OnInit{
 	logOut() {
 		//this._authenticator.logOut();
 		this._router.navigate(['Home']);
-		this.curUser = null;
+		this._authenticator.logOut();
 	}
 }

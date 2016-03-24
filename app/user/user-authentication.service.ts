@@ -5,7 +5,6 @@ import {Authenticator} from '../authentication/authentication.service';
 
 @Injectable()
 export class UserAuthenticationService extends Authenticator{
-	private curUser: User;
 
 	constructor(private _userProfileService: UserProfileService) {
 		super();
@@ -15,19 +14,11 @@ export class UserAuthenticationService extends Authenticator{
 		let users = this._userProfileService.allUsers;
 		for (var i = 0; i < users.length; i++) {
 			if (users[i].email == username && users[i].password == password){
-				this.curUser = users[i];
+				this._curUser = users[i];
 				this._isSignedIn = true;
 				return true;
 			}
 		}
 		return false;
-	}
-
-	getCurUser(){
-		return this.curUser;
-	}
-
-	logOut(){
-		this.curUser = null;
 	}
 }

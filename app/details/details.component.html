@@ -42,8 +42,8 @@
             </div>
             <div class="related-result row">
                 <div class="col-xs-12 col-sm-12 col-md-3" *ngFor="#post of related">
-                    <a href="#" class="thumbnail">
-                        <img src="{{post.url}}" alt="Lorem ipsum" />
+                    <a [routerLink]="['Details', {id: post.id}]" class="thumbnail">
+                        <img [src]="post.url" alt="{{post.name}}" />
                     </a>
                 </div>
             </div>

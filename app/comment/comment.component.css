@@ -15,7 +15,7 @@ article{
 }
 
 aside img{
-	object-fit: scale-down;
+	object-fit: cover;
 	object-position: center;
 }
 
@@ -36,10 +36,13 @@ aside{
 
 aside img{
 	flex: 0.8 auto;
+	width: 100px;
+	height: 100px;
 }
 
 aside rating{
 	flex: 0.2 auto;
+	width: 100%;
 }
 
 article{

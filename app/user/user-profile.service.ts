@@ -3,13 +3,14 @@ import {User} from '../model/user';
 
 export class UserProfileService{
 
-	findUserById(id: number): User{
+	findUserById(id: number): Promise<any>{
 		let users: User[] = this.allUsers;
 		for (var i = 0; i < users.length; i++){
 			if (users[i].id == id){
-				return users[i];
+				return Promise.resolve<User>(users[i]);
 			}
 		}
+		return Promise.reject<string>("Can't find user with id: " + id);
 	}
 
 	get allUsers(): User[]{

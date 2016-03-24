@@ -3,12 +3,15 @@ import { Comment } from '../model/comment';
 import { User } from '../model/user';
 import { UserProfileService } from '../user/user-profile.service';
 import { RatingComponent } from '../comment/rating.component';
+import { CapitalizePipe } from '../pipe/capitalize.pipe';
+import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 @Component({
 	selector: 'dish-comment',
 	templateUrl: 'app/comment/comment.component.html',
 	styleUrls: ['app/comment/comment.component.css'],
-	directives: [RatingComponent]
+	directives: [RatingComponent, ROUTER_DIRECTIVES],
+	pipes: [CapitalizePipe]
 })
 export class CommentComponent implements OnInit{
 	@Input('comment') comment;
@@ -18,6 +21,9 @@ export class CommentComponent implements OnInit{
 	constructor(private _userProfileService: UserProfileService){}
 
 	ngOnInit(){
-		this.user = this._userProfileService.findUserById(this.comment.user_id);
+		this._userProfileService.findUserById(this.comment.user_id)
+			.then(user => {
+				this.user = user
+			});
 	}
 }

@@ -10,4 +10,5 @@ export interface User{
 	postcode?: string;
     avatar_url?: string;
 	payment_info?: CreditCard[];
+	friends?: number[];
 }

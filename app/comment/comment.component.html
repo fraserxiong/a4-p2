@@ -1,11 +1,11 @@
 <section class="comment">
 	<aside>
-		<img class="img-rounded img-responsive" [src]="user.avatar_url" alt="{{user.name}}"/>
+		<img class="img-rounded" [src]="user?.avatar_url" alt="{{user?.name}}"/>
 		<rating [rate]="comment.rating"></rating>
 	</aside>
 	<article>
 		<header>
-			<span>{{comment.date}}<a >{{user.name}}</a> says:</span>
+			<span><a [routerLink]="['UserProfile', {id: user?.id}]">{{user?.name | Capitalize}}</a> {{comment.date}}</span>
 			<span><a>Reply:</a></span>
 		</header>
 		<p>

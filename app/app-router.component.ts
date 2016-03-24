@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { Authenticator } from './authentication/authentication.service';
 import { AppOfferService } from './app-offer.service';
 import { CommentService } from './comment/comment.service';
+import { User } from './model/user';
 
 @Component(
 {
@@ -65,4 +66,12 @@ import { CommentService } from './comment/comment.service';
 	]
 )
 
-export class AppRouterComponent{}
+export class AppRouterComponent{
+
+	constructor(private _authenticator: Authenticator) { }
+
+	getCurUser() : User{
+		return this._authenticator.curUser;
+	}
+
+}

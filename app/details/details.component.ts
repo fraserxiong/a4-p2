@@ -2,8 +2,7 @@ import { Component, OnInit } from 'angular2/core';
 import { AppOfferService } from '../app-offer.service';
 import { Dish } from '../model/dish';
 import { Comment } from '../model/comment';
-import { RouteParams, Router } from 'angular2/router';
-import { RatingComponent } from '../comment/rating.component';
+import { RouteParams, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 import { CapitalizePipe } from '../pipe/capitalize.pipe';
 import { CommentService } from '../comment/comment.service';
 import { CommentComponent } from '../comment/comment.component';
@@ -13,7 +12,7 @@ import { CommentComponent } from '../comment/comment.component';
 	selector: "post-details",
 	templateUrl: "app/details/details.component.html",
 	styleUrls: ["app/details/details.component.css"],
-	directives: [CommentComponent],
+	directives: [CommentComponent, ROUTER_DIRECTIVES],
 	pipes: [CapitalizePipe]
 })
 
