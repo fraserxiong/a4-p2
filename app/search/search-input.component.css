@@ -7,6 +7,7 @@
 
 input {
     border: none;
+    border-bottom: rgba(0, 0, 0, 0.4) 1px solid;
     font-size: 20px;
     font-family: 'Lato', sans-serif;
     color: #6b6b70;

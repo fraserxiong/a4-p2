@@ -1,16 +1,13 @@
 <div class="search">
     <div class="content center">
         <div class="container">
-            <div class="searchDiv center">
-                <input id="searchQuery" class="input" placeholder="Keyword..."/>
-                <button (click)="start_query()">SEARCH</button>
-            </div>
+            <search-input></search-input>
             <hgroup class="mb20">
         		<h1>Search Results</h1>
         		<h2 class="lead">
-                    <strong class="text-danger">{{get_result_length()}}</strong>
+                    <strong class="text-danger">{{results.length}}</strong>
                     results were found for the search for
-                    <strong class="text-danger">{{get_query()}}</strong></h2>
+                    <strong class="text-danger">{{query}}</strong></h2>
         	</hgroup>
 
             <dish-list [dishes]="results"></dish-list>
