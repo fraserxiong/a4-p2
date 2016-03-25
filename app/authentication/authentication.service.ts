@@ -6,8 +6,8 @@ export class Authenticator{
 	protected _isSignedIn: boolean = false;
 	protected _curUser: User; 
 
-	authenticate(username: string, password: string) : boolean{
-		return false;
+	authenticate(username: string, password: string) : Promise<boolean>{
+		return Promise.resolve(false);
 	}
 
 	get signedIn(): boolean{
@@ -16,6 +16,11 @@ export class Authenticator{
 
 	get curUser(): User{
 		return this._curUser;
+	}
+
+	protected authenticationPassed(user: User){
+		this._isSignedIn = true;
+		this._curUser = user;
 	}
 
 

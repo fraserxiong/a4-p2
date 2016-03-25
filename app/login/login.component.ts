@@ -15,9 +15,10 @@ export abstract class LoginComponent {
 	}
 
 	onLogin(username: string, password: string){
-		if (this._authenticator.authenticate(username, password)){
-			this.onAuthenticationPass();
-		}
+		this._authenticator.authenticate(username, password).then(result => {
+			if (result)
+				this.onAuthenticationPass();
+		})
 	}
 
 	onAuthenticationPass(){

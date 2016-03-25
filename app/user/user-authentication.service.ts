@@ -10,15 +10,20 @@ export class UserAuthenticationService extends Authenticator{
 		super();
 	}
 
-	authenticate(username: string, password: string): boolean {
+	authenticate(username: string, password: string): Promise<boolean>{
 		let users = this._userProfileService.allUsers;
-		for (var i = 0; i < users.length; i++) {
-			if (users[i].email == username && users[i].password == password){
-				this._curUser = users[i];
-				this._isSignedIn = true;
-				return true;
+		return new Promise<User>(function(resolve, reject){
+			for (var i = 0; i < users.length; i++){
+				if (users[i].email == username && users[i].password == password){
+					resolve(users[i]);
+				}
 			}
-		}
-		return false;
+			resolve(null);
+		}).then<boolean>(user => {
+			if (user){
+				this.authenticationPassed(user);
+			}
+			return user ? true : false;
+		});
 	}
 }
