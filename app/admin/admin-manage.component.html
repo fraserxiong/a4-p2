@@ -25,62 +25,12 @@
 
 <section [ngSwitch]="state">
   <!-- User Management-->
-  <div class="col-sm-offset-3 col-md-offset-2 main dashboard_user" *ngSwitchWhen="stateEnum.User" *ngSwitchDefault>
-    <div class="row placeholders">
-      <div class="container-fluid profile" *ngFor="#user_obj of user_list">
-       <div class="row">
-         <div class="panel panel-default">
-
-           <div class="panel-body text-left">
-             <div class="row">
-               <div class="col-md-12 ">
-                 <center>
-                   <a class="">
-                    <img class="media-object dp img-circle" src="{{user_obj.avatar_url}}" style="width: 180px;height:180px;" />
-                  </a>
-                </center>
-              </div>
-              <div class="col-md-12">
-               <h2>{{user_obj.name}}</h2>
-               <p>
-                 <a class="remove-decoration"><i class="glyphicon glyphicon-envelope"></i> {{user_obj.email}}</a> <br />
-                 <a class="remove-decoration"> <i class="glyphicon glyphicon-phone"></i>{{user_obj.phone_number}}</a><br />
-                 <a class="remove-decoration"><i class="glyphicon glyphicon-globe"></i> {{user_obj.address}},  {{user_obj.postcode}}</a><br />
-               </p>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
-</div>
-
-<!-- Food Management-->
-<div class="col-sm-offset-3 col-md-offset-2 main dashboard_food" *ngSwitchWhen="stateEnum.Food">
-  <div class="row placeholders">
-    <article class="search-result row" *ngFor="#result of results">
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <a href="#" class="thumbnail">
-          <img src="{{result.url}}" alt="Lorem ipsum" />
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-2">
-        <ul class="meta-search">
-          <li><i class="glyphicon glyphicon-home"></i> <span>{{result.location}}</span></li>
-          <li><i class="glyphicon glyphicon-usd"></i> <span>{{result.price}}</span></li>
-          <li *ngFor="#c of result.categories">
-            <i class="glyphicon glyphicon-tags"></i>
-            <span >{{c}}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-        <h3><a href="#" >{{result.name}}</a></h3>
-        <p>{{result.description}}</p>
-      </div>
-      <span class="clearfix borda"></span>
-    </article>
+  <div id="dashboard_users" class="container-fluid" *ngSwitchWhen="stateEnum.User" *ngSwitchDefault>
+    <user-avatar *ngFor="#user of users" [user]="user"></user-avatar>
   </div>
-</div>
+
+  <!-- Food Management-->
+  <div id="dashboard_dishes" class="container-fluid" *ngSwitchWhen="stateEnum.Food">
+    <dish-list [dishes]="dishes"></dish-list>
+  </div>
 </section>

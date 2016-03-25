@@ -11,4 +11,5 @@ export interface User{
     avatar_url?: string;
 	payment_info?: CreditCard[];
 	friends?: number[];
+	isAdmin?: boolean;
 }

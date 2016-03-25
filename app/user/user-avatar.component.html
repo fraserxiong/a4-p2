@@ -1,6 +1,6 @@
 <article class="well">
 	<header>
-		<a [routerLink]="['UserProfile', {id: curUser?.id}]"><img class="img-circle" [src]="curUser?.avatar_url" /></a>
+		<a [routerLink]="['/UserProfile', {id: curUser?.id}]"><img class="img-circle" [src]="curUser?.avatar_url" /></a>
 	</header>
 	<section>
 		<h2>{{curUser?.name}}</h2>

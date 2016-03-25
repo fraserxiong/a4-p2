@@ -5,6 +5,8 @@ import { User } from '../model/user';
 import { Router, OnActivate, ComponentInstruction } from 'angular2/router';
 import { Authenticator } from '../authentication/authentication.service';
 import { Dish } from '../model/dish';
+import { UserAvatarComponent } from '../user/user-avatar.component';
+import { DishListComponent } from '../dish/dish-list.component';
 
 enum State{
 	User,
@@ -15,11 +17,12 @@ enum State{
 	selector: 'admin-manage',
 	templateUrl: 'app/admin/admin-manage.component.html',
 	styleUrls:['app/admin/admin-manage.component.css'],
+	directives: [UserAvatarComponent, DishListComponent]
 })
 
 export class AdminManageComponent implements OnInit, OnActivate{
-	results: Dish[] = [];
-	user_list: User[] = [];
+	private dishes: Dish[] = [];
+	private users: User[] = [];
 
 	stateEnum = State;
 	state: State;
@@ -33,8 +36,8 @@ export class AdminManageComponent implements OnInit, OnActivate{
 
 	ngOnInit(){
 		this._offerService.search_by_query('abc')
-			.then(results => this.results = results);
-		this.user_list = this._userProfileSerivce.allUsers;
+			.then(results => this.dishes = results);
+		this.users = this._userProfileSerivce.allUsers;
 	}
 
 	gotoState(state: State): void{
@@ -42,7 +45,8 @@ export class AdminManageComponent implements OnInit, OnActivate{
 	}
 
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction){
-		if(!this._authenticator.signedIn){
+		if(!this._authenticator.signedIn || !this._authenticator.curUser.isAdmin){
+			console.log(this._authenticator.curUser);
 			this._router.navigate(['AdminLogin']);
 		}
 	}

@@ -19,12 +19,12 @@ import { Authenticator } from '../authentication/authentication.service';
 		path: "/login",
 		name: "AdminLogin",
 		component: AdminLoginComponent,
-		useAsDefault: true
 	},
 	{
 		path: "/manage",
 		name: "AdminManage",
 		component: AdminManageComponent,
+		useAsDefault: true
 	}
 ])
 

@@ -27,9 +27,11 @@ export class UserProfileComponent implements OnInit{
 				this.curUser = user;
 			})
 			.then(() => {
-				for (var i: number = 0; i < this.curUser.friends.length; i++) {
-					this._profileService.findUserById(this.curUser.friends[i])
-						.then(friend => this.friends.push(friend));
+				if (this.curUser.friends) { 
+					for (var i: number = 0; i < this.curUser.friends.length; i++) {
+						this._profileService.findUserById(this.curUser.friends[i])
+							.then(friend => this.friends.push(friend));
+					}
 				}
 			});
 	}

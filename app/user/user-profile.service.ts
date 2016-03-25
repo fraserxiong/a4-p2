@@ -13,6 +13,17 @@ export class UserProfileService{
 		return Promise.reject<string>("Can't find user with id: " + id);
 	}
 
+	get adminUsers(): User[]{
+		return [{
+			id: 20000,
+			name: "admin",
+			email: "admin@homelicious.com",
+			password: "admin",
+			phone_number: "647-345-0956",
+			isAdmin: true
+		}]
+	}
+
 	get allUsers(): User[]{
 		return [{
 			id: 10000,
