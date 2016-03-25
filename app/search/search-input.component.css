@@ -1,0 +1,27 @@
+.search-input{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+}
+
+input {
+    border: none;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    color: #6b6b70;
+    flex: 1 0px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    width: 200px;
+    height: 60px;
+    font-size: 20px;
+    background-color: #b2bd0d;
+    color: white;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
