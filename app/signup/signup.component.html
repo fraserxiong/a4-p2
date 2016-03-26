@@ -1,0 +1,32 @@
+ <div id="signup-container">
+ 	<form id="signup-form" (ngSubmit)="onSignup(username.value, email.value, password.value)" #signupForm="ngForm">
+ 		<h2 class="form-signup-heading">Please sign up</h2>
+
+ 		Username:<br>
+ 		<label for="signup-username" class="sr-only">Username</label>
+ 		<input #username type="text" id="signup-username" class="form-control" placeholder="{{usernameHint}}" required autofocus />
+
+ 		<br>Email Address:<br>
+ 		<label for="signup-email" class="sr-only">Email</label>
+ 		<input #password type="email" id="signup-email" class="form-control" placeholder="{{emailHint}}" required />
+
+ 		<br>Password:<br>
+ 		<label for="signup-password" class="sr-only">Password</label>
+ 		<input #password type="password" id="signup-password" class="form-control" placeholder="{{passwordHint}}" required />
+
+ 		<br>Confirm Password:<br>
+ 		<label for="signup-password" class="sr-only">RePassword</label>
+ 		<input #password type="password" id="signup-password" class="form-control" placeholder="{{repasswordHint}}" required />
+ 		
+ 		<br>Post Code:<br>
+ 		<label for="signup-postcode" class="sr-only">PostCode</label>
+ 		<input #password type="text" id="signup-postcode" class="form-control" placeholder="{{postcodeHint}}" pattern="[0-9A-Za-z]{6}" required />
+ 		<br>
+ 		<div id="signup-checkbox">
+ 			<label>
+ 				<input type="checkbox" value="remember-me" /> Remember me
+ 			</label>
+ 		</div>
+ 		<button id="signup-btn" type="submit">Sign up</button>
+ 	</form>
+ </div>
