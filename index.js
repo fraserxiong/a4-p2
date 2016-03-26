@@ -51,7 +51,7 @@ app.get('/posts/recommended', function(req, res){
 });
 // views is directory for all template files
 app.get('/*', function(request, response) {
-  response.sendFile(__dirname +'/index.html');
+  response.sendFile(path.resolve(__dirname +'/index.html'));
 });
 
 
