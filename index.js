@@ -11,10 +11,7 @@ app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')))
 
 // views is directory for all template files
 
-app.get('/', function(request, response) {
-  response.sendFile(__dirname +'/index.html');
-});
-app.get('/admin', function(request, response) {
+app.get('/*', function(request, response) {
   response.sendFile(__dirname +'/index.html');
 });
 
