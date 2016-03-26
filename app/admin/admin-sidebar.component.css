@@ -1,0 +1,29 @@
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	padding: 5px 0;
+}
+
+li:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.circle-o{
+	display: inline-block;
+	width: 20px;
+	color: #b8c7ce;
+	font: normal normal normal 14px/1 FontAwesome;;
+}
+.circle-o:before{
+	content: "\f10c";
+}
+
+.state-text{
+	color: #3c8dbc;
+	font-weight: 400;
+}

@@ -2,9 +2,10 @@
   "name": "home-cooking",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"node index.js\"",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "lite": "lite-server",
     "typings": "typings",
     "postinstall": "typings install"
   },
@@ -19,6 +20,8 @@
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",
     "express": "^4.13.4",
+    "chart.js": "^1.0.2",
+    "font-awesome": "^4.5.0",
     "jquery": "^2.2.2",
     "mongojs": "^2.3.0",
     "morgan": "^1.7.0",
@@ -35,6 +38,7 @@
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
+    "lite-server": "^2.1.0",
     "typescript": "^1.8.2",
     "typings": "^0.6.8"
   }

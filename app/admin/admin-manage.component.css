@@ -6,3 +6,22 @@
   align-items: stretch;
   align-content: flex-start;
 }
+
+.admin-dashboard{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: 100%;
+}
+
+.admin-dashboard > aside{
+	width: 200px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.admin-dashboard > section{
+	flex: 1 0px;
+	height: 100%;
+	overflow: auto;
+}
