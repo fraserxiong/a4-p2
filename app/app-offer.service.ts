@@ -1,16 +1,26 @@
 import {Injectable} from 'angular2/core';
 import { Dish } from './model/dish';
 import { Comment } from './model/comment';
+import {Http, Response} from 'angular2/http';
+import { Router} from 'angular2/router';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Injectable()
 export class AppOfferService{
+
+	constructor(
+		private http: Http
+	){}
+
+	private _get_hotest_url = '/posts/recommended';
+
 	get_hotest_offers() : Promise<Dish[]>{
-		let images: Dish[] = [
-			{ id: 1, url: "images/offer1.jpg"},
-			{ id: 2, url: "images/offer2.jpg"},
-			{ id: 3, url: "images/offer3.jpg"},
-		];
-		return Promise.resolve<Dish[]>(images);
+		
+		return this.http.get(this._get_hotest_url)
+						.toPromise()
+						.then(res => <Dish[]> res.json(), this.handleError)
+						.then(data => {console.log(data); return data});
 	}
 
 	get_post_details(id) : Promise<Dish>{
@@ -195,5 +205,12 @@ export class AppOfferService{
 		]
 
 		return Promise.resolve<Dish[]>(results);
+	}
+
+	private handleError (error: any) {
+	  // in a real world app, we may send the error to some remote logging infrastructure
+	  // instead of just logging it to the console
+	  console.error(error);
+	  return Promise.reject(error.message || error.json().error || 'Server error');
 	}
 }
