@@ -2,10 +2,9 @@
   "name": "home-cooking",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\"",
+    "start": "concurrently \"npm run tsc:w\" \"node index.js\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lite": "lite-server",
     "typings": "typings",
     "postinstall": "typings install"
   },
@@ -19,7 +18,12 @@
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.22",
-    "zone.js": "0.5.15"
+    "zone.js": "0.5.15",
+    "typescript": "^1.8.2",
+    "typings": "^0.6.8"
+  },
+  "engines": {
+    "node": "5.9.1"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
