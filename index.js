@@ -14,6 +14,9 @@ app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')))
 app.get('/', function(request, response) {
   response.sendFile(__dirname +'/index.html');
 });
+app.get('/admin', function(request, response) {
+  response.sendFile(__dirname +'/index.html');
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
