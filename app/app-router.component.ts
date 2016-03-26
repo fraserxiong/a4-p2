@@ -10,6 +10,7 @@ import { UserAuthenticationService} from "./user/user-authentication.service";
 import { UserProfileService } from './user/user-profile.service';
 import { AppFooterComponent } from './footer/app-footer.component';
 import { AppHeaderComponent} from './header/app-header.component';
+import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { Authenticator } from './authentication/authentication.service';
 import { AppOfferService } from './app-offer.service';
@@ -41,7 +42,7 @@ import { User } from './model/user';
 		{
 			path: '/signup',
 			name: 'UserSignup',
-			component: UserLoginComponent
+			component: SignupComponent
 		},
 		{
 			path: '/admin/...',

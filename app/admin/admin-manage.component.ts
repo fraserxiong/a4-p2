@@ -1,4 +1,4 @@
-import { Component, OnInit}       from 'angular2/core';
+import { Component, OnInit, HostListener}       from 'angular2/core';
 import { AppOfferService } from '../app-offer.service';
 import { UserProfileService } from '../user/user-profile.service';
 import { User } from '../model/user';
@@ -7,25 +7,22 @@ import { Authenticator } from '../authentication/authentication.service';
 import { Dish } from '../model/dish';
 import { UserAvatarComponent } from '../user/user-avatar.component';
 import { DishListComponent } from '../dish/dish-list.component';
-
-enum State{
-	User,
-	Food
-}
+import { State } from './admin-dashboard.state';
+import { AdminSidebarComponent } from './admin-sidebar.component';
 
 @Component({
 	selector: 'admin-manage',
 	templateUrl: 'app/admin/admin-manage.component.html',
 	styleUrls:['app/admin/admin-manage.component.css'],
-	directives: [UserAvatarComponent, DishListComponent]
+	directives: [UserAvatarComponent, DishListComponent, AdminSidebarComponent]
 })
 
 export class AdminManageComponent implements OnInit, OnActivate{
 	private dishes: Dish[] = [];
 	private users: User[] = [];
 
-	stateEnum = State;
-	state: State;
+	private stateEnum = State;
+	private state: State;
 
 	constructor(
 		private _offerService: AppOfferService,
@@ -41,6 +38,7 @@ export class AdminManageComponent implements OnInit, OnActivate{
 	}
 
 	gotoState(state: State): void{
+		console.log(state);
 		this.state = state;
 	}
 
