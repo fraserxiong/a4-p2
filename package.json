@@ -2,7 +2,7 @@
   "name": "home-cooking",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrently \"npm run tsc:w\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
-    /*"lite-server": "^2.1.0",*/
     "typescript": "^1.8.2",
     "typings": "^0.6.8"
   }
