@@ -1,6 +1,5 @@
 'use strict';
 
-var express = require('express');
 
 var config = require('./config'),
     express = require('express'),
@@ -91,6 +90,11 @@ app.utility.workflow = require('./util/workflow');
 
 
 
+var bodyParser = require("body-parser");
+var path = require('path');
+
+app.use(bodyParser.json());
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use('/css',express.static(path.resolve(__dirname,'css')));
@@ -98,7 +102,6 @@ app.use('/images', express.static(path.resolve(__dirname, 'images')));
 app.use('/app', express.static(path.resolve(__dirname,'app')));
 app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')));
 
-// views is directory for all template files
 
 
 
@@ -119,8 +122,64 @@ app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')))
 
 
 
+var db = require('./mongodb/mongodb');
+/* APIs */
+app.get('/posts/recommended', function(req, res){
 
+    console.log("Handling recommended posts\n");
+    db.Post.all(onSuccessFactory(res));
 
+});
+
+app.get('/posts/:id', function(req, res){
+
+    console.log("Handling post details\n");
+    var id = req.params.id;
+    db.Post.find(id, onSuccessFactory(res));
+});
+
+app.get('/posts/related/:tags', function(req, res){
+
+    console.log("Handling related posts\n");
+    var tags = req.params.tags;
+    tags = tags.split(",");
+    db.Post.search_by_tag(tags, onSuccessFactory(res))
+});
+
+app.get('/posts/search/:query', function(req, res){
+    console.log("Handling search\n");
+    var query = req.params.query;
+    db.Post.fuzzy_search(query, onSuccessFactory(res))
+});
+
+app.post('/posts/create', function(req, res){
+    console.log(req.body);
+    var new_post = db.Post.create(req.body);
+    new_post.save(function(err, post){
+        if(err)
+            console.log(err);
+        console.log("Added to db!");
+        res.writeHead(200, {'Content-type': 'text/plain'});
+        res.write("Success!");
+        res.end();
+    });
+});
+
+function onSuccessFactory(res){
+    return function(err, results){
+        if(err)
+            return console.err(err);
+
+        console.log(results);
+        res.writeHead(200, {'Content-type': 'application/json'});
+        res.write(JSON.stringify(results));
+        res.end();
+    }
+}
+
+app.get('/*', function(request, response) {
+  response.sendFile(path.resolve(__dirname +'/index.html'));
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
