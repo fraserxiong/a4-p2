@@ -1,7 +1,6 @@
 'use strict';
 
-var express = require('express');
-
+//dependencies
 var config = require('./config'),
     express = require('express'),
     cookieParser = require('cookie-parser'),
@@ -89,39 +88,8 @@ app.utility.sendmail = require('./util/sendmail');
 app.utility.slugify = require('./util/slugify');
 app.utility.workflow = require('./util/workflow');
 
-
-
-app.set('port', (process.env.PORT || 5000));
-
-app.use('/css',express.static(path.resolve(__dirname,'css')));
-app.use('/images', express.static(path.resolve(__dirname, 'images')));
-app.use('/app', express.static(path.resolve(__dirname,'app')));
-app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')));
-
-// views is directory for all template files
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+//listen up
+app.server.listen(app.config.port, function(){
+  //and... we're live
+  console.log('Server is running on port ' + config.port);
 });
