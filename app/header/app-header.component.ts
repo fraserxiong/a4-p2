@@ -14,8 +14,7 @@ import { User } from "../model/user";
 export class AppHeaderComponent implements OnInit{
 	@Input('user') curUser: User;
 	@Output('cartToggle') cartToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-	private cartOpen: boolean = false;
+	@Input('cartVisible') cartOpen: boolean;
 
 	constructor(private _authenticator: Authenticator, private _router: Router) { }
 
@@ -23,9 +22,11 @@ export class AppHeaderComponent implements OnInit{
 		//this.curUser = this._authenticator.getCurUser();
 	}
 
-	toggleCart(): void {
+	toggleCart(emitEvent: boolean): void {
 		this.cartOpen = !this.cartOpen;
-		this.cartToggle.emit(this.cartOpen);
+		if (emitEvent){
+			this.cartToggle.emit(this.cartOpen);
+		}
 	}
 
 	logOut() {

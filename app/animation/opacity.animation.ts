@@ -16,10 +16,10 @@ export class OpacityAnimator{
 
 		if (!isVisible){
 			animation.setFromStyles({ opacity: '1' })
-				.setToStyles({ opacity: '0' });
+				.setToStyles({ opacity: '0'});
 		}
 		else{
-			animation.setFromStyles({ opacity: '0'})
+			animation.setFromStyles({opacity: '0'})
 				.setToStyles({ opacity: '1' });
 		}
 		animation.start(this._el.nativeElement);
