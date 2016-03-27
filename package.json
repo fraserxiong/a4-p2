@@ -2,13 +2,13 @@
   "name": "home-cooking",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\"",
+    "start": "concurrently \"npm run tsc:w\" \"node index.js\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "typings": "typings",
     "postinstall": "typings install",
-    "server": "concurrently \"npm run tsc:w\" \"node index.js\""
+    "ui": "concurrently \"npm run tsc:w\" \"npm run lite\""
   },
   "license": "ISC",
   "dependencies": {
