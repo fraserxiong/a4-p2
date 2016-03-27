@@ -1,16 +1,6 @@
 var mongoose = require('mongoose');
-
-var PostSchema = mongoose.Schema({
-    id: Number,
-    url: String,
-    location: String,
-    description: String,
-    name: String,
-    categories: Array,
-    price: Number
-});
-
-var Post = mongoose.model('Post', PostSchema);
+var Schemas = require('./schemas/schemas');
+var Post = Schemas.Post;
 
 exports.create = function(json){
     var post = new Post(json);
