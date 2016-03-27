@@ -6,6 +6,7 @@ import { RouteParams, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 import { CapitalizePipe } from '../pipe/capitalize.pipe';
 import { CommentService } from '../comment/comment.service';
 import { CommentComponent } from '../comment/comment.component';
+import {HTTP_PROVIDERS}    from 'angular2/http';
 
 @Component(
 {
@@ -13,20 +14,13 @@ import { CommentComponent } from '../comment/comment.component';
 	templateUrl: "app/details/details.component.html",
 	styleUrls: ["app/details/details.component.css"],
 	directives: [CommentComponent, ROUTER_DIRECTIVES],
-	pipes: [CapitalizePipe]
+	pipes: [CapitalizePipe],
+	providers: [HTTP_PROVIDERS, AppOfferService]
 })
 
 export class DetailsComponent implements OnInit {
 
-	item: Dish = {
-		id: 0,
-		url: "dummy",
-		location: "dummy",
-		description: "dummy",
-		name: "dummy",
-		categories: [],
-		price: 0
-	};
+	item: Dish = null;
 	related: Dish[] = [];
 
 	comments: Comment[] = [];
@@ -42,10 +36,11 @@ export class DetailsComponent implements OnInit {
 		let id: number = + this._routeParams.get('id');
 
 		this._offerService.get_post_details(this.get_id())
-			.then(result => this.item = result);
-
-		this._offerService.get_related_posts(this.get_id())
-			.then(related => this.related = related);
+			.then(result => {
+				this.item = result;
+				this._offerService.get_related_posts(this.item.categories.join(","))
+					.then(related => this.related = related);
+			});
 
 		this._commentService.getCommentForDish(id)
 			.then(comments => this.comments = comments);

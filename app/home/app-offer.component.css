@@ -48,7 +48,7 @@ h4{
     background-repeat: no-repeat !important;
 }
 
-#viewmore {
+#viewmore, #viewall {
     width: 360px;
     height: 45px;
     margin-top: 75px;
