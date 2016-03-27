@@ -28,12 +28,13 @@ app.get('/posts/:id', function(req, res){
     db.Post.find(id, onSuccessFactory(res));
 });
 
-app.get('/posts/related/:tags', function(req, res){
+app.get('/posts/related/:id/:tags', function(req, res){
 
     console.log("Handling related posts\n");
     var tags = req.params.tags;
+    var id = req.params.id;
     tags = tags.split(",");
-    db.Post.search_by_tag(tags, onSuccessFactory(res))
+    db.Post.search_by_tag(id, tags, onSuccessFactory(res))
 });
 
 app.get('/posts/search/:query', function(req, res){

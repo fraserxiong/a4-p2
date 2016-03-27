@@ -33,14 +33,14 @@ h4{
 
 .posts {
     height: auto;
-    width: 33.333333%;
+    width: 30%;
     display: table-cell;
     text-align: center;
 }
 
 .posts > img {
-    max-width: 324px;
-    max-height: 351px;
+    width: 300px !important;
+    height: 275px !important;
     width: 100%;
     cursor: pointer;
  /*   height: 100%;*/
@@ -48,7 +48,7 @@ h4{
     background-repeat: no-repeat !important;
 }
 
-#viewmore, #viewall {
+#viewmore {
     width: 360px;
     height: 45px;
     margin-top: 75px;
