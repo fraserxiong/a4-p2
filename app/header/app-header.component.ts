@@ -1,4 +1,4 @@
-import { Component, OnInit, Input }       from 'angular2/core';
+import { Component, OnInit, Input, Output, EventEmitter }       from 'angular2/core';
 import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { Authenticator } from "../authentication/authentication.service";
 import { User } from "../model/user";
@@ -13,11 +13,19 @@ import { User } from "../model/user";
 
 export class AppHeaderComponent implements OnInit{
 	@Input('user') curUser: User;
+	@Output('cartToggle') cartToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+	private cartOpen: boolean = false;
 
 	constructor(private _authenticator: Authenticator, private _router: Router) { }
 
 	ngOnInit(){
 		//this.curUser = this._authenticator.getCurUser();
+	}
+
+	toggleCart(): void {
+		this.cartOpen = !this.cartOpen;
+		this.cartToggle.emit(this.cartOpen);
 	}
 
 	logOut() {

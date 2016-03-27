@@ -1,3 +1,11 @@
 .navbar-static-top {
   margin-bottom: 0px;
 }
+
+#shopping_cart_trigger{
+	display: inline-block;
+}
+
+a{
+	cursor: pointer;
+}

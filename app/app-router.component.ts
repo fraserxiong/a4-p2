@@ -16,6 +16,7 @@ import { Authenticator } from './authentication/authentication.service';
 import { AppOfferService } from './app-offer.service';
 import { CommentService } from './comment/comment.service';
 import { User } from './model/user';
+import { NgClass } from 'angular2/common';
 
 @Component(
 {
@@ -23,7 +24,7 @@ import { User } from './model/user';
 	templateUrl: "app/app-router.component.html",
 	styleUrls: ['app/app-router.component.css'],
 	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService],
-	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent]
+	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent, NgClass]
 })
 
 @RouteConfig(
@@ -71,8 +72,14 @@ export class AppRouterComponent{
 
 	constructor(private _authenticator: Authenticator) { }
 
+	private isCartOpen: boolean = false;
+
 	getCurUser() : User{
 		return this._authenticator.curUser;
+	}
+
+	private toggleCart(toggle: boolean){
+		this.isCartOpen = toggle;
 	}
 
 }

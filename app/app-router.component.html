@@ -1,3 +1,11 @@
-<custom-header [user]="getCurUser()"></custom-header>
+<custom-header [user]="getCurUser()" (cartToggle)="toggleCart($event)"></custom-header>
 <router-outlet></router-outlet>
 <custom-footer></custom-footer>
+
+<div id="shadow-layer" [ngClass]="{'is-visible': isCartOpen}"></div>
+<div id="cart">
+	<ul>
+		<li>ITEM 1</li>
+		<li>ITEM 2</li>
+	</ul>
+</div>
