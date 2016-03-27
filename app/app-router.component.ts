@@ -17,6 +17,8 @@ import { AppOfferService } from './app-offer.service';
 import { CommentService } from './comment/comment.service';
 import { User } from './model/user';
 import { NgClass } from 'angular2/common';
+import { OpacityAnimator } from './animation/opacity.animation';
+import { RightShiftAnimator } from './animation/right-shift.animation';
 
 @Component(
 {
@@ -24,7 +26,7 @@ import { NgClass } from 'angular2/common';
 	templateUrl: "app/app-router.component.html",
 	styleUrls: ['app/app-router.component.css'],
 	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService],
-	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent, NgClass]
+	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent, NgClass, OpacityAnimator, RightShiftAnimator]
 })
 
 @RouteConfig(

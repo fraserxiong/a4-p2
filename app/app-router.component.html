@@ -1,9 +1,9 @@
-<custom-header [user]="getCurUser()" (cartToggle)="toggleCart($event)"></custom-header>
+<custom-header [user]="getCurUser()" (cartToggle)="shadow.toggle($event); cart.toggle($event)"></custom-header>
 <router-outlet></router-outlet>
 <custom-footer></custom-footer>
 
-<div id="shadow-layer" [ngClass]="{'is-visible': isCartOpen}"></div>
-<div id="cart">
+<div id="shadow-layer" opacity-animator #shadow="opa-animator"></div>
+<div id="cart" slide-right #cart="slide-pane">
 	<ul>
 		<li>ITEM 1</li>
 		<li>ITEM 2</li>
