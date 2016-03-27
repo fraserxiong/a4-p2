@@ -21,7 +21,6 @@ exports.search_by_tag = function(id, tags, callback){
     var mapped = tags.map(tag => {
         return {categories: tag};
     });
-    console.log(mapped);
     Post.find({
         $or: mapped
     }).where('id').ne(id).limit(4).lean().exec(callback);
