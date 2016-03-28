@@ -14,6 +14,12 @@ import { UserAvatarComponent } from '../user/user-avatar.component';
 	directives: [ROUTER_DIRECTIVES,DishOverviewComponent]
 })
 export class DishUploadComponent{
+	private nameHint: string = "Dish Name";
+	private locationHint: string = "Location"
+	private descriptionHint: string = "Description of the dish";
+	private categoriesHint: string = "Categories of the dish";
+	private priceHint: string = "Price of the dish";
+	private urlHint: string = "The picture of the dish";
 	private curUser: User;
 	private friends: User[] = [];
 	private curId: number;

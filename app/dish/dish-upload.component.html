@@ -6,7 +6,36 @@
   <li><a>Friends</a></li>
   <li><a [routerLink]="['UserMyDish', {id: curId}]">My Dish</a></li>
   <li><a class= 'active'>New Dish</a></li>
-
 </ul>
 </div>
+<div id="dishupload-container">
 
+<form id="dishupload-form">
+ 		Name:<br>
+ 		<label for="dishupload-name" class="sr-only">Name</label>
+ 		<input #username type="text" id="dishupload-name" class="form-control" placeholder="{{nameHint}}" required autofocus />
+
+ 		<br>Location:<br>
+ 		<label for="dishupload-location" class="sr-only">Location</label>
+ 		<input #password type="text" id="dishupload-location" class="form-control" placeholder="{{locationHint}}" required />
+
+ 		<br>Description:<br>
+ 		<label for="dishupload-description" class="sr-only">Description</label>
+ 		<input #password type="text" id="dishupload-description" class="form-control" placeholder="{{descriptionHint}}" required />
+
+ 		<br>Categories:<br>
+ 		<label for="dishupload-categories" class="sr-only">Categories</label>
+ 		<input #password type="text" id="dishupload-categories" class="form-control" placeholder="{{categoriesHint}}" required />
+ 		
+ 		<br>Price:<br>
+ 		<label for="dishupload-price" class="sr-only">Price</label>
+ 		<input #password type="number" id="dishupload-price" class="form-control" placeholder="{{priceHint}}" required />
+
+ 		<br>Picture:<br>
+ 		<label for="dishupload-url" class="sr-only">Url</label>
+ 		<input #password type="file" id="dishupload-url" class="form-control" placeholder="{{urlHint}}" required />
+ 		<br>
+ 		<button id="dishupload-btn" type="submit">Upload</button>
+
+</form>
+</div>

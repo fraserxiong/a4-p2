@@ -21,10 +21,6 @@ export abstract class SignupComponent {
 	}
 
 	onSignup(username: string, password: string){
-		this._authenticator.authenticate(username, password).then(result => {
-			if (result)
-				this.onAuthenticationPass();
-		})
 	}
 
 	onAuthenticationPass(){
