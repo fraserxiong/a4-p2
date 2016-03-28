@@ -1,0 +1,9 @@
+<article class="dish-orderitem">
+	<section>
+		<p><span class="quantity">{{quantity}}x</span> {{dish.name | Capitalize}}</p>
+		<p class="price">{{dish.price * quantity | currency:'USD'}}</p>
+	</section>
+	<aside>
+		<p class="remove" (click)="remove()"><span class="glyphicon glyphicon-remove"></span></p>
+	</aside>
+</article>
