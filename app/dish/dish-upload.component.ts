@@ -1,19 +1,19 @@
-import { Component, OnInit}       from 'angular2/core';
-import { RouteParams, ROUTER_DIRECTIVES }       from 'angular2/router';
+import {Component, Input, OnInit} from "angular2/core";
+import {Dish} from "../model/dish";
+import {DishOverviewComponent} from "./dish-overview.component";
+import {UserProfileComponent} from "../user/user-profile.component";
+import {RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
 import { User } from '../model/user';
-import { UserProfileService } from './user-profile.service';
-import { UserAvatarComponent } from './user-avatar.component';
-import { UserMyDishComponent } from './user-my-dish.component';
+import { UserProfileService } from '../user/user-profile.service';
+import { UserAvatarComponent } from '../user/user-avatar.component';
 
-@Component(
-{
-	selector: 'user',
-	templateUrl: "app/user/user-profile.component.html",
-  	styleUrls: ['app/user/user-profile.component.css'],
-  	directives: [ROUTER_DIRECTIVES, UserAvatarComponent]
+@Component({
+	selector: 'dish-upload',
+	templateUrl: 'app/dish/dish-upload.component.html',
+	styleUrls: ['app/dish/dish-upload.component.css'],
+	directives: [ROUTER_DIRECTIVES,DishOverviewComponent]
 })
-
-export class UserProfileComponent implements OnInit{
+export class DishUploadComponent{
 	private curUser: User;
 	private friends: User[] = [];
 	private curId: number;

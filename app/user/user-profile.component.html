@@ -1,3 +1,14 @@
+<div class="sidebar">
+<ul>
+  <li><a class='active'>Profile</a></li>
+  <li><a>Edit</a></li>
+  <li><a>Change Password</a></li>
+  <li><a>Friends</a></li>
+  <li><a [routerLink]="['UserMyDish', {id: curId}]">My Dish</a></li>
+  <li><a [routerLink]="['DishUpload',{id: curId}]">New Dish</a></li>
+</ul>
+</div>
+
 <div class="container-fluid profile">
     <user-avatar [user]="curUser"></user-avatar>
 </div>

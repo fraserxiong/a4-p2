@@ -1,0 +1,70 @@
+.dish_list{
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+}
+
+.sidebar ul {
+	margin: 5%;
+    list-style-type: none;
+    padding: 0;
+    margin-left:7%;
+    width: 150px;
+    border-right: solid;
+    border-right-color: #555;
+    position:relative;
+}
+
+.sidebar li a {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+.sidebar li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.sidebar li a.active {
+    background-color: #777;
+    color: white;
+}
+
+
+.mydish {
+	margin: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+dish-overview:not(:first-child){
+	margin-top: 20px;
+}
+
+@media all and (max-width: 1024px){
+	dish-overview:first-child{
+		margin-top: 20px;
+	}
+}
+
+dish-overview{
+	flex: 1 100%;
+}
+
+@media all and (max-width: 1024px){
+	dish-overview{
+		flex: 0 50%;
+	}
+	.dish_list{
+		justify-content: space-between;
+	}
+}
+
+@media all and (max-width: 600px){
+	dish-overview{
+		flex: 1 100%;
+	}
+}

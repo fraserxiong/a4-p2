@@ -6,8 +6,10 @@ import { SearchComponent} from './search/search-display.component';
 import { DetailsComponent} from './details/details.component';
 import { UserProfileComponent} from './user/user-profile.component';
 import { UserLoginComponent} from './user/user-login.component';
+import { UserMyDishComponent} from './user/user-my-dish.component';
 import { UserAuthenticationService} from "./user/user-authentication.service";
 import { UserProfileService } from './user/user-profile.service';
+import { DishUploadComponent } from './dish/dish-upload.component';
 import { AppFooterComponent } from './footer/app-footer.component';
 import { AppHeaderComponent} from './header/app-header.component';
 import { SignupComponent } from './signup/signup.component';
@@ -43,6 +45,16 @@ import { User } from './model/user';
 			path: '/signup',
 			name: 'UserSignup',
 			component: SignupComponent
+		},
+		{
+			path: '/mydish/:id',
+			name: 'UserMyDish',
+			component: UserMyDishComponent
+		},
+		{
+			path: '/dishupload/:id',
+			name: 'DishUpload',
+			component: DishUploadComponent
 		},
 		{
 			path: '/admin/...',
