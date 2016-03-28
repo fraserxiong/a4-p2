@@ -19,14 +19,16 @@ import { User } from './model/user';
 import { NgClass } from 'angular2/common';
 import { OpacityAnimator } from './animation/opacity.animation';
 import { RightShiftAnimator } from './animation/right-shift.animation';
+import { OrderSidebarComponent } from './order/order-sidebar.component';
+import { OrderService } from './order/order.service';
 
 @Component(
 {
 	selector: "main-app",
 	templateUrl: "app/app-router.component.html",
 	styleUrls: ['app/app-router.component.css'],
-	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService],
-	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent, NgClass, OpacityAnimator, RightShiftAnimator]
+	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService, OrderService],
+	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent, NgClass, OpacityAnimator, RightShiftAnimator, OrderSidebarComponent]
 })
 
 @RouteConfig(

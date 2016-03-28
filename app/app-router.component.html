@@ -3,9 +3,4 @@
 <custom-footer></custom-footer>
 
 <div id="shadow-layer" [ngClass]="{'is-visible': isCartOpen}" (click)="shadow.toggle(!isCartOpen); cart.toggle(!isCartOpen); toggleCart(!isCartOpen)" opacity-animator #shadow="opa-animator"></div>
-<div id="cart" slide-right #cart="slide-pane">
-	<ul>
-		<li>ITEM 1</li>
-		<li>ITEM 2</li>
-	</ul>
-</div>
+<order-sidebar id="cart" slide-right #cart="slide-pane"></order-sidebar>

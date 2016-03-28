@@ -1,0 +1,15 @@
+article{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
+
+section, aside{
+	margin: auto 0;
+}
+
+.price,
+.quantity{
+	color: #a5aebc;
+}
