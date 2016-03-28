@@ -7,13 +7,13 @@
             with an affordable price! Some of our offering are shown below.
         </h4>
         <h4>
-            Feel free to click on the image to see the details.
+            Below are some recommended foods for you. Feel free to click on the image to see the details.
         </h4>
-        <div id="post-container" >
-            <div class="posts center" *ngFor="#offerImage of offerImages">
+        <div id="post-container" *ngFor="#set of displayImages">
+            <div class="posts center" *ngFor="#offerImage of set">
                 <img src={{offerImage.url}} (click)="get_details(offerImage)"/>
             </div>
         </div>
-        <button id="viewmore" class="center">VIEW MORE</button>
+        <button id="viewmore" class="center" (click)="expand()" *ngIf="max < 12">VIEW MORE</button>
     </div>
 </div>
