@@ -38,7 +38,7 @@ export class DetailsComponent implements OnInit {
 		this._offerService.get_post_details(this.get_id())
 			.then(result => {
 				this.item = result;
-				this._offerService.get_related_posts(this.item.categories.join(","))
+				this._offerService.get_related_posts(id, this.item.categories.join(","))
 					.then(related => this.related = related);
 			});
 

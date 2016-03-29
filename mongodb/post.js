@@ -7,6 +7,14 @@ exports.create = function(json){
     return post;
 }
 
+exports.update = function(id, json, callback){
+    Post.update({id: id}, json, callback);
+}
+
+exports.delete = function(id, callback){
+    Post.find({id: id}).remove().exec(callback);
+}
+
 exports.find = function(id, callback){
     Post.findOne({
         id: id
@@ -17,14 +25,13 @@ exports.all = function(callback){
     Post.find().limit(12).lean().exec(callback);
 }
 
-exports.search_by_tag = function(tags, callback){
+exports.search_by_tag = function(id, tags, callback){
     var mapped = tags.map(tag => {
         return {categories: tag};
     });
-    console.log(mapped);
     Post.find({
         $or: mapped
-    }).limit(4).lean().exec(callback);
+    }).where('id').ne(id).limit(4).lean().exec(callback);
 }
 
 exports.fuzzy_search = function(query, callback){

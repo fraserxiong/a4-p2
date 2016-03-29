@@ -34,10 +34,10 @@ export class AppOfferService{
 						.then(data => {console.log(data); return data});
 	}
 
-	get_related_posts(tag) : Promise<Dish[]>{
+	get_related_posts(id, tag) : Promise<Dish[]>{
 
 
-		return this.http.get(this._get_related_post_url + tag)
+		return this.http.get(this._get_related_post_url + id + "/" + tag)
 						.toPromise()
 						.then(res => <Dish[]> res.json(), this.handleError)
 						.then(data => {console.log(data); return data});

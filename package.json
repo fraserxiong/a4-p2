@@ -2,7 +2,7 @@
   "name": "home-cooking",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"node index.js\"",
+    "start": "concurrently \"npm run tsc:w\" \"node index.js\" \"mongod\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
@@ -61,7 +61,8 @@
     "mongoose-auto-increment": "3.0.2"
   },
   "engines": {
-    "node": "5.9.1"
+    "node": "5.9.1",
+    "mongodb": "3.2.4"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
