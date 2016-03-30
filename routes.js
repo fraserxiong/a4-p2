@@ -38,7 +38,8 @@ exports = module.exports = function (app, passport) {
   // User info
   app.all('/api/account*', ensureAuthenticated);
   app.all('/api/account*', ensureAccount);
-  app.get('/api/account/username', require('./api/user/rest').get_username);
+  app.get('/api/account/user', require('./api/user/rest').get_user);
+  app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
