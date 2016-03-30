@@ -162,15 +162,6 @@ app.get('/posts/delete/:id', function(req, res){
     db.Post.delete(id, onSuccessFactory(res));
 });
 
-// views is directory for all template files
-app.get('/*', function(request, response) {
-  response.sendFile(path.resolve(__dirname +'/index.html'));
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
 function onSuccessFactory(res){
     return function(err, result){
         if(err)
