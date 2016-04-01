@@ -1,11 +1,8 @@
+
+
+<user-sidebar></user-sidebar>
+
+
 <div class="container-fluid profile">
     <user-avatar [user]="curUser"></user-avatar>
 </div>
-
-
-<article class="container-fluid dashboard_friends">
-  <h1>My Friends:</h1>
-  <section class="friends_list">
-    <user-avatar *ngFor="#friend of friends" [user]="friend"></user-avatar>
-    </section>
-</article>

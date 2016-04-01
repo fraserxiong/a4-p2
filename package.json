@@ -56,9 +56,9 @@
     "underscore": "1.x.x",
     "zone.js": "0.5.15",
     "zone.js": "0.5.15",
-    "mongodb": "~2.0",
-    "mongoose" : "~3.8",
-    "mongoose-auto-increment": "3.0.2"
+    "mongodb": "~2.1",
+    "mongoose" : "~4.4",
+    "mongoose-auto-increment": "5.0.1"
   },
   "engines": {
     "node": "5.9.1",

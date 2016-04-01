@@ -1,23 +1,23 @@
-import { Component, OnInit}       from 'angular2/core';
-import { RouteParams, ROUTER_DIRECTIVES }       from 'angular2/router';
+import {Component, Input, OnInit} from "angular2/core";
+import {Dish} from "../model/dish";
+import {DishOverviewComponent} from "../dish/dish-overview.component";
+import {UserProfileComponent} from "./user-profile.component";
+import {RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
 import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
 import { UserAvatarComponent } from './user-avatar.component';
-import { UserMyDishComponent } from './user-my-dish.component';
 import { UserSidebarComponent } from './user-sidebar.component';
 
-@Component(
-{
-	selector: 'user',
-	templateUrl: "app/user/user-profile.component.html",
-  	styleUrls: ['app/user/user-profile.component.css'],
-  	directives: [ROUTER_DIRECTIVES, UserAvatarComponent, UserSidebarComponent]
+@Component({
+	selector: 'user-my-friend',
+	templateUrl: 'app/user/user-my-friend.component.html',
+	styleUrls: ['app/user/user-my-friend.component.css'],
+	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserAvatarComponent,UserSidebarComponent ],
 })
-
-export class UserProfileComponent implements OnInit{
+export class UserMyFriendComponent{
 	private curUser: User;
-	private friends: User[] = [];
 	private curId: number;
+	private friends: User[] = [];
 
 	constructor(
 		private _profileService: UserProfileService,
@@ -38,5 +38,6 @@ export class UserProfileComponent implements OnInit{
 					}
 				}
 			});
+
 	}
 }

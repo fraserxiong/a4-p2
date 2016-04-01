@@ -1,0 +1,32 @@
+<user-sidebar></user-sidebar>
+<div id="dishupload-container">
+
+<form id="dishupload-form" (ngSubmit)="onUpload(name.value, location.value, description.value, categories.value, price.value, url.value)" #uploadForm="ngForm">
+ 		Name:<br>
+ 		<label for="dishupload-name" class="sr-only">Name</label>
+ 		<input #name type="text" id="dishupload-name" class="form-control" placeholder="{{nameHint}}" required autofocus />
+
+ 		<br>Location:<br>
+ 		<label for="dishupload-location" class="sr-only">Location</label>
+ 		<input #location type="text" id="dishupload-location" class="form-control" placeholder="{{locationHint}}" required />
+
+ 		<br>Description:<br>
+ 		<label for="dishupload-description" class="sr-only">Description</label>
+ 		<input #description type="text" id="dishupload-description" class="form-control" placeholder="{{descriptionHint}}" required />
+
+ 		<br>Categories:<br>
+ 		<label for="dishupload-categories" class="sr-only">Categories</label>
+ 		<input #categories type="text" id="dishupload-categories" class="form-control" placeholder="{{categoriesHint}}" required />
+ 		
+ 		<br>Price:<br>
+ 		<label for="dishupload-price" class="sr-only">Price</label>
+ 		<input #price type="number" id="dishupload-price" class="form-control" placeholder="{{priceHint}}" required />
+
+ 		<br>Picture:<br>
+ 		<label for="dishupload-url" class="sr-only">Url</label>
+ 		<input #url type="url" id="dishupload-url" class="form-control" placeholder="{{urlHint}}" required />
+ 		<br>
+ 		<button id="dishupload-btn" type="submit">Upload</button>
+
+</form>
+</div>

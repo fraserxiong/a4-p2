@@ -1,0 +1,46 @@
+.dish_list{
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+}
+
+
+.mydish {
+	margin: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
+	height:100vh;
+}
+
+.mydish h1{
+	text-align: center;
+}
+
+dish-overview:not(:first-child){
+	margin-top: 20px;
+}
+
+@media all and (max-width: 1024px){
+	dish-overview:first-child{
+		margin-top: 20px;
+	}
+}
+
+dish-overview{
+	flex: 1 100%;
+}
+
+@media all and (max-width: 1024px){
+	dish-overview{
+		flex: 0 50%;
+	}
+	.dish_list{
+		justify-content: space-between;
+	}
+}
+
+@media all and (max-width: 600px){
+	dish-overview{
+		flex: 1 100%;
+	}
+}

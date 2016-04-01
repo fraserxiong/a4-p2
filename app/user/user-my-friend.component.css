@@ -1,0 +1,26 @@
+.dish_list{
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+}
+
+
+.dashboard_friends{
+  margin: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+
+article.dashboard_friends h1{
+	text-align: center;
+}
+
+.friends_list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
