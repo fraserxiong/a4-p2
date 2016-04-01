@@ -136,10 +136,21 @@ app.get('/posts/search/:query', function(req, res){
 /*  Get recommendation for home page
     Returns 12 at most, need post json as PAYLOAD.
 */
-app.post('/posts/create/', function(req, res){
-    var new_post = db.Post.create(req.body);
-    console.log(req.body.name);
-    new_post.save(onSuccessFactory(res));
+app.post('/posts/create', function(req, res){
+    var payload = req.body; //Payload is the json object representing a post
+    var post = db.Post.create({url: payload.url, 
+                    location: payload.location, 
+                    description: payload.description, 
+                    name: payload.name, 
+                    categories: payload.categories,
+                    url: payload.url});
+    post.save().then(function createPostSuccess(message){
+        res.writeHead(200, {'Content-type': 'text/plain'});
+        res.end('Success!' + message);
+    }).catch(function createPostError(error){
+        res.writeHead(403, {'Content-type' : 'text/plain'});
+        res.end('Error!' + error);
+    });
 });
 
 /*  Get recommendation for home page
@@ -166,6 +177,12 @@ function onSuccessFactory(res){
         res.write("Success!");
         res.end();
     }
+}
+
+function onErrorFactory(err){
+    res.writeHead(500, {'Content-type': 'text/plain'});
+    res.write('Error!' + err);
+    res.end();
 }
 
 function onSuccessWithReturnFactory(res){

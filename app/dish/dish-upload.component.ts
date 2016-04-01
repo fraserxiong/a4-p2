@@ -1,21 +1,28 @@
-import {Component, Input, OnInit, Inject} from "angular2/core";
-import {Dish} from "../model/dish";
-import {DishOverviewComponent} from "./dish-overview.component";
-import {UserProfileComponent} from "../user/user-profile.component";
-import {Router,RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
+import { Component, Input, OnInit, Inject} from "angular2/core";
+import { DishOverviewComponent} from "./dish-overview.component";
+import { UserProfileComponent} from "../user/user-profile.component";
+import { Router,RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
 import { User } from '../model/user';
 import { UserProfileService } from '../user/user-profile.service';
 import { UserAvatarComponent } from '../user/user-avatar.component';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {Headers, RequestOptions} from 'angular2/http';
 import { UserSidebarComponent } from '../user/user-sidebar.component';
+import { DishUploadService } from './dish-upload.service';
+import { Dish } from './dish.payload';
+
 
 @Component({
 	selector: 'dish-upload',
 	templateUrl: 'app/dish/dish-upload.component.html',
 	styleUrls: ['app/dish/dish-upload.component.css'],
-	directives: [ROUTER_DIRECTIVES,DishOverviewComponent,UserSidebarComponent],
-	providers: [HTTP_PROVIDERS]
+
+//	directives: [ROUTER_DIRECTIVES,DishOverviewComponent,UserSidebarComponent],
+//	providers: [HTTP_PROVIDERS]
+
+	directives: [ROUTER_DIRECTIVES, DishOverviewComponent],
+	providers: [DishUploadService]
+
 })
 export class DishUploadComponent{
 	private nameHint: string = "Dish Name";
@@ -30,29 +37,25 @@ export class DishUploadComponent{
 
 	constructor(
 		private _profileService: UserProfileService,
+		private _dishUploadService: DishUploadService,
 		private _routeParams: RouteParams,
-		private http: Http,
-		@Inject(Router) private _router: Router){}
+		private _router: Router){}
 
 
-	onUpload( name ,location,description,categories, price, url){
-		var cat = categories.split(",");
-		var new_dish={
-		name : name,
-		locaton :location,
-		description : description,
-		categories : cat,
-		price : price,
-		url : url
+	onUpload(name: string ,location: string, description: string, categories: string, price: number, url: string){
+		let dish: Dish = {
+			name: name,
+			location: location,
+			description: description,
+			categories: categories.split(","),
+			price: price,
+			url: url
 		};
 
-
-		var data = JSON.stringify(new_dish);
-		this.http.post('/posts/create', data)
-			.toPromise()
-			.then(res => res.json().data)
-			.catch(this.handleError);
-		this.onAuthenticationPass();
+		this._dishUploadService.uploadDish(dish)
+			.subscribe
+			(successMessage => console.log('Success: ' + successMessage),
+			 error => console.log('Error: ' + error));
 	}
 
 	onAuthenticationPass() {
