@@ -35,6 +35,12 @@ exports = module.exports = function (app, passport) {
   app.get('/contact/', require('./views/contact/index').init);
   app.post('/contact/', require('./views/contact/index').sendMessage);
 
+  // User info
+  app.all('/api/account*', ensureAuthenticated);
+  app.all('/api/account*', ensureAccount);
+  app.get('/api/account/user', require('./api/user/rest').get_user);
+  app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
+
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);
