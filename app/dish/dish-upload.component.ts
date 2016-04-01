@@ -20,7 +20,7 @@ import { Dish } from './dish.payload';
 //	directives: [ROUTER_DIRECTIVES,DishOverviewComponent,UserSidebarComponent],
 //	providers: [HTTP_PROVIDERS]
 
-	directives: [ROUTER_DIRECTIVES, DishOverviewComponent],
+	directives: [ROUTER_DIRECTIVES, DishOverviewComponent,UserSidebarComponent],
 	providers: [DishUploadService]
 
 })
@@ -56,9 +56,10 @@ export class DishUploadComponent{
 			.subscribe
 			(successMessage => console.log('Success: ' + successMessage),
 			 error => console.log('Error: ' + error));
+		onUploadPass();
 	}
 
-	onAuthenticationPass() {
+	onUploadPass() {
 		this._router.navigate(['UserMyDish',{id: this.curId}]);
 	}
 
