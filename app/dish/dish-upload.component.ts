@@ -8,12 +8,13 @@ import { UserProfileService } from '../user/user-profile.service';
 import { UserAvatarComponent } from '../user/user-avatar.component';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {Headers, RequestOptions} from 'angular2/http';
+import { UserSidebarComponent } from '../user/user-sidebar.component';
 
 @Component({
 	selector: 'dish-upload',
 	templateUrl: 'app/dish/dish-upload.component.html',
 	styleUrls: ['app/dish/dish-upload.component.css'],
-	directives: [ROUTER_DIRECTIVES,DishOverviewComponent],
+	directives: [ROUTER_DIRECTIVES,DishOverviewComponent,UserSidebarComponent],
 	providers: [HTTP_PROVIDERS]
 })
 export class DishUploadComponent{

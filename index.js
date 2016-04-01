@@ -1,5 +1,5 @@
-var express = require('express');
 var bodyParser = require("body-parser");
+var express = require('express');
 var path = require('path');
 var app = express();
 
@@ -49,8 +49,9 @@ app.get('/posts/search/:query', function(req, res){
 /*  Get recommendation for home page
     Returns 12 at most, need post json as PAYLOAD.
 */
-app.post('/posts/create', function(req, res){
+app.post('/posts/create/', function(req, res){
     var new_post = db.Post.create(req.body);
+    console.log(req.body.name);
     new_post.save(onSuccessFactory(res));
 });
 

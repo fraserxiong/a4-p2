@@ -1,13 +1,4 @@
-<div class="sidebar">
-<ul>
-  <li><a [routerLink]="['UserProfile', {id: curId}]">Profile</a></li>
-  <li><a>Edit</a></li>
-  <li><a>Change Password</a></li>
-  <li><a>Friends</a></li>
-  <li><a [routerLink]="['UserMyDish', {id: curId}]">My Dish</a></li>
-  <li><a class= 'active'>New Dish</a></li>
-</ul>
-</div>
+<user-sidebar></user-sidebar>
 <div id="dishupload-container">
 
 <form id="dishupload-form" (ngSubmit)="onUpload(name.value, location.value, description.value, categories.value, price.value, url.value)" #uploadForm="ngForm">

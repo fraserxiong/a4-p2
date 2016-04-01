@@ -4,19 +4,20 @@ import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
 import { UserAvatarComponent } from './user-avatar.component';
 import { UserMyDishComponent } from './user-my-dish.component';
-import { UserSidebarComponent } from './user-sidebar.component';
+import { UserProfileComponent } from './user-profile.component';
+import { UserMyFriendComponent } from './user-my-friend.component';
+import { DishUploadComponent } from '../dish/dish-upload.component';
 
 @Component(
 {
-	selector: 'user',
-	templateUrl: "app/user/user-profile.component.html",
-  	styleUrls: ['app/user/user-profile.component.css'],
-  	directives: [ROUTER_DIRECTIVES, UserAvatarComponent, UserSidebarComponent]
+	selector: 'user-sidebar',
+	templateUrl: "app/user/user-sidebar.component.html",
+  	styleUrls: ['app/user/user-sidebar.component.css'],
+  	directives: [ROUTER_DIRECTIVES]
 })
 
-export class UserProfileComponent implements OnInit{
+export class UserSidebarComponent implements OnInit{
 	private curUser: User;
-	private friends: User[] = [];
 	private curId: number;
 
 	constructor(
@@ -29,14 +30,7 @@ export class UserProfileComponent implements OnInit{
 			.then(user => {
 				this.curUser = user;
 				this.curId = user.id;
-			})
-			.then(() => {
-				if (this.curUser.friends) { 
-					for (var i: number = 0; i < this.curUser.friends.length; i++) {
-						this._profileService.findUserById(this.curUser.friends[i])
-							.then(friend => this.friends.push(friend));
-					}
-				}
 			});
+
 	}
 }

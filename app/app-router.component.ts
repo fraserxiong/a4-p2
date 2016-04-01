@@ -7,6 +7,7 @@ import { DetailsComponent} from './details/details.component';
 import { UserProfileComponent} from './user/user-profile.component';
 import { UserLoginComponent} from './user/user-login.component';
 import { UserMyDishComponent} from './user/user-my-dish.component';
+import { UserMyFriendComponent} from './user/user-my-friend.component';
 import { UserAuthenticationService} from "./user/user-authentication.service";
 import { UserProfileService } from './user/user-profile.service';
 import { DishUploadComponent } from './dish/dish-upload.component';
@@ -55,6 +56,11 @@ import { OrderService } from './order/order.service';
 			path: '/mydish/:id',
 			name: 'UserMyDish',
 			component: UserMyDishComponent
+		},
+		{
+			path: '/myfriend/:id',
+			name: 'UserMyFriend',
+			component: UserMyFriendComponent
 		},
 		{
 			path: '/dishupload/:id',

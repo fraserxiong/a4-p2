@@ -1,0 +1,35 @@
+
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin:5%;
+    margin-left:5%;
+    width: 150px;
+    border-right: solid;
+    border-right-color: #555;
+
+    position:absolute;
+}
+
+.sidebar li a {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+.sidebar li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.sidebar li a.active {
+    background-color: #777;
+    color: white;
+}
+
+
+
+

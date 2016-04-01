@@ -9,15 +9,15 @@ import { UserAvatarComponent } from './user-avatar.component';
 import { UserSidebarComponent } from './user-sidebar.component';
 
 @Component({
-	selector: 'user-my-dish',
-	templateUrl: 'app/user/user-my-dish.component.html',
-	styleUrls: ['app/user/user-my-dish.component.css'],
-	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserSidebarComponent],
+	selector: 'user-my-friend',
+	templateUrl: 'app/user/user-my-friend.component.html',
+	styleUrls: ['app/user/user-my-friend.component.css'],
+	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserAvatarComponent,UserSidebarComponent ],
 })
-export class UserMyDishComponent{
-	@Input('dishes') dishes: Dish[];
+export class UserMyFriendComponent{
 	private curUser: User;
 	private curId: number;
+	private friends: User[] = [];
 
 	constructor(
 		private _profileService: UserProfileService,
@@ -29,6 +29,14 @@ export class UserMyDishComponent{
 			.then(user => {
 				this.curUser = user;
 				this.curId = user.id;
+			})
+			.then(() => {
+				if (this.curUser.friends) { 
+					for (var i: number = 0; i < this.curUser.friends.length; i++) {
+						this._profileService.findUserById(this.curUser.friends[i])
+							.then(friend => this.friends.push(friend));
+					}
+				}
 			});
 
 	}
