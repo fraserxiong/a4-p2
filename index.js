@@ -1,6 +1,5 @@
 'use strict';
 
-
 var config = require('./config'),
     express = require('express'),
     cookieParser = require('cookie-parser'),
