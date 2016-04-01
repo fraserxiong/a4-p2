@@ -9,6 +9,15 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/login/');
 }
 
+function apiEnsureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.set('X-Auth-Required', 'true');
+  req.session.returnUrl = req.originalUrl;
+  res.status(403).send("You have no permission");
+}
+
 function ensureAdmin(req, res, next) {
   if (req.user.canPlayRoleOf('admin')) {
     return next();
@@ -28,6 +37,18 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
+function apiEnsureAccount(req, res, next) {
+  if (req.user.canPlayRoleOf('account')) {
+    if (req.app.config.requireAccountVerification) {
+      if (req.user.roles.account.isVerified !== 'yes' && !/^\/account\/verification\//.test(req.url)) {
+        return res.redirect('/account/verification/');
+      }
+    }
+    return next();
+  }
+  res.status(404).send("Account Error");
+}
+
 exports = module.exports = function (app, passport) {
   //front end
   app.get('/', require('./views/index').init);
@@ -36,8 +57,8 @@ exports = module.exports = function (app, passport) {
   app.post('/contact/', require('./views/contact/index').sendMessage);
 
   // User info
-  app.all('/api/account*', ensureAuthenticated);
-  app.all('/api/account*', ensureAccount);
+  app.all('/api/account*', apiEnsureAuthenticated);
+  app.all('/api/account*', apiEnsureAccount);
   app.get('/api/account/user', require('./api/user/rest').get_user);
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
 
