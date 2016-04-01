@@ -177,10 +177,4 @@ exports = module.exports = function (app, passport) {
   app.get('/account/settings/tumblr/callback/', require('./views/account/settings/index').connectTumblr);
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
 
-  //route not found
-  app.get('*', function(request, response) {
-    response.sendFile(__dirname +'/index.html');
-  });
-
-  app.all('*', require('./views/http/index').http404);
 };
