@@ -23,9 +23,9 @@ export abstract class SignupComponent {
 				private _signupService: UserSignupService) {
 	}
 
-	onSignup(username: string, password: string, email:string){
+	onSignup(username: string, email:string, password: string){
 		let user= {
-			name: name,
+			name: username,
 			password: password,
 			email: email
 		};
