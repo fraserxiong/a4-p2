@@ -28,6 +28,7 @@ export abstract class SignupComponent {
 	onSignup(username: string, email:string, password: string){
 		let user= {
 			username: username,
+
 			password: password,
 			email: email,
 			errfor:{},

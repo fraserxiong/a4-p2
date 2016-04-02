@@ -10,7 +10,7 @@ var config = require('./config'),
     path = require('path'),
     passport = require('passport'),
     mongoose = require('mongoose'),
-    helmet = require('helmet');
+    helmet = require('helmet'),
     // csrf = require('csurf');
     autoIncrement = require('mongoose-auto-increment');
 
