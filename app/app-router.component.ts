@@ -25,13 +25,15 @@ import { RightShiftAnimator } from './animation/right-shift.animation';
 import { OrderSidebarComponent } from './order/order-sidebar.component';
 import { OrderService } from './order/order.service';
 import { HTTP_PROVIDERS } from 'angular2/http';
+import { UserMainComponent} from './user/user-main.component';
+import {UserMainService} from './user/user-main.service';
 
 @Component(
 {
 	selector: "main-app",
 	templateUrl: "app/app-router.component.html",
 	styleUrls: ['app/app-router.component.css'],
-	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService, OrderService, HTTP_PROVIDERS],
+	providers: [ROUTER_PROVIDERS, provide(Authenticator, { useClass: UserAuthenticationService}), UserProfileService, AppOfferService, CommentService, OrderService, HTTP_PROVIDERS, UserMainService],
 	directives: [ROUTER_DIRECTIVES, AppHeaderComponent, AppFooterComponent, NgClass, OpacityAnimator, RightShiftAnimator, OrderSidebarComponent]
 })
 
@@ -86,7 +88,7 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 		{
 			path: '/user/:id',
 			name: 'UserProfile',
-			component: UserProfileComponent,
+			component: UserMainComponent,
 		},
 	]
 )

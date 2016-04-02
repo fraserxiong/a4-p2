@@ -1,12 +1,12 @@
 <div class="sidebar">
 <ul>
-  <li><a [routerLink]="['UserProfile', {id: curId}]">Profile</a></li>
-  <li><a>Edit</a></li>
+  <li><a (click)=selectstate(stateEnum.Profile)>Profile</a></li>
+  <li><a >Edit</a></li>
   <li><a>Change Password</a></li>
-  <li><a [routerLink]="['UserMyFriend', {id: curId}]">Friends</a></li>
-  <li><a [routerLink]="['UserMyDish', {id: curId}]">My Dish</a></li>
-  <li><a [routerLink]="['DishUpload',{id: curId}]">New Dish</a></li>
-  <li><a>My Order</a></li>
+  <li><a (click)=selectstate(stateEnum.Friends)>Friends</a></li>
+  <li><a (click)=selectstate(stateEnum.Mydish)>My Dish</a></li>
+  <li><a (click)=selectstate(stateEnum.Newdish)>New Dish</a></li>
+  <li><a (click)=selectstate(stateEnum.Myorder)>My Order</a></li>
 </ul>
 </div>
 

@@ -4,6 +4,43 @@
 	align-items: flex-start;
 }
 
+.add-friend h1{
+	text-align: center;
+
+}
+
+.add-friend{
+	display: flex;
+	flex-direction: column;
+	
+}
+
+#search-friend{
+	margin: 0 auto;
+}
+
+input {
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.4) 1px solid;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    color: #6b6b70;
+    flex: 1 0px;
+    padding: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+button {
+    width: 200px;
+    height: 60px;
+    font-size: 20px;
+    background-color: #b2bd0d;
+    color: white;
+    border: none;
+    font-family: 'Lato', sans-serif;
+
+}
 
 .dashboard_friends{
   margin: 5%;

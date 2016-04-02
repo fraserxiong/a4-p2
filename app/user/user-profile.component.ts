@@ -1,4 +1,4 @@
-import { Component, OnInit}       from 'angular2/core';
+import { Component, OnInit, Input}       from 'angular2/core';
 import { RouteParams, ROUTER_DIRECTIVES }       from 'angular2/router';
 import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
@@ -15,28 +15,13 @@ import { UserSidebarComponent } from './user-sidebar.component';
 })
 
 export class UserProfileComponent implements OnInit{
-	private curUser: User;
-	private friends: User[] = [];
-	private curId: number;
+	@Input('user') curUser: User;
 
 	constructor(
 		private _profileService: UserProfileService,
 		private _routeParams: RouteParams){}
 
 	ngOnInit(){
-		let id: number = + this._routeParams.get('id');
-		this._profileService.findUserById(id)
-			.then(user => {
-				this.curUser = user;
-				this.curId = user.id;
-			})
-			.then(() => {
-				if (this.curUser.friends) { 
-					for (var i: number = 0; i < this.curUser.friends.length; i++) {
-						this._profileService.findUserById(this.curUser.friends[i])
-							.then(friend => this.friends.push(friend));
-					}
-				}
-			});
+		
 	}
 }

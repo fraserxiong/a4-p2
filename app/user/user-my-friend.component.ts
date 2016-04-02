@@ -15,7 +15,7 @@ import { UserSidebarComponent } from './user-sidebar.component';
 	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserAvatarComponent,UserSidebarComponent ],
 })
 export class UserMyFriendComponent{
-	private curUser: User;
+	@Input('user') curUser: User;
 	private curId: number;
 	private friends: User[] = [];
 
