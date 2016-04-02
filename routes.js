@@ -181,24 +181,16 @@ exports = module.exports = function (app, passport) {
   var post_api = require('./api/post/post')(app);
   app.all('/posts/create*', ensureAuthenticated);
   app.all('/posts/create*', ensureAccount);
-  /*  Get recommendation for home page
-      Returns 12 at most, no params required.
-  */
+
   app.get('/posts/recommended', function(req, res){
       post_api.all(onSuccessWithReturnFactory(res));
   });
 
-  /*  Get recommendation for home page
-      Returns 12 at most, needs id of post in pathname.
-  */
   app.get('/posts/:id', function(req, res){
       var id = req.params.id;
       post_api.find(id, onSuccessWithReturnFactory(res));
   });
 
-  /*  Get recommendation for home page
-      Returns 12 at most, need id and tags (separated by comma) in pathname.
-  */
   app.get('/posts/related/:id/:tags', function(req, res){
       var tags = req.params.tags;
       var id = req.params.id;
@@ -206,17 +198,11 @@ exports = module.exports = function (app, passport) {
       post_api.search_by_tag(id, tags, onSuccessWithReturnFactory(res))
   });
 
-  /*  Get recommendation for home page
-      Returns 12 at most, need query in pathname.
-  */
   app.get('/posts/search/:query', function(req, res){
       var query = req.params.query;
       post_api.fuzzy_search(query, onSuccessWithReturnFactory(res))
   });
 
-  /*  Get recommendation for home page
-      Returns 12 at most, need post json as PAYLOAD.
-  */
   app.post('/posts/create', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
       var post = post_api.create({url: payload.url,
@@ -247,22 +233,21 @@ exports = module.exports = function (app, passport) {
       });
   });
 
-  /*  Get recommendation for home page
-      Returns 12 at most, need id in pathname and post json as PAYLOAD.
-  */
   app.put('/posts/update/:id', function(req, res){
       var id = req.params.id;
       post_api.update(id, req.body, onSuccessFactory(res));
   });
 
-  /*  Get recommendation for home page
-      Returns 12 at most, need id in pathname.
-  */
   app.delete('/posts/delete/:id', function(req, res){
       var id = req.params.id;
       post_api.delete(id, onSuccessFactory(res));
   });
 
+  app.get('/posts/posts_by_user', function(req, res){
+      post_api.find_by_user(req.user.roles.account.id, onSuccessWithReturnFactory(res));
+  });
+
+  //comments
   var comment_api = require('./api/post/comment')(app);
   app.all('/comments/*', ensureAuthenticated);
   app.all('/comments/*', ensureAccount);
@@ -327,7 +312,7 @@ function onErrorFactory(err){
 function onSuccessWithReturnFactory(res){
     return function(err, results){
         if(err)
-            return console.err(err);
+            console.log(err);
 
         res.writeHead(200, {'Content-type': 'application/json'});
         res.write(JSON.stringify(results));

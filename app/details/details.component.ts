@@ -24,7 +24,7 @@ export class DetailsComponent implements OnInit {
 	related: Dish[] = [];
 
 	comments: Comment[] = [];
-	ratings: number[] = [false, false, false, false, false];
+	ratings: boolean[] = [false, false, false, false, false];
 	ratingsVal = 0;
 
 	constructor(

@@ -46,6 +46,12 @@ exports = module.exports = function(app){
                     {location: fuzzy_query}
                 ]
             }).lean().exec(callback);
+        },
+
+        find_by_user: function(id, callback){
+            Post.find({
+                user: id
+            }).lean().exec(callback);
         }
     }
 }
