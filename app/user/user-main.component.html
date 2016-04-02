@@ -1,0 +1,34 @@
+<div id='user-main'>
+  <aside class="container-fluid">
+    <user-sidebar (stateSelected)="state=$event"></user-sidebar>
+  </aside>
+
+  <section [ngSwitch]="state">
+    <!-- User Profile-->
+    <div id="dashboard_users" class="container-fluid" *ngSwitchWhen="stateEnum.Profile" *ngSwitchDefault>
+      <user [user]='user'></user>
+    </div>
+  <!-- User My Friends-->
+    <div id="dashboard_friends" class="container-fluid" *ngSwitchWhen="stateEnum.Friends">
+      <user-my-friend [user]='user'></user-my-friend>
+    </div>
+
+    <!-- User My Dish-->
+    <div id="dashboard_mydish" class="container-fluid" *ngSwitchWhen="stateEnum.Mydish" >
+      <user-my-dish [user]='user'></user-my-dish>
+    </div>
+
+    <!-- User New Dish-->
+    <div id="dashboard_newdish" class="container-fluid" *ngSwitchWhen="stateEnum.Newdish" >
+      <dish-upload [user]='user'></dish-upload>
+    </div>
+
+    <!-- User My order-->
+    <div id="dashboard_myorder" class="container-fluid" *ngSwitchWhen="stateEnum.Myorder" >
+      <user-my-order [user]='user'></user-my-order>
+    </div>
+    
+
+
+  </section>
+</div>

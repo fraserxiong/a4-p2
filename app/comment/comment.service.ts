@@ -1,36 +1,55 @@
 import { Comment } from '../model/comment';
 import { Injectable } from 'angular2/core';
+import {Http, Response, Headers, RequestOptions} from 'angular2/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class CommentService{
-	getCommentForDish(id: number): Promise<Comment[]>{
-		let comments: Comment[] = [
-			{
-				id: 1,
-				target_id: id,
-				user_id: 10000,
-				rating: 5,
-				message: "Best burger that I have ever tried! Highly recommended.",
-				date: "March 10, 2016",
-			},
-			{
-				id: 2,
-				target_id: id,
-				user_id: 10003,
-				rating: 4,
-				message: "Warning: makes you sleepy! Can't moonwalk!",
-				date: "March 8, 2016",
-			},
-			{
-				id: 3,
-				target_id: id,
-				user_id: 10005,
-				rating: 5,
-				message: "Full of energy!",
-				date: "March 7, 2016",
-			}
-		];
 
-		return Promise.resolve<Comment[]>(comments);
+	private _post_comment_url = '/comments/create';
+	private _get_all_comment_url = '/comments/get_all/';
+	private _delete_comment_url = '/comments/delete/';
+
+	constructor(
+		private http: Http
+	){}
+
+	getCommentForDish(id: number): Promise<Comment[]>{
+
+		return this.http.get(this._get_all_comment_url + id)
+						.toPromise()
+						.then(res => <Comment[]> res.json(), this.handleError)
+						.then(data => {console.log(data); return data});
+	}
+
+	submit_comment(id, comment, rating) : Promise<Comment[]>{
+
+		let json = {
+			target_id: id,
+			message: comment,
+			rating: rating,
+			date: "March 8, 2016"
+		};
+		let body: string = JSON.stringify(json);
+		let headers = new Headers({'Content-Type': 'application/json'});
+		let options: RequestOptions = new RequestOptions({ headers: headers });
+
+		return this.http.post(this._post_comment_url, body, options)
+						.toPromise()
+						.then( _ => {return this.getCommentForDish(id)}, this.handleError);
+	}
+
+	delete(id, dish) : Promise<Comment[]>{
+
+		return this.http.delete(this._delete_comment_url + id)
+						.toPromise()
+						.then( _ => {return this.getCommentForDish(dish)}, this.handleError);
+	}
+
+	private handleError (error: any) {
+	  // in a real world app, we may send the error to some remote logging infrastructure
+	  // instead of just logging it to the console
+	  console.error(error);
+	  return Promise.reject(error.message || error.json().error || 'Server error');
 	}
 }

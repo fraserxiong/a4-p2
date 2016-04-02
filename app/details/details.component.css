@@ -44,6 +44,9 @@ a {
 .blog-comment{
 	display: flex;
 	flex-direction: column;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .blog-comment dish-comment:not(:first-child){
@@ -121,4 +124,29 @@ a {
     float: left;
     width: 80px;
     margin: 70px 0px 0px -65px;
+}
+
+.rating-block{
+	padding:5px 0px 5px 0px;
+	border-radius:3px;
+}
+
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+.btn-sm {
+    padding: 8px 10px 8px 10px;
+    margin-left: 3px;
+    outline: none;
+}
+
+.well-sm {
+    margin-top: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-success{
+    padding: 5px 15px 5px 15px;
 }

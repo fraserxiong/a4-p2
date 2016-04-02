@@ -106,7 +106,7 @@ exports.login = function(req, res){
           if (err) {
             return workflow.emit('exception', err);
           }
-
+          res.status(200);
           workflow.emit('response');
         });
       }

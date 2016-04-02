@@ -112,7 +112,8 @@ exports.signup = function(req, res){
       },
       search: [
         workflow.user.username
-      ]
+      ],
+      avatar: req.body.avatar
     };
 
     req.app.db.models.Account.create(fieldsToSet, function(err, account) {
@@ -134,7 +135,7 @@ exports.signup = function(req, res){
 
 
   workflow.on('createFriendList', function() {
-    var fieldsToSet = {user: workflow.user._id};
+    var fieldsToSet = {user: workflow.user.roles.account};
     req.app.db.models.Friend.create(fieldsToSet, function(err, account) {
       if (err) {
         return workflow.emit('exception', err);
@@ -184,6 +185,7 @@ exports.signup = function(req, res){
           }
 
           workflow.outcome.defaultReturnUrl = user.defaultReturnUrl();
+          res.status(201);
           workflow.emit('response');
         });
       }

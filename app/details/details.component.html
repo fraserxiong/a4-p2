@@ -33,8 +33,29 @@
             </div>
 
             <div class="blog-comment">
-                <dish-comment *ngFor="#comment of comments" [comment]="comment"></dish-comment>
+                <dish-comment *ngFor="#comment of comments" [comment]="comment" [onDelete]="onDelete()"></dish-comment>
             </div>
+            <div class="well well-sm">
+                <div class="row" id="post-review-box">
+                    <div class="col-md-12">
+                            <input id="ratings-hidden" name="rating" type="hidden">
+                            <textarea #commentInput class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+
+                            <div class="text-right">
+                                <div class="rating-block">
+                					<button *ngFor="#i of [0,1,2,3,4]" (click)="changeRating(i)" type="button" class="btn btn-sm" [ngClass]="{'btn-warning ': ratings[i]}" aria-label="Left Align">
+                					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                					</button>
+                				</div>
+                                <button class="btn btn-success btn-lg" type="submit" (click)="comment(commentInput.value)">Save</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="comment-input">
+            	<input #commentInput class="input" placeholder="Comment..."/>
+            	<button >Submit</button>
+            </div> -->
 
           <div class="row">
             <div class="col-lg-12">

@@ -6,7 +6,7 @@
 article{
 	border: 1px solid #eee;
     margin-bottom: 20px;
-    margin-left: 85px;
+    margin-left: 40px;
 	margin-right: 0px;
     padding: 10px 20px;
     border-radius: 4px;
@@ -35,9 +35,9 @@ aside{
 }
 
 aside img{
-	flex: 0.8 auto;
-	width: 100px;
-	height: 100px;
+	flex: 1 auto;
+	width: 115px;
+	height: 115px;
 }
 
 aside rating{

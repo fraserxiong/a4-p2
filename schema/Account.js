@@ -7,6 +7,7 @@ exports = module.exports = function(app, mongoose) {
       name: { type: String, default: '' }
     },
     isVerified: { type: String, default: '' },
+    avatar: {type:String, default: ''},
     verificationToken: { type: String, default: '' },
     name: {
       first: { type: String, default: '' },

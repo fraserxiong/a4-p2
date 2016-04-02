@@ -1,3 +1,6 @@
 <div class="rating">
-	<span class="star glyphicon glyphicon-star" *ngFor="#i of range" ></span>
+	<button *ngFor="#i of [0,1,2,3,4]" type="button" class="btn btn-sm" [ngClass]="{'btn-warning ': i < rate}" aria-label="Left Align">
+	  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+	</button>
+	<!-- <span class="star glyphicon glyphicon-star" *ngFor="#i of range" style="float: left"></span> -->
 </div>

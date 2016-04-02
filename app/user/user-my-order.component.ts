@@ -9,35 +9,19 @@ import { UserAvatarComponent } from './user-avatar.component';
 import { UserSidebarComponent } from './user-sidebar.component';
 
 @Component({
-	selector: 'user-my-friend',
-	templateUrl: 'app/user/user-my-friend.component.html',
-	styleUrls: ['app/user/user-my-friend.component.css'],
+	selector: 'user-my-order',
+	templateUrl: 'app/user/user-my-order.component.html',
+	styleUrls: ['app/user/user-my-order.component.css'],
 	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserAvatarComponent,UserSidebarComponent ],
 })
-export class UserMyFriendComponent{
+export class UserMyOrderComponent{
 	@Input('user') curUser: User;
-	private curId: number;
-	private friends: User[] = [];
 
 	constructor(
 		private _profileService: UserProfileService,
 		private _routeParams: RouteParams){}
 
 	ngOnInit(){
-		let id: number = + this._routeParams.get('id');
-		this._profileService.findUserById(id)
-			.then(user => {
-				this.curUser = user;
-				this.curId = user.id;
-			})
-			.then(() => {
-				if (this.curUser.friends) { 
-					for (var i: number = 0; i < this.curUser.friends.length; i++) {
-						this._profileService.findUserById(this.curUser.friends[i])
-							.then(friend => this.friends.push(friend));
-					}
-				}
-			});
 
 	}
 }

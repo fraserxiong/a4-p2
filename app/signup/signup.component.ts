@@ -37,9 +37,14 @@ export abstract class SignupComponent {
 
 		this._signupService.usersignup(user)
 			.subscribe
-			(successMessage => console.log('Success: ' + successMessage),
+			(successMessage => {
+				console.log('Success: ' + successMessage);
+				this._authenticator.authenticate(username, password)
+									.subscribe
+									(successMessage => this.onSignupPass(),
+										error => console.log('error: ' + error));
+			},
 			 error => console.log('Error: ' + error));
-		this.onSignupPass();
 	}
 
 	onSignupPass(){
