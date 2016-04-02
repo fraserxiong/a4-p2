@@ -15,10 +15,9 @@ export abstract class LoginComponent {
 	}
 
 	onLogin(username: string, password: string){
-		this._authenticator.authenticate(username, password).then(result => {
-			if (result)
-				this.onAuthenticationPass();
-		})
+		this._authenticator.authenticate(username, password)
+			.subscribe((success: string) => this.onAuthenticationPass(),
+			error => console.log('error: ' + error));
 	}
 
 	onAuthenticationPass(){

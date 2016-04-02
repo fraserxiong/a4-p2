@@ -3,7 +3,6 @@ import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { Authenticator } from "../authentication/authentication.service";
 import { User } from "../model/user";
 
-
 @Component(
 {
 	selector: "custom-header",
