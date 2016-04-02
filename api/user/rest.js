@@ -59,3 +59,9 @@ exports.get_user_settings = function(req, res, next){
 exports.get_user = function(req, res, next){
   return res.send(JSON.stringify(res.locals.user));
 };
+
+exports.add_friend = function(req, res, next){
+  var cur_user = req.app.db.models.Friend.findOne({user:req.user.roles.account.id}, "user friend", function (err, person) {
+  if (err) return handleError(err);});
+  console.log(cur_user);
+};
