@@ -2,24 +2,31 @@ import { Component, OnInit, Input, Output, EventEmitter }       from 'angular2/c
 import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { Authenticator } from "../authentication/authentication.service";
 import { User } from "../model/user";
+import { GetUsernameService } from "./header.service.ts";
 
 @Component(
 {
 	selector: "custom-header",
 	templateUrl: "app/header/app-header.component.html",
   	styleUrls: ["app/header/app-header.component.css"],
-  	directives: [ROUTER_DIRECTIVES]
+  	directives: [ROUTER_DIRECTIVES, GetUsernameService]
 })
 
 export class AppHeaderComponent implements OnInit{
-	@Input('user') curUser: User;
+	@Input('user') curUser: string;
+
 	@Output('cartToggle') cartToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 	@Input('cartVisible') cartOpen: boolean;
 
-	constructor(private _authenticator: Authenticator, private _router: Router) { }
+	constructor(private _authenticator: Authenticator, 
+				private _router: Router,
+				private _getUsernameService: GetUsernameService) { }
 
 	ngOnInit(){
-		//this.curUser = this._authenticator.getCurUser();
+		this._getUsernameService.getusername()
+			.subscribe
+			(username => this._authenticator.user=username),
+			 error => console.log('Error: ' + error));
 	}
 
 	toggleCart(emitEvent: boolean): void {

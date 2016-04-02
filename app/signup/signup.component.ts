@@ -13,7 +13,6 @@ export abstract class SignupComponent {
 	private emailHint: string = "Email"
 	private passwordHint: string = "Please enter password";
 	private repasswordHint: string = "Please confirm password";
-	private postcodeHint: string = "Please enter post code";
 
 	// Add this user to database.
 	
@@ -21,6 +20,7 @@ export abstract class SignupComponent {
 	}
 
 	onSignup(username: string, password: string){
+
 	}
 
 	onAuthenticationPass(){

@@ -22,6 +22,17 @@ export class Authenticator{
 		return JSON.parse(sessionStorage.getItem('user'));
 	}
 
+	set user(username: string){
+		sessionStorage.setItem('username', username);
+	}
+
+	get user():string{
+		if (typeof(Storage) === "undefined"){
+			return null;
+		}
+		return sessionStorage.getItem('username');
+	}
+
 	protected authenticationPassed(user: User){
 		if (user){
 			sessionStorage.setItem('user', JSON.stringify(user));
