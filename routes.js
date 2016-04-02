@@ -41,10 +41,6 @@ exports = module.exports = function (app, passport) {
   app.get('/api/account/user', require('./api/user/rest').get_user);
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
 
-  // posts
-  app.all('/posts/create*', ensureAuthenticated);
-  app.all('/posts/create*', ensureAccount);
-  
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);
@@ -181,4 +177,119 @@ exports = module.exports = function (app, passport) {
   app.get('/account/settings/tumblr/callback/', require('./views/account/settings/index').connectTumblr);
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
 
+  // posts
+  var post_api = require('./api/post/post')(app);
+  app.all('/posts/create*', ensureAuthenticated);
+  app.all('/posts/create*', ensureAccount);
+  /*  Get recommendation for home page
+      Returns 12 at most, no params required.
+  */
+  app.get('/posts/recommended', function(req, res){
+      post_api.all(onSuccessWithReturnFactory(res));
+  });
+
+  /*  Get recommendation for home page
+      Returns 12 at most, needs id of post in pathname.
+  */
+  app.get('/posts/:id', function(req, res){
+      var id = req.params.id;
+      post_api.find(id, onSuccessWithReturnFactory(res));
+  });
+
+  /*  Get recommendation for home page
+      Returns 12 at most, need id and tags (separated by comma) in pathname.
+  */
+  app.get('/posts/related/:id/:tags', function(req, res){
+      var tags = req.params.tags;
+      var id = req.params.id;
+      tags = tags.split(",");
+      post_api.search_by_tag(id, tags, onSuccessWithReturnFactory(res))
+  });
+
+  /*  Get recommendation for home page
+      Returns 12 at most, need query in pathname.
+  */
+  app.get('/posts/search/:query', function(req, res){
+      var query = req.params.query;
+      post_api.fuzzy_search(query, onSuccessWithReturnFactory(res))
+  });
+
+  /*  Get recommendation for home page
+      Returns 12 at most, need post json as PAYLOAD.
+  */
+  app.post('/posts/create', function(req, res){
+      var payload = req.body; //Payload is the json object representing a post
+      var post = post_api.create({url: payload.url,
+                      location: payload.location,
+                      description: payload.description,
+                      name: payload.name,
+                      categories: payload.categories,
+                      url: payload.url,
+                      user: req.user.roles.account.id});
+
+      post.save().then(function createPostSuccess(message){
+          app.db.models.Account
+               .findOne(req.user.roles.account.id)
+               .populate("dishes")
+               .exec(function(err, account){
+                   if(err)
+                      console.log(err);
+                   account.dishes.push(post);
+                   account.save(function(err, result){
+                      if (err)
+                          console.log(err);
+                      res.writeHead(200, {'Content-type': 'text/plain'});
+                      res.end('Success!' + message);
+                   });
+               });
+      }).catch(function createPostError(error){
+          res.writeHead(403, {'Content-type' : 'text/plain'});
+          res.end('Error!' + error);
+      });
+  });
+
+  /*  Get recommendation for home page
+      Returns 12 at most, need id in pathname and post json as PAYLOAD.
+  */
+  app.put('/posts/update/:id', function(req, res){
+      var id = req.params.id;
+      post_api.update(id, req.body, onSuccessFactory(res));
+  });
+
+  /*  Get recommendation for home page
+      Returns 12 at most, need id in pathname.
+  */
+  app.get('/posts/delete/:id', function(req, res){
+      var id = req.params.id;
+      post_api.delete(id, onSuccessFactory(res));
+  });
+
+
 };
+
+function onSuccessFactory(res){
+    return function(err, result){
+        if(err)
+            console.log(err);
+        res.writeHead(200, {'Content-type': 'text/plain'});
+        res.write("Success!");
+        res.end();
+    }
+}
+
+function onErrorFactory(err){
+    res.writeHead(500, {'Content-type': 'text/plain'});
+    res.write('Error!' + err);
+    res.end();
+}
+
+function onSuccessWithReturnFactory(res){
+    return function(err, results){
+        if(err)
+            return console.err(err);
+
+        res.writeHead(200, {'Content-type': 'application/json'});
+        res.write(JSON.stringify(results));
+        res.end();
+    }
+}
