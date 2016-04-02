@@ -61,6 +61,7 @@ app.use(passport.session());
 helmet(app);
 
 //response locals
+
 app.use(function(req, res, next) {
   // res.cookie('_csrfToken', req.csrfToken());
   res.locals.user = {};
