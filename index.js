@@ -11,7 +11,8 @@ var config = require('./config'),
     passport = require('passport'),
     mongoose = require('mongoose'),
     helmet = require('helmet'),
-    csrf = require('csurf');
+    csrf = require('csurf'),
+    autoIncrement = require('mongoose-auto-increment');
 
 //create express app
 var app = express();
@@ -23,11 +24,13 @@ app.config = config;
 app.server = http.createServer(app);
 
 //setup mongoose
-app.db = mongoose.createConnection(config.mongodb.uri);
+mongoose.connect(config.mongodb.uri);
+app.db = mongoose.connection;
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
 app.db.once('open', function () {
   //and... we have a data store
 });
+autoIncrement.initialize(app.db);
 
 //config data models
 require('./models')(app, mongoose);
@@ -54,17 +57,17 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(csrf({ cookie: { signed: true } }));
+// app.use(csrf({ cookie: { signed: true } }));
 helmet(app);
 
 //response locals
-app.use(function(req, res, next) {
-  res.cookie('_csrfToken', req.csrfToken());
-  res.locals.user = {};
-  res.locals.user.defaultReturnUrl = req.user && req.user.defaultReturnUrl();
-  res.locals.user.username = req.user && req.user.username;
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.cookie('_csrfToken', req.csrfToken());
+//   res.locals.user = {};
+//   res.locals.user.defaultReturnUrl = req.user && req.user.defaultReturnUrl();
+//   res.locals.user.username = req.user && req.user.username;
+//   next();
+// });
 
 //global locals
 app.locals.projectName = app.config.projectName;
@@ -137,15 +140,29 @@ app.get('/posts/search/:query', function(req, res){
 */
 app.post('/posts/create', function(req, res){
     var payload = req.body; //Payload is the json object representing a post
-    var post = db.Post.create({url: payload.url, 
-                    location: payload.location, 
-                    description: payload.description, 
-                    name: payload.name, 
+    var post = db.Post.create({url: payload.url,
+                    location: payload.location,
+                    description: payload.description,
+                    name: payload.name,
                     categories: payload.categories,
-                    url: payload.url});
+                    url: payload.url,
+                    user: req.user.roles.account.id});
+
     post.save().then(function createPostSuccess(message){
-        res.writeHead(200, {'Content-type': 'text/plain'});
-        res.end('Success!' + message);
+        app.db.models.Account
+             .findOne(req.user.roles.account.id)
+             .populate("dishes")
+             .exec(function(err, account){
+                 if(err)
+                    console.log(err);
+                 account.dishes.push(post);
+                 account.save(function(err, result){
+                    if (err)
+                        console.log(err);
+                    res.writeHead(200, {'Content-type': 'text/plain'});
+                    res.end('Success!' + message);
+                 });
+             });
     }).catch(function createPostError(error){
         res.writeHead(403, {'Content-type' : 'text/plain'});
         res.end('Error!' + error);

@@ -7,7 +7,8 @@ var postSchema = mongoose.Schema({
     description: String,
     name: String,
     categories: Array,
-    price: Number
+    price: Number,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 postSchema.plugin(autoIncrement.plugin, {
     model: 'Post',

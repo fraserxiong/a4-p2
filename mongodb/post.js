@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var Schemas = require('./schemas/schemas');
 var Post = Schemas.Post;
 
