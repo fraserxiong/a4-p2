@@ -112,7 +112,8 @@ exports.signup = function(req, res){
       },
       search: [
         workflow.user.username
-      ]
+      ],
+      avatar: req.body.avatar
     };
 
     req.app.db.models.Account.create(fieldsToSet, function(err, account) {
