@@ -332,7 +332,8 @@ exports.update = function(req, res, next){
         req.body.company,
         req.body.phone,
         req.body.zip
-      ]
+      ],
+      avatar: req.body.avatar
     };
     var options = {
       select: 'name company phone zip',
