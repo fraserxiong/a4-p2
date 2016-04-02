@@ -1,11 +1,14 @@
 import { Component, Output, EventEmitter}  from 'angular2/core';
 import { Authenticator } from '../authentication/authentication.service';
+import { UserSignupService } from './signup.service'
+import { User } from '../model/user'
 
 @Component(
 {
 	selector: 'signup',
 	templateUrl: 'app/signup/signup.component.html',
 	styleUrls: ['app/signup/signup.component.css'],
+	providers:[UserSignupService]
 })
 
 export abstract class SignupComponent {
@@ -16,11 +19,22 @@ export abstract class SignupComponent {
 
 	// Add this user to database.
 	
-	constructor(private _authenticator: Authenticator) {
+	constructor(private _authenticator: Authenticator,
+				private _signupService: UserSignupService) {
 	}
 
-	onSignup(username: string, password: string){
+	onSignup(username: string, password: string, email:string){
+		let user= {
+			name: name,
+			password: password,
+			email: email
+		};
 
+		this._signupService.usersignup(user)
+			.subscribe
+			(successMessage => console.log('Success: ' + successMessage),
+			 error => console.log('Error: ' + error));
+		this.onAuthenticationPass();
 	}
 
 	onAuthenticationPass(){

@@ -7,10 +7,17 @@ import { User } from '../model/user';
 export class UserSignupService{
 	constructor(private _http: Http){}
 
-	// signup(): Observable<string>{
-		// return this._http.get('/api/account/user', options)
-		// 				.map((res: Response) => <string>res.json().username)
-		// 				.catch((err: Response) => {
-		// 				});
-	// }
+	usersignup(user): Observable<string>{
+		let body: string = JSON.stringify(user);
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options: RequestOptions = new RequestOptions({ headers: headers });
+
+		return this._http.post('/signup/', body, options)
+			.map((res: Response) => <string>res.statusText)
+			.do((res: string) => console.log(res))
+			.catch((err: Response) => {
+				console.log(err);
+				return Observable.throw(err.json() || "Server Error");
+			});
+	}
 }
