@@ -2,14 +2,13 @@ import { Component, OnInit, Input, Output, EventEmitter }       from 'angular2/c
 import { ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import { Authenticator } from "../authentication/authentication.service";
 import { User } from "../model/user";
-import { GetUsernameService } from "./header.service.ts";
 
 @Component(
 {
 	selector: "custom-header",
 	templateUrl: "app/header/app-header.component.html",
   	styleUrls: ["app/header/app-header.component.css"],
-  	directives: [ROUTER_DIRECTIVES, GetUsernameService]
+  	directives: [ROUTER_DIRECTIVES]
 })
 
 export class AppHeaderComponent implements OnInit{
@@ -19,14 +18,9 @@ export class AppHeaderComponent implements OnInit{
 	@Input('cartVisible') cartOpen: boolean;
 
 	constructor(private _authenticator: Authenticator, 
-				private _router: Router,
-				private _getUsernameService: GetUsernameService) { }
+				private _router: Router) { }
 
 	ngOnInit(){
-		this._getUsernameService.getusername()
-			.subscribe
-			(username => this._authenticator.user=username),
-			 error => console.log('Error: ' + error));
 	}
 
 	toggleCart(emitEvent: boolean): void {
