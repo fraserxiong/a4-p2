@@ -2,6 +2,7 @@ import {Dish} from './dish';
 import {User} from './user';
 
 export class Order{
+	private _id: string;
 	user: User;
 	dishes: {dish: Dish, quantity: number}[];
 
@@ -21,6 +22,12 @@ export class Order{
 			if (this.dishes[i].dish.id == dish.id){
 				this.dishes.splice(i, 1);
 			}
+		}
+	}
+
+	set id(id: string){
+		if (!this._id){
+			this._id = id;
 		}
 	}
 }

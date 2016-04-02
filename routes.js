@@ -315,7 +315,51 @@ exports = module.exports = function (app, passport) {
      comment_api.delete(id, onSuccessFactory(res));
   });
 
+    //orders
+  var Order = require('./api/order/order')(app).Order;
+  app.all('/orders/*', ensureAuthenticated);
+  app.all('/orders/*', ensureAccount);
+
+  app.post('/orders', function(req, res){
+    var payload = req.body; //Body is already parsed as an json object thanks to body-parser.json() middleware
+    var dishes = payload.dishes;
+    var userId = req.user.roles.account.id;
+    var order = new Order({user: userId});
+
+    //Logic Behind: Searches all dishes(posts) in db (parallelly) and add its _id into the order
+    Promise.all(dishes.map(function postSearchIterator(dish){
+      var dishId = dish.dish.id;
+      return new Promise(function(resolve, reject){
+        app.db.models.Post.findOne({'id': dishId})
+              .then(function(post){
+                resolve(post);
+              })
+              .catch(function(error){
+                reject(error);
+              })
+      })
+      .then(function(post){
+        order.dishes.push({dish: post._id, quantity: dish.quantity});
+      })
+    }))
+    .then(function orderSave(){
+    return order.save()
+        .then(function(order){
+          res.writeHead(200, {'Content-type': 'application/json'});
+          res.write(JSON.stringify(order));
+          res.end();
+        });
+    })
+    .catch(function(error){
+        res.writeHead(404, {'Content-type': 'text/plain'});
+        res.write('Order Creation Error: ' + error);
+        res.end();
+    });
+  });
+
 };
+
+
 
 function onSuccessFactory(res){
     return function(err, result){

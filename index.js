@@ -102,6 +102,7 @@ app.use('/images', express.static(path.resolve(__dirname, 'images')));
 app.use('/app', express.static(path.resolve(__dirname,'app')));
 app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')));
 
+//Let angular handle routing from now on
 app.get('/*', function(request, response) {
   response.sendFile(path.resolve(__dirname +'/index.html'));
 });

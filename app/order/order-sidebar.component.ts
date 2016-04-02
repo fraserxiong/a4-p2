@@ -34,4 +34,15 @@ export class OrderSidebarComponent implements OnInit{
 		this._orderService.remove(dish);
 		this.order = this._orderService.order;
 	}
+
+	private checkOut(){
+		this._orderService.saveOrder()
+			.subscribe(
+				(successMessage: string) => {
+					console.log(successMessage);
+				},
+				(error: any) => {
+					console.log(error);
+				})
+	}
 }
