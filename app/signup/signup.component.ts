@@ -18,16 +18,18 @@ export abstract class SignupComponent {
 	private repasswordHint: string = "Please confirm password";
 
 	// Add this user to database.
-	
+
 	constructor(private _authenticator: Authenticator,
 				private _signupService: UserSignupService) {
 	}
 
-	onSignup(username: string, password: string, email:string){
+	onSignup(username: string, email:string, password: string){
 		let user= {
-			name: name,
+			username: username,
 			password: password,
-			email: email
+			email: email,
+			errfor:{},
+			errors:[]
 		};
 
 		this._signupService.usersignup(user)
