@@ -13,7 +13,7 @@
         <div class="row">
 
             <div class="col-md-8">
-                <img class="img-responsive" src="{{item.url}}" alt="{{item.name}}" />
+                <img class="img-responsive" [src]="item.url" alt="{{item.name}}" />
             </div>
 
             <div class="col-md-4">
@@ -23,6 +23,15 @@
                 <ul>
                     <li *ngFor="#category of item.categories">{{category}}</li>
                 </ul>
+                <section id="dish-add-to-order">
+                    <aside>
+                        <label for="dishorder-quantity" class="sr-only">Price</label>
+                        <input #orderQuantity type="number" id="dishupload-price" class="form-control" value="1" required />
+                    </aside>
+                    <section>
+                        <button id="dish-add-to-order-button" type="submit" (click)="order(orderQuantity.value)">Order</button>
+                    </section>
+                </section>
             </div>
 
         </div>

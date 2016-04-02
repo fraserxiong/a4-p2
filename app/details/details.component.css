@@ -150,3 +150,37 @@ a {
 .btn-success{
     padding: 5px 15px 5px 15px;
 }
+
+#dish-add-to-order{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+#dish-add-to-order > aside{
+	width: 100px;
+}
+
+#dish-add-to-order > section{
+	flex: 1 0 auto;
+}
+
+#dish-add-to-order-button{
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33333;
+  border-radius: 6px;
+  color: white;
+  background-color: #337ab7;
+  border: 1px solid transparent;
+  border-color: #2e6da4;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  overflow: visible;
+}

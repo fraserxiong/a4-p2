@@ -17,22 +17,27 @@ export class OrderService{
 			email: "gates.bill@gmail.com",
 			password: "lalala",
 		};
-		let dish1 = {
-			id: 11,
-			url: "images/offer4.jpg",
-			location: "35 Hayden Street.",
-			description: "For a full on omega-3 fix, this bento is ideal. Marinate cooked shrimp overnight in an onion, garlic, oregano, and olive oil mixture. A starberry cake is aside and the meal’s done! A bed of salad greens adds a little color (and, well, good-for-you stuff including vitamins A, C, K, and folate).",
-			name: "Marinated Shrimp Salad",
-			categories: ["Lunch", "Perfect combo"],
-			price: 8.99
-		};
 		
 		this._order = new Order(user1);
-		this._order.addDish(dish1, 3);
+	}
+
+	add(dish: Dish, quantity: number){
+		this._order.addDish(dish, quantity);
 	}
 	
 	get order(): Order{
 		return this._order;
+	}
+
+	get total(): number {
+		if (!this.order) {
+			return 0;
+		}
+		var count = 0;
+		for (var i = 0; i < this.order.dishes.length; i++) {
+			count += (this.order.dishes[i].dish.price ? this.order.dishes[i].dish.price : 0) * this.order.dishes[i].quantity;
+		}
+		return count;
 	}
 
 	remove(dish: Dish){
