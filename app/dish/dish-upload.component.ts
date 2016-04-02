@@ -56,7 +56,7 @@ export class DishUploadComponent{
 			.subscribe
 			(successMessage => console.log('Success: ' + successMessage),
 			 error => console.log('Error: ' + error));
-		onUploadPass();
+		this.onUploadPass();
 	}
 
 	onUploadPass() {
