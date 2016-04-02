@@ -151,10 +151,20 @@ exports.del_friend = function(req, res, next){
 
 exports.get_friend_list = function(req, res, next){
   var cur_user = req.app.db.models.Friend.findOne({user:req.user.roles.account.id });
-  cur_user.populate('user');
+  cur_user.populate('frined user');
   cur_user.exec(function (err, friend_obj) {
     if (err) throw err;
-    console.log(friend_obj);
-    res.status(200).send("get friend success");
+    var friend_find = req.app.db.models.Account.find({_id: { $in: friend_obj.friend}});
+    friend_find.exec(
+      function(err, friend){
+        if (err) throw err;
+        console.log(friend);
+        // friend_list.push({
+        //   'id': friend._id,
+        //   'name': friend.name.full,
+        //   'avatar': friend.avatar
+        // });
+      }
+    );
   });
 };
