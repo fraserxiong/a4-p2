@@ -127,10 +127,22 @@ exports.signup = function(req, res){
           return workflow.emit('exception', err);
         }
 
-        workflow.emit('sendWelcomeEmail');
+        workflow.emit('createFriendList');
       });
     });
   });
+
+
+  workflow.on('createFriendList', function() {
+    var fieldsToSet = {user: workflow.user._id};
+    req.app.db.models.Friend.create(fieldsToSet, function(err, account) {
+      if (err) {
+        return workflow.emit('exception', err);
+      }
+      workflow.emit('sendWelcomeEmail');
+    });
+  });
+
 
   workflow.on('sendWelcomeEmail', function() {
     req.app.utility.sendmail(req, res, {
