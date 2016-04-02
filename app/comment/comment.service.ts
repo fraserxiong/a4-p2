@@ -8,6 +8,7 @@ export class CommentService{
 
 	private _post_comment_url = '/comments/create';
 	private _get_all_comment_url = '/comments/get_all/';
+	private _delete_comment_url = '/comments/delete/';
 
 	constructor(
 		private http: Http
@@ -21,12 +22,12 @@ export class CommentService{
 						.then(data => {console.log(data); return data});
 	}
 
-	submit_comment(id, comment) : Promise<Comment[]>{
+	submit_comment(id, comment, rating) : Promise<Comment[]>{
 
 		let json = {
 			target_id: id,
 			message: comment,
-			rating: 5,
+			rating: rating,
 			date: "March 8, 2016"
 		};
 		let body: string = JSON.stringify(json);
@@ -36,6 +37,13 @@ export class CommentService{
 		return this.http.post(this._post_comment_url, body, options)
 						.toPromise()
 						.then( _ => {return this.getCommentForDish(id)}, this.handleError);
+	}
+
+	delete(id, dish) : Promise<Comment[]>{
+
+		return this.http.delete(this._delete_comment_url + id)
+						.toPromise()
+						.then( _ => {return this.getCommentForDish(dish)}, this.handleError);
 	}
 
 	private handleError (error: any) {

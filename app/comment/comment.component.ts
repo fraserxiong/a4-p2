@@ -15,6 +15,7 @@ import { ROUTER_DIRECTIVES } from 'angular2/router';
 })
 export class CommentComponent implements OnInit{
 	@Input('comment') comment;
+	@Input('onDelete') onDelete;
 
 	private user: User;
 
@@ -25,5 +26,9 @@ export class CommentComponent implements OnInit{
 			.then(user => {
 				this.user = user
 			});
+	}
+
+	delete(){
+		this.onDelete(this.comment._id);
 	}
 }

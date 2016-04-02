@@ -14,9 +14,11 @@ exports = module.exports = function(app){
         //     Post.update({id: id}, json, callback);
         // },
         //
-        // delete: function(id, callback){
-        //     Post.find({id: id}).remove().exec(callback);
-        // },
+        delete: function(id, callback){
+            Comment.findOne({
+                _id: id
+            }).remove().exec(callback);
+        },
         //
         // find: function(id, callback){
         //     Post.findOne({

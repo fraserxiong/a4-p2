@@ -1,8 +1,12 @@
-.rating{
-	display: flex;
-	justify-content: space-between;
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
 }
-
-.star{
-	flex: 1 20%;
+.btn-sm {
+    padding: 4px 5px 4px 5px;
+    margin-left: 2px;
+    outline: none;
+}
+.rating {
+	margin-bottom: 10px;
 }

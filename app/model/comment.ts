@@ -5,4 +5,5 @@ export interface Comment {
 	rating: number;
 	message?: string;
 	date: string;
+	_id: string;
 }

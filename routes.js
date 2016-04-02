@@ -258,7 +258,7 @@ exports = module.exports = function (app, passport) {
   /*  Get recommendation for home page
       Returns 12 at most, need id in pathname.
   */
-  app.get('/posts/delete/:id', function(req, res){
+  app.delete('/posts/delete/:id', function(req, res){
       var id = req.params.id;
       post_api.delete(id, onSuccessFactory(res));
   });
@@ -299,6 +299,11 @@ exports = module.exports = function (app, passport) {
   app.get('/comments/get_all/:id', function(req, res){
       var id = req.params.id;
       comment_api.all(id, onSuccessWithReturnFactory(res));
+  });
+
+  app.delete('/comments/delete/:id', function(req, res){
+     var id = req.params.id;
+     comment_api.delete(id, onSuccessFactory(res));
   });
 
 };
