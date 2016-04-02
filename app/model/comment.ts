@@ -1,5 +1,4 @@
 export interface Comment {
-	id: number;
 	target_id: number; //Id of the dish towards which this comment targets
 	user_id: number; //Id of the user who posts this comment
 	reply_to?: number; //Id of the comment to which this comment reply

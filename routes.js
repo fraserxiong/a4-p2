@@ -224,7 +224,6 @@ exports = module.exports = function (app, passport) {
                       description: payload.description,
                       name: payload.name,
                       categories: payload.categories,
-                      url: payload.url,
                       user: req.user.roles.account.id});
 
       post.save().then(function createPostSuccess(message){
@@ -264,6 +263,43 @@ exports = module.exports = function (app, passport) {
       post_api.delete(id, onSuccessFactory(res));
   });
 
+  var comment_api = require('./api/post/comment')(app);
+  app.all('/comments/*', ensureAuthenticated);
+  app.all('/comments/*', ensureAccount);
+
+  app.post('/comments/create', function(req, res){
+      var payload = req.body; //Payload is the json object representing a post
+      var comment = comment_api.create({
+                      message: payload.message,
+                      rating: payload.rating,
+                      date: payload.date,
+                      user: req.user.roles.account.id});
+
+      comment.save().then(function(message){
+          app.db.models.Post
+               .findOne({id: payload.target_id})
+               .populate("comments")
+               .exec(function(err, post){
+                   if(err)
+                      console.log(err);
+                   post.comments.push(comment);
+                   post.save(function(err, result){
+                      if (err)
+                          console.log(err);
+                      res.writeHead(200, {'Content-type': 'text/plain'});
+                      res.end('Success!' + message);
+                   });
+               });
+      }).catch(function createPostError(error){
+          res.writeHead(403, {'Content-type' : 'text/plain'});
+          res.end('Error!' + error);
+      });
+  });
+
+  app.get('/comments/get_all/:id', function(req, res){
+      var id = req.params.id;
+      comment_api.all(id, onSuccessWithReturnFactory(res));
+  });
 
 };
 

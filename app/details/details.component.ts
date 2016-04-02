@@ -51,4 +51,9 @@ export class DetailsComponent implements OnInit {
 		return decodeURIComponent(this._routeParams.get("id"));
 	}
 
+	private comment(comment: String){
+		this._commentService.submit_comment(this.get_id(), comment)
+			.then(comments => this.comments = comments);
+	}
+
 }
