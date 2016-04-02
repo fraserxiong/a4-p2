@@ -4,10 +4,6 @@
 	align-items: flex-start;
 }
 
-.add-friend h1{
-	text-align: center;
-
-}
 
 .add-friend{
 	display: flex;
@@ -29,11 +25,12 @@ input {
     padding: 10px;
     margin-right: 10px;
     text-align: center;
+    width: 60%;
 }
 
 button {
-    width: 200px;
-    height: 60px;
+    width: 30%;
+    height: 40px;
     font-size: 20px;
     background-color: #b2bd0d;
     color: white;
@@ -42,16 +39,18 @@ button {
 
 }
 
-.dashboard_friends{
-  margin: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
+.dashboard_friends {
+    margin: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    height:100vh;
+}
+
+.dashboard_friends h1{
+    text-align: center;
 }
 
 
-article.dashboard_friends h1{
-	text-align: center;
-}
 
 .friends_list{
 	display: flex;
@@ -59,5 +58,6 @@ article.dashboard_friends h1{
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: stretch;
+    
 }
 

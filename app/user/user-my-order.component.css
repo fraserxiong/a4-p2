@@ -1,0 +1,10 @@
+.dashboard_orders {
+	margin: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
+	height:100vh;
+}
+
+.dashboard_orders h1{
+	text-align: center;
+}

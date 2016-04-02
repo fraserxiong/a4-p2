@@ -17,11 +17,18 @@
     <div id="dashboard_mydish" class="container-fluid" *ngSwitchWhen="stateEnum.Mydish" >
       <user-my-dish [user]='user'></user-my-dish>
     </div>
+
     <!-- User New Dish-->
     <div id="dashboard_newdish" class="container-fluid" *ngSwitchWhen="stateEnum.Newdish" >
       <dish-upload [user]='user'></dish-upload>
     </div>
+
+    <!-- User My order-->
+    <div id="dashboard_myorder" class="container-fluid" *ngSwitchWhen="stateEnum.Myorder" >
+      <user-my-order [user]='user'></user-my-order>
+    </div>
     
+
 
   </section>
 </div>
