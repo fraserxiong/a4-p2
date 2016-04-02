@@ -61,7 +61,63 @@ exports.get_user = function(req, res, next){
 };
 
 exports.add_friend = function(req, res, next){
-  var cur_user = req.app.db.models.Friend.findOne({user:req.user.roles.account.id}, "user friend", function (err, person) {
-  if (err) return handleError(err);});
-  console.log(cur_user);
+  var frined_acc = req.app.db.models.Account.findById(req.params.friend_id);
+  frined_acc.exec(function (err, friend_ref) {
+    if (err) return handleError(err);
+    var cur_user = req.app.db.models.Friend.findOne({user:req.user.roles.account.id, });
+    cur_user.exec(function (err, friend_obj) {
+      if (err) return handleError(err);
+      var isInArray = friend_obj.friend.some(function (friend) {
+        return friend.equals(friend_ref._id);
+      });
+      if(friend_obj.friend.length > 0 && isInArray){
+        res.status(403).send("Already added");
+      }else{
+        friend_obj.friend.push(friend_ref);
+        friend_obj.save();
+        res.status(200).send("Add friend success");
+      }
+    });
+  });
+};
+
+exports.get_basic_user_info = function(req, res, next){
+  var user_obj = req.app.db.models.Account.findOne({_id:req.params.user_id});
+  user_obj.populate('avatar', 'name');
+  user_obj.exec(function (err, user) {
+    if (err) return handleError(err);
+    var result_obj = {
+      'name': user.name.full,
+      'avatar': user.avatar
+    }
+    return res.send(JSON.stringify(result_obj));
+  });
+};
+
+
+exports.search_user = function(req, res, next){
+  console.log('search_user');
+  var query = new RegExp(req.query.search, 'i');
+  var acc_q = {
+      $or: [
+          {'name.full': query},
+          {'phone': query},
+          {'user.email': query}
+      ]
+  };
+  var acc_obj = req.app.db.models.Account.find(acc_q);
+  acc_obj.exec(function(err, accounts){
+    console.log(accounts);
+    if (err) return handleError(err);
+    var result = [];
+    for(var i = 0; i < accounts.length; i++){
+      var account = accounts[i];
+      result.push({
+        'id': account._id,
+        'name': account.name.full,
+        'avatar': account.avatar
+      });
+    };
+    return res.send(JSON.stringify(result));
+  })
 };
