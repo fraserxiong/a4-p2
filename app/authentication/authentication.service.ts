@@ -1,12 +1,19 @@
 import { Injectable } from 'angular2/core';
 import { User } from '../model/user';
+import { Observable } from 'rxjs/Observable';
+
+export interface LoginPayload{
+	errfor: Object,
+	errors: Array<void>,
+	password: string,
+	username: string
+}
+
 
 @Injectable()
-export class Authenticator{
+export abstract class Authenticator{
 
-	authenticate(username: string, password: string) : Promise<boolean>{
-		return Promise.resolve(false);
-	}
+	abstract authenticate(username: string, password: string): Observable<string>;
 
 	get signedIn(): boolean{
 		if (typeof(Storage) === "undefined"){
@@ -20,6 +27,17 @@ export class Authenticator{
 			return null;
 		}
 		return JSON.parse(sessionStorage.getItem('user'));
+	}
+
+	get user():string{
+		if (typeof(Storage) === "undefined"){
+			return null;
+		}
+		let user: User = <User>JSON.parse(sessionStorage.getItem('user'));
+		if (user){
+			return user.name;
+		}
+		return null;
 	}
 
 	protected authenticationPassed(user: User){

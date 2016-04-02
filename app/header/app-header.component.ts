@@ -12,14 +12,15 @@ import { User } from "../model/user";
 })
 
 export class AppHeaderComponent implements OnInit{
-	@Input('user') curUser: User;
+	@Input('user') curUser: string;
+
 	@Output('cartToggle') cartToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 	@Input('cartVisible') cartOpen: boolean;
 
-	constructor(private _authenticator: Authenticator, private _router: Router) { }
+	constructor(private _authenticator: Authenticator, 
+				private _router: Router) { }
 
 	ngOnInit(){
-		//this.curUser = this._authenticator.getCurUser();
 	}
 
 	toggleCart(emitEvent: boolean): void {

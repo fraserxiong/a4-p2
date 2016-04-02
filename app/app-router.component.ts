@@ -97,8 +97,8 @@ export class AppRouterComponent{
 
 	private isCartOpen: boolean = false;
 
-	getCurUser() : User{
-		return this._authenticator.curUser;
+	getCurUser() : string{
+		return this._authenticator.user;
 	}
 
 	private toggleCart(toggle: boolean){
