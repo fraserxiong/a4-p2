@@ -93,3 +93,31 @@ exports.get_basic_user_info = function(req, res, next){
     return res.send(JSON.stringify(result_obj));
   });
 };
+
+
+exports.search_user = function(req, res, next){
+  console.log('search_user');
+  var query = new RegExp(req.query.search, 'i');
+  var acc_q = {
+      $or: [
+          {'name.full': query},
+          {'phone': query},
+          {'user.email': query}
+      ]
+  };
+  var acc_obj = req.app.db.models.Account.find(acc_q);
+  acc_obj.exec(function(err, accounts){
+    console.log(accounts);
+    if (err) return handleError(err);
+    var result = [];
+    for(var i = 0; i < accounts.length; i++){
+      var account = accounts[i];
+      result.push({
+        'id': account._id,
+        'name': account.name.full,
+        'avatar': account.avatar
+      });
+    };
+    return res.send(JSON.stringify(result));
+  })
+};
