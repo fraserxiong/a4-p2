@@ -61,7 +61,6 @@ app.use(passport.session());
 helmet(app);
 
 //response locals
-<<<<<<< HEAD
 app.use(function(req, res, next) {
   // res.cookie('_csrfToken', req.csrfToken());
   res.locals.user = {};
@@ -69,15 +68,7 @@ app.use(function(req, res, next) {
   res.locals.user.username = req.user && req.user.username;
   next();
 });
-=======
-// app.use(function(req, res, next) {
-//   res.cookie('_csrfToken', req.csrfToken());
-//   res.locals.user = {};
-//   res.locals.user.defaultReturnUrl = req.user && req.user.defaultReturnUrl();
-//   res.locals.user.username = req.user && req.user.username;
-//   next();
-// });
->>>>>>> 1fb436875cbeb4ee5ba56f50ee489a8a0fc01009
+
 
 //global locals
 app.locals.projectName = app.config.projectName;
