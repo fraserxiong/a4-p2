@@ -12,10 +12,15 @@ export class UserMainService{
 		return this._http.get('/api/account/user/settings')
 			.map((res:Response)=>{
 				let juser =res.json().data.account;
+				let userinfo = res.json().data.user;
 				let name=juser.name.full;
 				let phone=juser.phone;
+				let email=userinfo.email;
+				let postcode = juser.zip;
 				let user:User={
 					name:name,
+					email:email,
+					postcode:postcode,
 					phone_number:phone
 				}
 				return user; 
