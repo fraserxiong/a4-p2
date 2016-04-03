@@ -6,4 +6,5 @@ export interface Comment {
 	message?: string;
 	date: string;
 	_id: string;
+	deletable: boolean;
 }

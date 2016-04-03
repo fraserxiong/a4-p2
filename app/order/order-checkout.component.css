@@ -9,3 +9,29 @@ article{
 button{
 	margin-top: 20px;
 }
+
+#payment-selection{
+	display: flex;
+	justify-content: space-between;
+}
+
+#payment-selection > aside{
+	width: 48%;
+	height: 50px;
+	text-align: center;
+}
+
+#payment-selection{
+	margin-top: 10px;
+}
+
+#payment-selection > aside{
+	padding: 11px 20px;
+	border: 1px solid gray;
+	cursor: pointer;
+}
+
+#payment-selection > aside.active{
+	border-color: #0089dc;
+	background: url(images/checkmark.png) right bottom no-repeat;
+}

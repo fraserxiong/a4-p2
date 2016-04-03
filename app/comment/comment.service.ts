@@ -24,11 +24,13 @@ export class CommentService{
 
 	submit_comment(id, comment, rating) : Promise<Comment[]>{
 
+		let date_options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
 		let json = {
 			target_id: id,
 			message: comment,
 			rating: rating,
-			date: "March 8, 2016"
+			date: new Date().toLocaleDateString('en-US', date_options)
 		};
 		let body: string = JSON.stringify(json);
 		let headers = new Headers({'Content-Type': 'application/json'});
