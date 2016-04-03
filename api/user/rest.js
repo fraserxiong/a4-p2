@@ -4,7 +4,7 @@ var renderSettings = function(req, res, next, oauthMessage) {
   var outcome = {};
 
   var getAccountData = function(callback) {
-    req.app.db.models.Account.findById(req.user.roles.account.id, 'name company phone zip').exec(function(err, account) {
+    req.app.db.models.Account.findById(req.user.roles.account.id, 'name phone zip avatar address').exec(function(err, account) {
       if (err) {
         return callback(err, null);
       }
@@ -57,7 +57,15 @@ exports.get_user_settings = function(req, res, next){
 };
 
 exports.get_user = function(req, res, next){
-  return res.send(JSON.stringify(res.locals.user));
+  req.app.db.models.Account.findById(req.user.roles.account.id)
+  .exec(function (err, user) {
+    if (err) throw err;
+    var result_obj = {
+      'name': user.name.full,
+      'avatar': user.avatar,
+    }
+    res.send(JSON.stringify(result_obj));
+  });
 };
 
 exports.add_friend = function(req, res, next){
@@ -164,24 +172,28 @@ exports.get_friend_list = function(req, res, next){
   cur_user.populate('frined user');
   cur_user.exec(function (err, friend_obj) {
     if (err) throw err;
-    req.app.db.models.Account.find({_id: { $in: friend_obj.friend}})
-    .populate('user.id')
-    .exec(
-      function(err, friend_list){
-        if (err) throw err;
-        var result = []
-        for(var i = 0; i < friend_list.length; i++){
-          result.push({
-            'id': friend_list[i]._id,
-            'name': friend_list[i].name.full,
-            'avatar': friend_list[i].avatar,
-            'zip': friend_list[i].zip,
-            'address': friend_list[i].address,
-            'email':friend_list[i].user.id.email
-          });
+    if(friend_obj){
+      req.app.db.models.Account.find({_id: { $in: friend_obj.friend}})
+      .populate('user.id')
+      .exec(
+        function(err, friend_list){
+          if (err) throw err;
+          var result = []
+          for(var i = 0; i < friend_list.length; i++){
+            result.push({
+              'id': friend_list[i]._id,
+              'name': friend_list[i].name.full,
+              'avatar': friend_list[i].avatar,
+              'zip': friend_list[i].zip,
+              'address': friend_list[i].address,
+              'email':friend_list[i].user.id.email
+            });
+          }
+          return res.send(JSON.stringify(result));
         }
-        return res.send(JSON.stringify(result));
-      }
-    );
+      );
+    }else{
+      res.status(403).send("No Friend");
+    }
   });
 };
