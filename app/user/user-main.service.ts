@@ -20,6 +20,8 @@ export class UserMainService{
 				let phone=juser.phone;
 				let email=userinfo.email;
 				let postcode = juser.zip;
+				let avatar_url=juser.avatar;
+				let address = juser.address;
 				let id = juser._id;
 				let user:User={
 					id:id,
@@ -29,7 +31,9 @@ export class UserMainService{
 					name:name,
 					email:email,
 					postcode:postcode,
-					phone_number:phone
+					phone_number:phone,
+					avatar_url:avatar_url,
+					address:address
 				}
 				return user; 
 			})
