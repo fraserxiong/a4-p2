@@ -14,7 +14,7 @@
     </div>
     <!--Change Password-->
     <div id="dashboard_changepassword" class="container-fluid" *ngSwitchWhen="stateEnum.ChangePassword">
-      <user-change-password [user]='user'></user-change-password>
+      <user-change-password [user]='user' (stateSelected)="selectState($event)"></user-change-password>
     </div>
   <!-- User My Friends-->
     <div id="dashboard_friends" class="container-fluid" *ngSwitchWhen="stateEnum.Friends">
