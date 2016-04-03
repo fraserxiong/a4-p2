@@ -32,17 +32,22 @@ export class UserEditComponent{
 		private _profileEditService: ProfileEditService){}
 
 
-	onUpdate(name:string, email:string, phonenum:string, address:string, postcode:string, url:string){
-		let user: User = {
-			name: name,
-			email: email,
-			phone_number: phonenum,
+	onUpdate(first:string, middle:string, last:string, phonenum:string, address:string, postcode:string, url:string){
+		let new_user= {
+			_id: this.curUser.id,
+			first: first,
+			middle: middle,
+			last:last,
+			phone: phonenum,
 			address: address,
-			postcode: postcode,
-			avatar_url: url
+			zip: postcode,
+			avatar: url,
+			errfor:{},
+			errors:[],
+
 		};
 
-		this._profileEditService.updateuser(user)
+		this._profileEditService.updateuser(new_user)
 			.subscribe
 			(successMessage => console.log('Success: ' + successMessage),
 			 error => console.log('Error: ' + error));
