@@ -24,12 +24,12 @@
                     <li *ngFor="#category of item.categories">{{category}}</li>
                 </ul>
                 <section id="dish-add-to-order">
-                    <aside>
-                        <label for="dishorder-quantity" class="sr-only">Price</label>
-                        <input #orderQuantity type="number" id="dishupload-price" class="form-control" value="1" required />
-                    </aside>
                     <section>
-                        <button id="dish-add-to-order-button" type="submit" (click)="order(orderQuantity.value)">Order</button>
+                        <label for="dishorder-quantity">Quantity</label>
+                        <input #orderQuantity type="number" id="dishupload-price" class="form-control" value="1" required />
+                    </section>
+                    <section>
+                        <button id="dish-add-to-order-button" class="btn btn-primary btn-block" type="submit" (click)="order(orderQuantity.value)">Order</button>
                     </section>
                 </section>
             </div>
