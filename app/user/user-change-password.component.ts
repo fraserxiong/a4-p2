@@ -33,20 +33,19 @@ export class ChangePasswordComponent{
 
 
 	onChange(newpassword:string, confirm:string){
-		// let user: User = {
-		// 	name: name,
-		// 	email: email,
-		// 	phone_number: phonenum,
-		// 	address: address,
-		// 	postcode: postcode,
-		// 	avatar_url: url
-		// };
+		let new_user= {
+			_id: this.curUser.id,
+			confirm: confirm,
+			newPassword: newpassword,
+			errfor:{},
+			errors:[]
+		};
 
-		// this._changepasswordService.updateuser(user)
-		// 	.subscribe
-		// 	(successMessage => console.log('Success: ' + successMessage),
-		// 	 error => console.log('Error: ' + error));
-		// this.selectstate(this.stateEnum.Profile);
+		this._changepasswordService.changepassword(new_user)
+			.subscribe
+			(successMessage => console.log('Success: ' + successMessage),
+			 error => console.log('Error: ' + error));
+		this.selectstate(this.stateEnum.Profile);
 	}
 
 	ngOnInit(){
