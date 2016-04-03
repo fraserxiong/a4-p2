@@ -207,6 +207,10 @@ exports = module.exports = function (app, passport) {
   var post_api = require('./api/post/post')(app);
   app.all('/posts/create*', ensureAuthenticated);
   app.all('/posts/create*', ensureAccount);
+  app.all('/posts/update*', ensureAuthenticated);
+  app.all('/posts/update*', ensureAccount);
+  app.all('/posts/delete*', ensureAuthenticated);
+  app.all('/posts/delete*', ensureAccount);
 
   app.get('/posts/recommended', function(req, res){
       post_api.all(onSuccessWithReturnFactory(res));
@@ -309,7 +313,8 @@ exports = module.exports = function (app, passport) {
 
   app.get('/comments/get_all/:id', function(req, res){
       var id = req.params.id;
-      comment_api.all(id, onSuccessWithReturnFactory(res));
+      var user = req.user.roles.account.id;
+      comment_api.all(user, id, onSuccessWithReturnFactory(res));
   });
 
   app.delete('/comments/delete/:id', function(req, res){

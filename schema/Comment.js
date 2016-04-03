@@ -6,7 +6,7 @@ exports = module.exports = function(app, mongoose){
     var commentSchema = mongoose.Schema({
         message: String,
         rating: Number,
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
         date: String
     });
     commentSchema.plugin(autoIncrement.plugin, {
