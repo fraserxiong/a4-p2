@@ -4,7 +4,7 @@ var renderSettings = function(req, res, next, oauthMessage) {
   var outcome = {};
 
   var getAccountData = function(callback) {
-    req.app.db.models.Account.findById(req.user.roles.account.id, 'name company phone zip').exec(function(err, account) {
+    req.app.db.models.Account.findById(req.user.roles.account.id, 'name phone zip avatar address').exec(function(err, account) {
       if (err) {
         return callback(err, null);
       }

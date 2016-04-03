@@ -322,21 +322,21 @@ exports.update = function(req, res, next){
         last: req.body.last,
         full: req.body.first +' '+ req.body.last
       },
-      company: req.body.company,
       phone: req.body.phone,
       zip: req.body.zip,
+      address: req.body.address,
       search: [
         req.body.first,
         req.body.middle,
         req.body.last,
-        req.body.company,
         req.body.phone,
-        req.body.zip
+        req.body.zip,
+        req.body.address
       ],
       avatar: req.body.avatar
     };
     var options = {
-      select: 'name company phone zip',
+      select: 'name company phone zip address',
       new: true
     };
     req.app.db.models.Account.findByIdAndUpdate(req.user.roles.account.id, fieldsToSet, options, function(err, account) {
