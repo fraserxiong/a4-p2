@@ -176,24 +176,28 @@ exports.get_friend_list = function(req, res, next){
   cur_user.populate('frined user');
   cur_user.exec(function (err, friend_obj) {
     if (err) throw err;
-    req.app.db.models.Account.find({_id: { $in: friend_obj.friend}})
-    .populate('user.id')
-    .exec(
-      function(err, friend_list){
-        if (err) throw err;
-        var result = []
-        for(var i = 0; i < friend_list.length; i++){
-          result.push({
-            'id': friend_list[i]._id,
-            'name': friend_list[i].name.full,
-            'avatar': friend_list[i].avatar,
-            'zip': friend_list[i].zip,
-            'address': friend_list[i].address,
-            'email':friend_list[i].user.id.email
-          });
+    if(friend_obj){
+      req.app.db.models.Account.find({_id: { $in: friend_obj.friend}})
+      .populate('user.id')
+      .exec(
+        function(err, friend_list){
+          if (err) throw err;
+          var result = []
+          for(var i = 0; i < friend_list.length; i++){
+            result.push({
+              'id': friend_list[i]._id,
+              'name': friend_list[i].name.full,
+              'avatar': friend_list[i].avatar,
+              'zip': friend_list[i].zip,
+              'address': friend_list[i].address,
+              'email':friend_list[i].user.id.email
+            });
+          }
+          return res.send(JSON.stringify(result));
         }
-        return res.send(JSON.stringify(result));
-      }
-    );
+      );
+    }else{
+      res.status(403).send("No Friend");
+    }
   });
 };
