@@ -57,13 +57,13 @@ exports = module.exports = function (app, passport) {
   app.post('/contact/', require('./views/contact/index').sendMessage);
 
   // User info
+  app.get('/api/account/user/:user_id/', require("./api/user/rest").get_basic_user_info);
   app.all('/api/account*', apiEnsureAuthenticated);
   app.all('/api/account*', apiEnsureAccount);
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
   app.get('/api/account/user/friend', require("./api/user/rest").get_friend_list);
   app.put('/api/account/user/add_friend/:friend_id/', require('./api/user/rest').add_friend);
   app.post('/api/account/user/del_friend/:friend_id/', require("./api/user/rest").del_friend);
-  app.get('/api/account/user/:user_id/', require("./api/user/rest").get_basic_user_info);
   app.get('/api/account/user', require('./api/user/rest').get_user);
   app.get('/api/account/', require("./api/user/rest").search_user);
 
@@ -205,12 +205,6 @@ exports = module.exports = function (app, passport) {
 
   // posts
   var post_api = require('./api/post/post')(app);
-  app.all('/posts/create*', ensureAuthenticated);
-  app.all('/posts/create*', ensureAccount);
-  app.all('/posts/update*', ensureAuthenticated);
-  app.all('/posts/update*', ensureAccount);
-  app.all('/posts/delete*', ensureAuthenticated);
-  app.all('/posts/delete*', ensureAccount);
 
   app.get('/posts/recommended', function(req, res){
       post_api.all(onSuccessWithReturnFactory(res));
@@ -232,6 +226,9 @@ exports = module.exports = function (app, passport) {
       var query = req.params.query;
       post_api.fuzzy_search(query, onSuccessWithReturnFactory(res))
   });
+
+  app.all('/posts/*', ensureAuthenticated);
+  app.all('/posts/*', ensureAccount);
 
   app.post('/posts/create', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
@@ -279,10 +276,19 @@ exports = module.exports = function (app, passport) {
 
   //comments
   var comment_api = require('./api/post/comment')(app);
-  app.all('/comments/create*', ensureAuthenticated);
-  app.all('/comments/create*', ensureAccount);
-  app.all('/comments/delete*', ensureAuthenticated);
-  app.all('/comments/delete*', ensureAccount);
+
+  app.get('/comments/get_all/:id', function(req, res){
+      var id = req.params.id;
+      var user;
+      if(req.user)
+        user = req.user.roles.account.id;
+      else
+        user = null;
+      comment_api.all(user, id, onSuccessWithReturnFactory(res));
+  });
+
+  app.all('/comments/*', ensureAuthenticated);
+  app.all('/comments/*', ensureAccount);
 
   app.post('/comments/create', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
@@ -311,16 +317,6 @@ exports = module.exports = function (app, passport) {
           res.writeHead(403, {'Content-type' : 'text/plain'});
           res.end('Error!' + error);
       });
-  });
-
-  app.get('/comments/get_all/:id', function(req, res){
-      var id = req.params.id;
-      var user;
-      if(req.user)
-        user = req.user.roles.account.id;
-      else
-        user = null;
-      comment_api.all(user, id, onSuccessWithReturnFactory(res));
   });
 
   app.delete('/comments/delete/:id', function(req, res){
@@ -370,10 +366,7 @@ exports = module.exports = function (app, passport) {
         res.end();
     });
   });
-
 };
-
-
 
 function onSuccessFactory(res){
     return function(err, result){

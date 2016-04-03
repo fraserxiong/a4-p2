@@ -3,6 +3,7 @@ import {User} from '../model/user';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import 'rxjs/Rx';
 
+@Injectable()
 export class UserProfileService{
 
 	private _get_avatar_url = '/api/account/user/';
@@ -26,7 +27,7 @@ export class UserProfileService{
 		return this.http.get(url)
 				   .toPromise()
 				   .then(res => <User> res.json(), this.handleError)
-				   .then(data => {console.log(data); return data});
+				   .then(data => {data["avatar_url"] = data["avatar"]; console.log(data); return data});
 
 	}
 
