@@ -6,7 +6,7 @@ import { User } from '../model/user';
 @Component({
 	selector: 'order-checkout',
 	templateUrl: 'app/order/order-checkout.component.html',
-	styleUrls: [],
+	styleUrls: ['app/order/order-checkout.component.css'],
 })
 export class OrderCheckoutComponent implements OnInit{
 	private user: User;
