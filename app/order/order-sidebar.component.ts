@@ -20,18 +20,22 @@ export class OrderSidebarComponent implements OnInit{
 	}
 
 	get total(): number{
-		if (!this.order){
-			return 0;
-		}
-		var count = 0;
-		for (var i = 0; i < this.order.dishes.length; i++){
-			count += this.order.dishes[i].dish.price * this.order.dishes[i].quantity;
-		}
-		return count;
+		return this._orderService.total;
 	}
 
 	private remove(dish: Dish){
 		this._orderService.remove(dish);
 		this.order = this._orderService.order;
+	}
+
+	private checkOut(){
+		this._orderService.saveOrder()
+			.subscribe(
+				(successMessage: string) => {
+					console.log(successMessage);
+				},
+				(error: any) => {
+					console.log(error);
+				})
 	}
 }

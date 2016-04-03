@@ -1,14 +1,14 @@
 <section class="comment">
 	<aside>
 		<img class="img-rounded" [src]="user?.avatar_url" alt="{{user?.name}}"/>
-		<rating [rate]="comment.rating"></rating>
 	</aside>
 	<article>
 		<header>
 			<span><a [routerLink]="['UserProfile', {id: user?.id}]">{{user?.name | Capitalize}}</a> {{comment.date}}</span>
-			<span><a>Reply:</a></span>
+			<span><a (click)="delete()">Delete</a></span>
 		</header>
 		<p>
+			<rating [rate]="comment.rating"></rating>
 			{{comment.message}}
 		</p>
 	</article>

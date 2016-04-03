@@ -6,7 +6,8 @@ import { RouteParams, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 import { CapitalizePipe } from '../pipe/capitalize.pipe';
 import { CommentService } from '../comment/comment.service';
 import { CommentComponent } from '../comment/comment.component';
-import {HTTP_PROVIDERS}    from 'angular2/http';
+import { HTTP_PROVIDERS }    from 'angular2/http';
+import { OrderService } from '../order/order.service';
 
 @Component(
 {
@@ -15,7 +16,6 @@ import {HTTP_PROVIDERS}    from 'angular2/http';
 	styleUrls: ["app/details/details.component.css"],
 	directives: [CommentComponent, ROUTER_DIRECTIVES],
 	pipes: [CapitalizePipe],
-	providers: [HTTP_PROVIDERS, AppOfferService]
 })
 
 export class DetailsComponent implements OnInit {
@@ -24,12 +24,15 @@ export class DetailsComponent implements OnInit {
 	related: Dish[] = [];
 
 	comments: Comment[] = [];
+	ratings: boolean[] = [false, false, false, false, false];
+	ratingsVal = 0;
 
 	constructor(
 		private _offerService: AppOfferService,
 		private _router: Router,
 		private _routeParams: RouteParams,
-		private _commentService: CommentService
+		private _commentService: CommentService,
+		private _orderService: OrderService
 	){}
 
 	ngOnInit(){
@@ -49,6 +52,36 @@ export class DetailsComponent implements OnInit {
 
 	get_id(){
 		return decodeURIComponent(this._routeParams.get("id"));
+	}
+
+	private comment(comment: String){
+		this._commentService.submit_comment(this.get_id(), comment, this.ratingsVal)
+			.then(comments => this.comments = comments);
+	}
+
+	onDelete(){
+		var scope = this;
+		return function(id: String){
+			scope._commentService.delete(id, scope.get_id())
+				.then(comments => scope.comments = comments);
+		}
+
+	}
+
+	changeRating(idx){
+		for(var i = 0; i < 5; i++){
+			if(i <= idx)
+				this.ratings[i] = true;
+			else
+				this.ratings[i] = false;
+		}
+		this.ratingsVal = idx + 1;
+	}
+
+	order(quantity: number){
+		if (quantity > 0) {
+			this._orderService.add(this.item, quantity);
+		}
 	}
 
 }

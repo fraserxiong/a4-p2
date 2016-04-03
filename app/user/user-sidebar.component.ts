@@ -1,4 +1,4 @@
-import { Component, OnInit}       from 'angular2/core';
+import { Component, OnInit, Output, EventEmitter}       from 'angular2/core';
 import { RouteParams, ROUTER_DIRECTIVES }       from 'angular2/router';
 import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
@@ -7,6 +7,7 @@ import { UserMyDishComponent } from './user-my-dish.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserMyFriendComponent } from './user-my-friend.component';
 import { DishUploadComponent } from '../dish/dish-upload.component';
+import { State } from './user-main.state';
 
 @Component(
 {
@@ -16,21 +17,11 @@ import { DishUploadComponent } from '../dish/dish-upload.component';
   	directives: [ROUTER_DIRECTIVES]
 })
 
-export class UserSidebarComponent implements OnInit{
-	private curUser: User;
-	private curId: number;
+export class UserSidebarComponent{
+	@Output('stateSelected') stateEmitter= new EventEmitter<State>();
+	private stateEnum = State;
 
-	constructor(
-		private _profileService: UserProfileService,
-		private _routeParams: RouteParams){}
-
-	ngOnInit(){
-		let id: number = + this._routeParams.get('id');
-		this._profileService.findUserById(id)
-			.then(user => {
-				this.curUser = user;
-				this.curId = user.id;
-			});
-
+	private selectstate(state:State){
+		this.stateEmitter.emit(state);
 	}
 }

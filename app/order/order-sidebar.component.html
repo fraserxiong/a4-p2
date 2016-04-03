@@ -3,4 +3,4 @@
 	<order-dishitem *ngFor="#dish of order?.dishes" [dish]="dish.dish" [quantity]="dish.quantity" (remove)="remove(dish.dish)"></order-dishitem>
 </section>
 <p id="order-total"><span>Total</span><span class="total-cost">{{total | currency:'USD'}}</span></p>
-<p class="checkout"><span>Checkout</span></p>
+<p class="checkout" (click)="checkOut()"><span>Checkout</span></p>

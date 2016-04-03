@@ -1,0 +1,13 @@
+#user-main{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+#user-main > aside{
+	width: 200px;
+}
+
+#user-main > section{
+	flex: 1 0 auto;
+}

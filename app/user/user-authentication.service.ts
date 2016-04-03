@@ -26,7 +26,6 @@ export class UserAuthenticationService extends Authenticator{
 		return this._http.post('/login/', JSON.stringify(loginInfo), options)
 			.map((res: Response) => {
 				let user: User = {
-					id: 1,
 					name: username
 				};
 				this.authenticationPassed(user);
