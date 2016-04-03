@@ -17,16 +17,21 @@
  		<br>Categories:<br>
  		<label for="dishupload-categories" class="sr-only">Categories</label>
  		<input #categories type="text" id="dishupload-categories" class="form-control" placeholder="{{categoriesHint}}" required />
- 		
+
  		<br>Price:<br>
  		<label for="dishupload-price" class="sr-only">Price</label>
  		<input #price type="number" id="dishupload-price" class="form-control" placeholder="{{priceHint}}" required />
 
  		<br>Picture:<br>
- 		<label for="dishupload-url" class="sr-only">Url</label>
+ 		<!-- <label for="dishupload-url" class="sr-only">Url</label>
  		<input #url type="url" id="dishupload-url" class="form-control" placeholder="{{urlHint}}" required />
- 		<br>
- 		<button id="dishupload-btn" type="submit">Upload</button>
+ 		<br> -->
 
+
+        <input type="file"
+               [ng-file-select]="options"
+               (onUpload)="handleUpload($event)">
+        <br />
+        <button id="dishupload-btn" type="submit">Upload</button>
 </form>
 </div>
