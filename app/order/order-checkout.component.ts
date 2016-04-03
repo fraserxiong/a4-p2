@@ -44,6 +44,17 @@ export class OrderCheckoutComponent implements OnInit{
 		this.submitted = true;
 		if (this.selectedPaymentMethod >= 0) {
 			this._orderService.setOrderAddrss(address);
+			this._orderService.saveOrder()
+				.subscribe(
+					(successMessage: string) => {
+						console.log(successMessage);
+						window.alert(successMessage);
+					},
+					(error: any) => {
+						console.log('Error: ' + error);
+						window.alert(error);
+					}
+					);
 		}
 	}
 }
