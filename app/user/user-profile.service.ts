@@ -1,7 +1,15 @@
 import {Injectable} from 'angular2/core';
 import {User} from '../model/user';
+import {Http, Response, Headers, RequestOptions} from 'angular2/http';
+import 'rxjs/Rx';
 
 export class UserProfileService{
+
+	private _get_avatar_url = '/api/account/user/';
+
+	constructor(
+		private http: Http
+	){}
 
 	findUserById(id: number): Promise<any>{
 		let users: User[] = this.allUsers;
@@ -11,6 +19,15 @@ export class UserProfileService{
 			}
 		}
 		return Promise.reject<string>("Can't find user with id: " + id);
+	}
+
+	findUserAvatarById(id: String): Promise<User>{
+		let url = this._get_avatar_url + id + '/';
+		return this.http.get(url)
+				   .toPromise()
+				   .then(res => <User> res.json(), this.handleError)
+				   .then(data => {console.log(data); return data});
+
 	}
 
 	get adminUsers(): User[]{
@@ -174,5 +191,11 @@ export class UserProfileService{
 		}]
 	}
 
+	private handleError (error: any) {
+	  // in a real world app, we may send the error to some remote logging infrastructure
+	  // instead of just logging it to the console
+	  console.error(error);
+	  return Promise.reject(error.message || error.json().error || 'Server error');
+	}
 
 }

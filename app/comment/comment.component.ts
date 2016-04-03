@@ -5,6 +5,7 @@ import { UserProfileService } from '../user/user-profile.service';
 import { RatingComponent } from '../comment/rating.component';
 import { CapitalizePipe } from '../pipe/capitalize.pipe';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { HTTP_PROVIDERS }    from 'angular2/http';
 
 @Component({
 	selector: 'dish-comment',
@@ -22,7 +23,8 @@ export class CommentComponent implements OnInit{
 	constructor(private _userProfileService: UserProfileService){}
 
 	ngOnInit(){
-		this._userProfileService.findUserById(this.comment.user_id)
+		console.log(this.comment);
+		this._userProfileService.findUserAvatarById(this.comment.user)
 			.then(user => {
 				this.user = user
 			});

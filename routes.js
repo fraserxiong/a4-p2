@@ -279,8 +279,10 @@ exports = module.exports = function (app, passport) {
 
   //comments
   var comment_api = require('./api/post/comment')(app);
-  app.all('/comments/*', ensureAuthenticated);
-  app.all('/comments/*', ensureAccount);
+  app.all('/comments/create*', ensureAuthenticated);
+  app.all('/comments/create*', ensureAccount);
+  app.all('/comments/delete*', ensureAuthenticated);
+  app.all('/comments/delete*', ensureAccount);
 
   app.post('/comments/create', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
@@ -313,7 +315,11 @@ exports = module.exports = function (app, passport) {
 
   app.get('/comments/get_all/:id', function(req, res){
       var id = req.params.id;
-      var user = req.user.roles.account.id;
+      var user;
+      if(req.user)
+        user = req.user.roles.account.id;
+      else
+        user = null;
       comment_api.all(user, id, onSuccessWithReturnFactory(res));
   });
 
