@@ -61,7 +61,6 @@ exports.get_user = function(req, res, next){
 };
 
 exports.add_friend = function(req, res, next){
-  console.log("what?");
   var frined_acc = req.app.db.models.Account.findById(req.params.friend_id);
   frined_acc.exec(function (err, friend_ref) {
     if (err) throw err;
@@ -97,28 +96,39 @@ exports.get_basic_user_info = function(req, res, next){
 
 exports.search_user = function(req, res, next){
   var query = new RegExp(req.query.search, 'i');
-  var acc_q = {
-      $or: [
-          {'name.full': query},
-          {'phone': query}
-          // {'user.id.email': query}
-      ]
-  };
-  var acc_obj = req.app.db.models.Account.find(acc_q);
-  acc_obj.exec(function(err, accounts){
-    console.log(accounts);
-    if (err) throw err;
-    var result = [];
-    for(var i = 0; i < accounts.length; i++){
-      var account = accounts[i];
-      result.push({
-        'id': account._id,
-        'name': account.name.full,
-        'avatar': account.avatar
-      });
+  req.app.db.models.User.find({'email':query})
+  .select('roles')
+  .exec(function(err, user_list){
+    // console.log(user_list);
+    var id_list = [];
+    for(var i=0; i<user_list.length; i++){
+      id_list.push(user_list[i].roles.account);
+    }
+    var acc_q = {
+        $or: [
+            {'name.full': query},
+            {'phone': query},
+            {'_id': { $in: id_list}}
+        ]
     };
-    res.send(JSON.stringify(result));
-  })
+    // console.log(id_list);
+    req.app.db.models.Account.find(acc_q)
+    .exec(function(err, accounts){
+      // console.log(accounts);
+      if (err) {console.log(err); throw err};
+      var result = [];
+      for(var i = 0; i < accounts.length; i++){
+        var account = accounts[i];
+        result.push({
+          'id': account._id,
+          'name': account.name.full,
+          'avatar': account.avatar
+        });
+      };
+      res.send(JSON.stringify(result));
+      // res.status(200).send("Test pass");
+    });
+  });
 };
 
 

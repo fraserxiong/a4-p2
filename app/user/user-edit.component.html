@@ -1,0 +1,33 @@
+
+<div id="editprofile-container">
+<h1>Edit Profile</h1>
+<form id="editprofile-form" (ngSubmit)="onUpdate(name.value, email.value, phonenum.value, address.value, postcode.value, url.value)" #uploadForm="ngForm">
+ 		UserName:<br>
+ 		<label for="editprofile-name" class="sr-only">Name</label>
+ 		<input #name type="text" id="editprofile-name" class="form-control" placeholder="Name" value = "{{curUser?.name}}" required autofocus />
+
+ 		<br>Email:<br>
+ 		<label for="editprofile-email" class="sr-only">Email</label>
+ 		<input #email type="email" id="editprofile-email" class="form-control" placeholder="Please enter your Email" value = "{{curUser?.email}}" required />
+
+ 		<br>Phone Number:<br>
+ 		<label for="editprofile-phonenum" class="sr-only">Phone Number</label>
+ 		<input #phonenum type="tel" id="editprofile-phonenum" class="form-control" placeholder="Please enter your Phone Number" value="{{curUser?.phone_number}}" required />
+
+ 		<br>Address:<br>
+ 		<label for="editprofile-address" class="sr-only">Address</label>
+ 		<input #address type="text" id="editprofile-address" class="form-control" placeholder="Please enter your address" value="{{curUser?.address}}" required />
+ 		
+ 		<br>Post Code:<br>
+ 		<label for="editprofile-postcode" class="sr-only">Post Code</label>
+ 		<input #postcode type="text" id="editprofile-postcode" class="form-control" placeholder="Please enter your postcode" value = "{{curUser?.postcode}}" required />
+
+ 		<br>Avatar URL:<br>
+ 		<label for="editprofile-url" class="sr-only">Url</label>
+ 		<input #url type="url" id="editprofile-url" class="form-control" placeholder="Please enter the url of your avatar" value = "{{curUser?.avatar_url}}"required />
+
+ 		<br>
+ 		<button id="editprofile-btn" type="submit">Update</button>
+
+</form>
+</div>
