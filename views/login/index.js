@@ -96,7 +96,6 @@ exports.login = function(req, res){
           if (err) {
             return workflow.emit('exception', err);
           }
-
           workflow.outcome.errors.push('Username and password combination not found or your account is inactive.');
           return workflow.emit('response');
         });
