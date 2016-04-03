@@ -1,8 +1,3 @@
-.dish_list{
-	display: flex;
-	flex-flow: row wrap;
-	align-items: flex-start;
-}
 
 
 .add-friend{
@@ -40,14 +35,15 @@ button {
 }
 
 .dashboard_friends {
-    margin: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
-    height:100vh;
+    margin:3%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .dashboard_friends h1{
-    text-align: center;
+    margin: 0 auto;
 }
 
 
