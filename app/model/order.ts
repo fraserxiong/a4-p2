@@ -46,4 +46,8 @@ export class Order{
 			this._id = id;
 		}
 	}
+
+	isEmpty(): boolean{
+		return this.dishes.length <= 0;
+	}
 }

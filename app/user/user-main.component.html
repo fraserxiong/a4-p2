@@ -8,6 +8,14 @@
     <div id="dashboard_users" class="container-fluid" *ngSwitchWhen="stateEnum.Profile" *ngSwitchDefault>
       <user [user]='user'></user>
     </div>
+    <!--Edit Profile-->
+    <div id="dashboard_edit" class="container-fluid" *ngSwitchWhen="stateEnum.Edit">
+      <user-edit [user]='user'></user-edit>
+    </div>
+    <!--Change Password-->
+    <div id="dashboard_changepassword" class="container-fluid" *ngSwitchWhen="stateEnum.ChangePassword">
+      <user-change-password [user]='user'></user-change-password>
+    </div>
   <!-- User My Friends-->
     <div id="dashboard_friends" class="container-fluid" *ngSwitchWhen="stateEnum.Friends">
       <user-my-friend [user]='user'></user-my-friend>
