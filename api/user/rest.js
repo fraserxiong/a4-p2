@@ -90,19 +90,15 @@ exports.add_friend = function(req, res, next){
 };
 
 exports.get_basic_user_info = function(req, res, next){
-  if(req.params.user_id=='friend'){
-    next();
-  }else{
-    req.app.db.models.Account.findOne({_id:req.params.user_id})
-    .exec(function (err, user) {
-      if (err) throw err;
-      var result_obj = {
-        'name': user.name.full,
-        'avatar': user.avatar,
-      }
-      res.send(JSON.stringify(result_obj));
-    })
-  };
+  req.app.db.models.Account.findOne({_id:req.params.user_id})
+  .exec(function (err, user) {
+    if (err) throw err;
+    var result_obj = {
+      'name': user.name.full,
+      'avatar': user.avatar,
+    }
+    res.send(JSON.stringify(result_obj));
+  });
 };
 
 
