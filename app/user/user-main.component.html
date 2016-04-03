@@ -1,6 +1,6 @@
 <div id='user-main'>
   <aside class="container-fluid">
-    <user-sidebar (stateSelected)="state=$event"></user-sidebar>
+    <user-sidebar (stateSelected)="selectState($event)"></user-sidebar>
   </aside>
 
   <section [ngSwitch]="state">
@@ -10,7 +10,7 @@
     </div>
     <!--Edit Profile-->
     <div id="dashboard_edit" class="container-fluid" *ngSwitchWhen="stateEnum.Edit">
-      <user-edit [user]='user'></user-edit>
+      <user-edit [user]='user' (stateSelected)="selectState($event)"></user-edit>
     </div>
     <!--Change Password-->
     <div id="dashboard_changepassword" class="container-fluid" *ngSwitchWhen="stateEnum.ChangePassword">
