@@ -24,6 +24,10 @@ export class OrderService{
 	add(dish: Dish, quantity: number){
 		this._order.addDish(dish, quantity);
 	}
+
+	setOrderAddrss(address: string){
+		this._order.address = address;
+	}
 	
 	get order(): Order{
 		return this._order;
