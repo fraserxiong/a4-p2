@@ -62,7 +62,7 @@ exports = module.exports = function (app, passport) {
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
   app.get('/api/account/user/friend', require("./api/user/rest").get_friend_list);
   app.put('/api/account/user/add_friend/:friend_id/', require('./api/user/rest').add_friend);
-  app.post('/api/account/user/del_friend/:friend_id/', require("./api/user/rest").del_friend);
+  app.delete('/api/account/user/del_friend/:friend_id/', require("./api/user/rest").del_friend);
   app.get('/api/account/user/:user_id/', require("./api/user/rest").get_basic_user_info);
   app.get('/api/account/user', require('./api/user/rest').get_user);
   app.get('/api/account/', require("./api/user/rest").search_user);

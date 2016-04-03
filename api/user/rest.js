@@ -57,7 +57,15 @@ exports.get_user_settings = function(req, res, next){
 };
 
 exports.get_user = function(req, res, next){
-  return res.send(JSON.stringify(res.locals.user));
+  req.app.db.models.Account.findById(req.user.roles.account.id)
+  .exec(function (err, user) {
+    if (err) throw err;
+    var result_obj = {
+      'name': user.name.full,
+      'avatar': user.avatar,
+    }
+    res.send(JSON.stringify(result_obj));
+  });
 };
 
 exports.add_friend = function(req, res, next){
