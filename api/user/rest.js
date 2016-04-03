@@ -61,11 +61,11 @@ exports.get_user = function(req, res, next){
 };
 
 exports.add_friend = function(req, res, next){
-  var frined_acc = req.app.db.models.Account.findById(req.params.friend_id);
-  frined_acc.exec(function (err, friend_ref) {
+  req.app.db.models.Account.findById(req.params.friend_id)
+  .exec(function (err, friend_ref) {
     if (err) throw err;
-    var cur_user = req.app.db.models.Friend.findOne({user:req.user.roles.account.id, });
-    cur_user.exec(function (err, friend_obj) {
+    req.app.db.models.Friend.findOne({user:req.user.roles.account.id, })
+    .exec(function (err, friend_obj) {
       if (err) throw err;
       var isInArray = friend_obj.friend.some(function (friend) {
         return friend.equals(friend_ref._id);
@@ -82,12 +82,12 @@ exports.add_friend = function(req, res, next){
 };
 
 exports.get_basic_user_info = function(req, res, next){
-  var user_obj = req.app.db.models.Account.findOne({_id:req.params.user_id});
-  user_obj.exec(function (err, user) {
+  req.app.db.models.Account.findOne({_id:req.params.user_id})
+  .exec(function (err, user) {
     if (err) throw err;
     var result_obj = {
       'name': user.name.full,
-      'avatar': user.avatar
+      'avatar': user.avatar,
     }
     res.send(JSON.stringify(result_obj));
   });
@@ -133,12 +133,12 @@ exports.search_user = function(req, res, next){
 
 
 exports.del_friend = function(req, res, next){
-  console.log("what? del_friend");
-  var frined_acc = req.app.db.models.Account.findById(req.params.friend_id);
-  frined_acc.exec(function (err, friend_ref) {
+  // console.log("what? del_friend");
+  req.app.db.models.Account.findById(req.params.friend_id)
+  .exec(function (err, friend_ref) {
     if (err) throw err;
-    var cur_user = req.app.db.models.Friend.findOne({user:req.user.roles.account.id, });
-    cur_user.exec(function (err, friend_obj) {
+    req.app.db.models.Friend.findOne({user:req.user.roles.account.id, })
+    .exec(function (err, friend_obj) {
       if (err) throw err;
       if(friend_obj){
         var isInArray = friend_obj.friend.some(function (friend) {
@@ -164,8 +164,9 @@ exports.get_friend_list = function(req, res, next){
   cur_user.populate('frined user');
   cur_user.exec(function (err, friend_obj) {
     if (err) throw err;
-    var friend_find = req.app.db.models.Account.find({_id: { $in: friend_obj.friend}});
-    friend_find.exec(
+    req.app.db.models.Account.find({_id: { $in: friend_obj.friend}})
+    .populate('user.id')
+    .exec(
       function(err, friend_list){
         if (err) throw err;
         var result = []
@@ -174,7 +175,9 @@ exports.get_friend_list = function(req, res, next){
             'id': friend_list[i]._id,
             'name': friend_list[i].name.full,
             'avatar': friend_list[i].avatar,
-            'zip': friend_list[i].zip
+            'zip': friend_list[i].zip,
+            'address': friend_list[i].address,
+            'email':friend_list[i].user.id.email
           });
         }
         return res.send(JSON.stringify(result));

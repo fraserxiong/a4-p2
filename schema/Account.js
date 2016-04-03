@@ -15,9 +15,9 @@ exports = module.exports = function(app, mongoose) {
       last: { type: String, default: '' },
       full: { type: String, default: '' }
     },
-    company: { type: String, default: '' },
     phone: { type: String, default: '' },
     zip: { type: String, default: '' },
+    address: { type: String, default: '' },
     status: {
       id: { type: String, ref: 'Status' },
       name: { type: String, default: '' },
