@@ -57,11 +57,11 @@ exports = module.exports = function (app, passport) {
   app.post('/contact/', require('./views/contact/index').sendMessage);
 
   // User info
-  app.get('/api/account/user/:user_id/', require("./api/user/rest").get_basic_user_info);
+  app.get('/unauth/api/account/user/:user_id/', require("./api/user/rest").get_basic_user_info);
   app.all('/api/account*', apiEnsureAuthenticated);
   app.all('/api/account*', apiEnsureAccount);
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
-  app.get('/api/account/user/friend', require("./api/user/rest").get_friend_list);
+  app.get('/api/account/user/friend/', require("./api/user/rest").get_friend_list);
   app.put('/api/account/user/add_friend/:friend_id/', require('./api/user/rest').add_friend);
   app.delete('/api/account/user/del_friend/:friend_id/', require("./api/user/rest").del_friend);
   app.get('/api/account/user', require('./api/user/rest').get_user);
