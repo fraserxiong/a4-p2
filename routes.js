@@ -270,7 +270,9 @@ exports = module.exports = function (app, passport) {
       post_api.delete(id, onSuccessFactory(res));
   });
 
-  app.get('/posts/posts_by_user', function(req, res){
+  app.get('/posts/auth/posts_by_user', function(req, res){
+      console.log("Handling post by user request");
+      console.log(req.user.roles.account.id);
       post_api.find_by_user(req.user.roles.account.id, onSuccessWithReturnFactory(res));
   });
 
@@ -389,6 +391,7 @@ function onSuccessWithReturnFactory(res){
         if(err)
             console.log(err);
 
+        console.log(results);
         res.writeHead(200, {'Content-type': 'application/json'});
         res.write(JSON.stringify(results));
         res.end();
