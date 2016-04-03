@@ -1,13 +1,10 @@
 
 <div class="container-fluid dashboard_friends">
-    <h1>Add Friend</h1>
-    <div class='add-friend'>
   <div id="search-friend">
     <input #addfriendInput class="input" placeholder="Username..."/>
-    <button (click)="search(addfriendInput.value)">SEARCH</button>
+    <button (click)="search(addfriendInput.value)"><i class="fa fa-search"></i></button>
   </div>
-</div>
-  <h1>My Friends</h1>
+  <br>
   <section class="friends_list">
     <user-avatar *ngFor="#friend of friends" [user]="friend"></user-avatar>
     </section>
