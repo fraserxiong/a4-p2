@@ -39,7 +39,7 @@ export class DishUploadComponent{
 	uploadFile: any;
 
 	options: Object = {
-		url: 'http://localhost:10050/upload'
+		url: '/upload'
 	};
 
 	handleUpload(data): void {
