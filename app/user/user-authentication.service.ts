@@ -28,13 +28,15 @@ export class UserAuthenticationService extends Authenticator{
 				let user: User = {
 					name: username
 				};
-				this.authenticationPassed(user);
-				return res.statusText;
+				let success: boolean = res.json().success;
+				if (success)
+					this.authenticationPassed(user);
+				return <string> res.json().errors[0];
 			})
 			.do((res: string) => console.log(res))
 			.catch(err => {
 					console.log(err);
-						return Observable.throw(err.json() || "Server Error");
+					return Observable.throw(err.json() || "Server Error");
 			})
 	}
 }
