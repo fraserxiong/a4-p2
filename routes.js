@@ -326,7 +326,8 @@ exports = module.exports = function (app, passport) {
     var payload = req.body; //Body is already parsed as an json object thanks to body-parser.json() middleware
     var dishes = payload.dishes;
     var userId = req.user.roles.account.id;
-    var order = new Order({user: userId});
+    var address = payload.address;
+    var order = new Order({user: userId, address: address});
 
     //Logic Behind: Searches all dishes(posts) in db (parallelly) and add its _id into the order
     Promise.all(dishes.map(function postSearchIterator(dish){

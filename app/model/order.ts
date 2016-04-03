@@ -5,6 +5,7 @@ export class Order{
 	private _id: string;
 	user: User;
 	dishes: {dish: Dish, quantity: number}[];
+	address: string;
 
 	constructor(user?: User){
 		if (user) {

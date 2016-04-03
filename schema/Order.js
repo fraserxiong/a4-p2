@@ -5,7 +5,8 @@ exports = module.exports = function(app, mongoose){
 
 	var orderSchema = mongoose.Schema({
 		user: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
-		dishes: [{dish: {type: mongoose.Schema.Types.ObjectId, ref: 'Post'}, quantity: Number}]
+		dishes: [{dish: {type: mongoose.Schema.Types.ObjectId, ref: 'Post'}, quantity: Number}],
+		address: String
 	})
 	orderSchema.plugin(autoIncrement.plugin, {
 		model: 'Order',
@@ -13,5 +14,5 @@ exports = module.exports = function(app, mongoose){
 		startAt: 1,
 		incrementBy: 1
 	});
-	app.db.model('Order', orderSchema);
+    app.db.model('Order', orderSchema);
 }

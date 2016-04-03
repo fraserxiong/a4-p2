@@ -3,6 +3,7 @@ import { OrderService } from './order.service';
 import { OrderDishItemComponent } from './order-dishitem.component';
 import { Order } from '../model/order';
 import { Dish } from '../model/dish';
+import { Router } from 'angular2/router';
 
 @Component({
 	selector: 'order-sidebar',
@@ -13,7 +14,8 @@ import { Dish } from '../model/dish';
 export class OrderSidebarComponent implements OnInit{
 	order: Order;
 
-	constructor(private _orderService: OrderService){}
+	constructor(private _orderService: OrderService,
+				private _router: Router){}
 
 	ngOnInit(){
 		this.order = this._orderService.order;
@@ -29,13 +31,14 @@ export class OrderSidebarComponent implements OnInit{
 	}
 
 	private checkOut(){
-		this._orderService.saveOrder()
-			.subscribe(
-				(successMessage: string) => {
-					console.log(successMessage);
-				},
-				(error: any) => {
-					console.log(error);
-				})
+		// this._orderService.saveOrder()
+		// 	.subscribe(
+		// 		(successMessage: string) => {
+		// 			console.log(successMessage);
+		// 		},
+		// 		(error: any) => {
+		// 			console.log(error);
+		// 		})
+		this._router.navigate(['./Order', 'CheckOut']);
 	}
 }

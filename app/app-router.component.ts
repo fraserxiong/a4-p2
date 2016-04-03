@@ -25,8 +25,9 @@ import { RightShiftAnimator } from './animation/right-shift.animation';
 import { OrderSidebarComponent } from './order/order-sidebar.component';
 import { OrderService } from './order/order.service';
 import { HTTP_PROVIDERS } from 'angular2/http';
-import { UserMainComponent} from './user/user-main.component';
-import {UserMainService} from './user/user-main.service';
+import { UserMainComponent } from './user/user-main.component';
+import { UserMainService } from './user/user-main.service';
+import { OrderMainComponent } from './order/order-main.component';
 
 @Component(
 {
@@ -90,6 +91,11 @@ import {UserMainService} from './user/user-main.service';
 			name: 'UserProfile',
 			component: UserMainComponent,
 		},
+		{
+			path: '/order/...',
+			name: 'Order',
+			component: OrderMainComponent
+		}
 	]
 )
 
