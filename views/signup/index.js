@@ -483,6 +483,7 @@ exports.signupSocial = function(req, res){
 
       delete req.session.socialProfile;
       workflow.outcome.defaultReturnUrl = workflow.user.defaultReturnUrl();
+      workflow.outcome.success = true;
       workflow.emit('response');
     });
   });
