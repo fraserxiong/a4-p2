@@ -23,10 +23,19 @@ import { State } from './user-main.state';
 export class UserMainComponent implements OnInit{
 	private user : User;
 	private stateEnum=State;
+	private state: State;
 
 	constructor(private _sessionuserService: UserMainService){}
 	ngOnInit(){
-		//meiyou xie
+		this.updateUser();
+	}
+
+	selectState(state: State){
+		this.state = state;
+		this.updateUser();
+	}
+
+	updateUser(){
 		this._sessionuserService.user.subscribe(
 			(response: User) => this.user=response,
 			error => console.log(error)
