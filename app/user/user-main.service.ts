@@ -14,10 +14,18 @@ export class UserMainService{
 				let juser =res.json().data.account;
 				let userinfo = res.json().data.user;
 				let name=juser.name.full;
+				let first = juser.name.first;
+				let middle=juser.name.middle;
+				let last = juser.name.last;
 				let phone=juser.phone;
 				let email=userinfo.email;
 				let postcode = juser.zip;
+				let id = juser._id;
 				let user:User={
+					id:id,
+					first_name: first,
+					middle_name:middle,
+					last_name: last,
 					name:name,
 					email:email,
 					postcode:postcode,

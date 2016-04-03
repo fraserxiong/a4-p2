@@ -1,30 +1,34 @@
 
 <div id="editprofile-container">
 <h1>Edit Profile</h1>
-<form id="editprofile-form" (ngSubmit)="onUpdate(name.value, email.value, phonenum.value, address.value, postcode.value, url.value)" #uploadForm="ngForm">
- 		UserName:<br>
- 		<label for="editprofile-name" class="sr-only">Name</label>
- 		<input #name type="text" id="editprofile-name" class="form-control" placeholder="Name" value = "{{curUser?.name}}" required autofocus />
+<form id="editprofile-form" (ngSubmit)="onUpdate(first.value,middle.value, last.value,phonenum.value, address.value, postcode.value, url.value)" #uploadForm="ngForm">
+ 		First Name:<br>
+ 		<label for="editprofile-first-name" class="sr-only">First Name</label>
+ 		<input #first type="text" id="editprofile-first-name" class="form-control" placeholder="First Name" value = "{{curUser?.first_name}}" autofocus required />
 
- 		<br>Email:<br>
- 		<label for="editprofile-email" class="sr-only">Email</label>
- 		<input #email type="email" id="editprofile-email" class="form-control" placeholder="Please enter your Email" value = "{{curUser?.email}}" required />
+ 		<br>Middle Name:<br>
+ 		<label for="editprofile-middle-name" class="sr-only">Middle Name</label>
+ 		<input #middle type="text" id="editprofile-middle-name" class="form-control" placeholder="Middle Name" value = "{{curUser?.middle_name}}" autofocus />
+
+ 		<br>Last Name:<br>
+ 		<label for="editprofile-last-name" class="sr-only">Last Name</label>
+ 		<input #last type="text" id="editprofile-last-name" class="form-control" placeholder="Last Name" value = "{{curUser?.last_name}}" autofocus required />
 
  		<br>Phone Number:<br>
  		<label for="editprofile-phonenum" class="sr-only">Phone Number</label>
- 		<input #phonenum type="tel" id="editprofile-phonenum" class="form-control" placeholder="Please enter your Phone Number" value="{{curUser?.phone_number}}" required />
+ 		<input #phonenum type="tel" id="editprofile-phonenum" class="form-control" placeholder="Please enter your Phone Number" value="{{curUser?.phone_number}}" />
 
  		<br>Address:<br>
  		<label for="editprofile-address" class="sr-only">Address</label>
- 		<input #address type="text" id="editprofile-address" class="form-control" placeholder="Please enter your address" value="{{curUser?.address}}" required />
+ 		<input #address type="text" id="editprofile-address" class="form-control" placeholder="Please enter your address" value="{{curUser?.address}}"  />
  		
  		<br>Post Code:<br>
  		<label for="editprofile-postcode" class="sr-only">Post Code</label>
- 		<input #postcode type="text" id="editprofile-postcode" class="form-control" placeholder="Please enter your postcode" value = "{{curUser?.postcode}}" required />
+ 		<input #postcode type="text" id="editprofile-postcode" class="form-control" placeholder="Please enter your postcode" value = "{{curUser?.postcode}}" />
 
  		<br>Avatar URL:<br>
  		<label for="editprofile-url" class="sr-only">Url</label>
- 		<input #url type="url" id="editprofile-url" class="form-control" placeholder="Please enter the url of your avatar" value = "{{curUser?.avatar_url}}"required />
+ 		<input #url type="url" id="editprofile-url" class="form-control" placeholder="Please enter the url of your avatar" value = "{{curUser?.avatar_url}}" />
 
  		<br>
  		<button id="editprofile-btn" type="submit">Update</button>

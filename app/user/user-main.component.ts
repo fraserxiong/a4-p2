@@ -26,7 +26,7 @@ export class UserMainComponent implements OnInit{
 
 	constructor(private _sessionuserService: UserMainService){}
 	ngOnInit(){
-		//meiyou xie
+
 		this._sessionuserService.user.subscribe(
 			(response: User) => this.user=response,
 			error => console.log(error)

@@ -8,12 +8,7 @@ export class ProfileEditService{
 	constructor(private _http: Http){}
 
 	updateuser(user):Observable<string>{
-
-		let body={
-			data:{
-				
-			}
-		}
+		let body = JSON.stringify(user);
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options: RequestOptions = new RequestOptions({ headers: headers });
 

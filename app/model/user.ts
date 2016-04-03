@@ -2,7 +2,10 @@ import {CreditCard} from './credit-card';
 
 export interface User{
 	id?: number;
-	name: string;
+	name?: string;
+	first_name?:string;
+	last_name?:string;
+	middle_name?:string;
 	email?: string;
 	password?: string;
 	phone_number?: string;

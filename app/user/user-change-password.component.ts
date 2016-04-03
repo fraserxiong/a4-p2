@@ -32,7 +32,7 @@ export class ChangePasswordComponent{
 		private _changepasswordService: ChangePasswordService){}
 
 
-	onChange(old:string, newpassword:string, confirm:string){
+	onChange(newpassword:string, confirm:string){
 		// let user: User = {
 		// 	name: name,
 		// 	email: email,
