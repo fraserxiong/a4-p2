@@ -90,7 +90,7 @@ exports.get_basic_user_info = function(req, res, next){
       'name': user.name.full,
       'avatar': user.avatar
     }
-    return res.send(JSON.stringify(result_obj));
+    res.send(JSON.stringify(result_obj));
   });
 };
 
@@ -117,7 +117,7 @@ exports.search_user = function(req, res, next){
         'avatar': account.avatar
       });
     };
-    return res.send(JSON.stringify(result));
+    res.send(JSON.stringify(result));
   })
 };
 
@@ -156,14 +156,17 @@ exports.get_friend_list = function(req, res, next){
     if (err) throw err;
     var friend_find = req.app.db.models.Account.find({_id: { $in: friend_obj.friend}});
     friend_find.exec(
-      function(err, friend){
+      function(err, friend_list){
         if (err) throw err;
-        console.log(friend);
-        // friend_list.push({
-        //   'id': friend._id,
-        //   'name': friend.name.full,
-        //   'avatar': friend.avatar
-        // });
+        var result = []
+        for(var i = 0; i < friend_list.length; i++){
+          result.push({
+            'id': friend_list[i]._id,
+            'name': friend_list[i].name.full,
+            'avatar': friend_list[i].avatar
+          });
+        }
+        return res.send(JSON.stringify(result));
       }
     );
   });
