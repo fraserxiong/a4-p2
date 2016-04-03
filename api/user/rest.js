@@ -163,7 +163,8 @@ exports.get_friend_list = function(req, res, next){
           result.push({
             'id': friend_list[i]._id,
             'name': friend_list[i].name.full,
-            'avatar': friend_list[i].avatar
+            'avatar': friend_list[i].avatar,
+            'zip': friend_list[i].zip
           });
         }
         return res.send(JSON.stringify(result));
