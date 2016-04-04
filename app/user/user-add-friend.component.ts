@@ -7,47 +7,37 @@ import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
 import { UserAvatarComponent } from './user-avatar.component';
 import { UserSidebarComponent } from './user-sidebar.component';
-import { UserFriendService } from './user-my-friend.service'
+import { AddFriendService } from './user-add-friend.service'
 
 @Component({
-	selector: 'user-my-friend',
-	templateUrl: 'app/user/user-my-friend.component.html',
-	styleUrls: ['app/user/user-my-friend.component.css'],
+	selector: 'user-add-friend',
+	templateUrl: 'app/user/user-add-friend.component.html',
+	styleUrls: ['app/user/user-add-friend.component.css'],
 	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserAvatarComponent,UserSidebarComponent ],
-	providers:[UserFriendService]
+	providers:[AddFriendService]
 })
-export class UserMyFriendComponent{
+export class AddFriendComponent{
 	@Input('user') curUser: User;
 	private curId: number;
-	private friends: User[] = [];
+	private results: User[] = [];
 
 	constructor(
 		private _profileService: UserProfileService,
 		private _routeParams: RouteParams,
-		private _FriendService:UserFriendService){}
+		private _FriendService:AddFriendService){}
 
 	search(keyword){
 		this._FriendService.friend_search(keyword).subscribe(
-			(response: User[]) => this.friends=response,
+			(response: User[]) => this.results=response,
 			error => console.log(error)
 			);
 	}
 
-	ngOnInit(){
-		let id: number = + this._routeParams.get('id');
-		this._profileService.findUserById(id)
-			.then(user => {
-				this.curUser = user;
-				this.curId = user.id;
-			})
-			.then(() => {
-				if (this.curUser.friends) { 
-					for (var i: number = 0; i < this.curUser.friends.length; i++) {
-						this._profileService.findUserById(this.curUser.friends[i])
-							.then(friend => this.friends.push(friend));
-					}
-				}
-			});
-
+	add(id){
+		this._FriendService.addfriend(id).subscribe(
+			(response: string) => {window.alert('Success!')},
+			error => window.alert('Fail!')
+			)
 	}
+
 }

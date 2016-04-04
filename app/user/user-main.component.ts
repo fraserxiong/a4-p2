@@ -3,6 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from 'angula
 import { UserProfileComponent } from './user-profile.component';
 import { UserMyDishComponent } from './user-my-dish.component';
 import { UserMyFriendComponent } from './user-my-friend.component';
+import { AddFriendComponent } from './user-add-friend.component';
 import {UserSidebarComponent } from './user-sidebar.component';
 import { DishUploadComponent} from '../dish/dish-upload.component';
 import { UserMyOrderComponent } from './user-my-order.component';
@@ -17,7 +18,7 @@ import { State } from './user-main.state';
 	selector: 'user-main',
 	templateUrl: 'app/user/user-main.component.html',
 	styleUrls: ['app/user/user-main.component.css'],
-	directives: [ROUTER_DIRECTIVES, UserSidebarComponent, UserProfileComponent, UserMyDishComponent,UserMyFriendComponent, DishUploadComponent,UserMyOrderComponent, UserEditComponent,ChangePasswordComponent]
+	directives: [ROUTER_DIRECTIVES, UserSidebarComponent, UserProfileComponent, UserMyDishComponent,UserMyFriendComponent, DishUploadComponent,UserMyOrderComponent, UserEditComponent,ChangePasswordComponent, AddFriendComponent]
 })
 
 export class UserMainComponent implements OnInit{

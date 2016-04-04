@@ -21,6 +21,11 @@
       <user-my-friend [user]='user'></user-my-friend>
     </div>
 
+      <!-- User Add Friends-->
+    <div id="dashboard_addfriends" class="container-fluid" *ngSwitchWhen="stateEnum.AddFriend">
+      <user-add-friend [user]='user'></user-add-friend>
+    </div>
+
     <!-- User My Dish-->
     <div id="dashboard_mydish" class="container-fluid" *ngSwitchWhen="stateEnum.Mydish" >
       <user-my-dish [user]='user'></user-my-dish>
