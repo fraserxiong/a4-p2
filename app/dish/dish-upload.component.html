@@ -28,9 +28,9 @@
  		<br> -->
 
 
-        <input type="file"
-               [ng-file-select]="options"
-               (onUpload)="handleUpload($event)">
+       <form action="/upload" method="post" enctype="multipart/form-data">
+           <input type="file" name='recfile' placeholder="Select file"/>
+       </form>
         <br />
         <button id="dishupload-btn" type="submit">Upload</button>
 </form>
