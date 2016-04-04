@@ -33,6 +33,7 @@ export class AddFriendComponent{
 		private _FriendService:AddFriendService){}
 
 	search(keyword){
+		this.results=[];
 		this._FriendService.friend_search(keyword).subscribe(
 			(response: User[]) => {
 				response.forEach((user: User)=>{
@@ -47,10 +48,11 @@ export class AddFriendComponent{
 			);
 	}
 
-	add(id){
-		this._FriendService.addfriend(id).subscribe(
-			(response: string) => {window.alert('Success!')},
-			error => window.alert('Fail!')
+	add(user){
+		this._FriendService.addfriend(user.friend.id).subscribe(
+			(response: string) => {user.success=true;
+									user.submitted=true},
+			error =>{user.success=false;user.submitted=true}
 			)
 	}
 
