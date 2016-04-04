@@ -6,15 +6,12 @@
 
 
 .mydish {
-	margin:3%;
-    width: 100%;
+	/*margin:3%;*/
+    width: calc(95% - 150px);
     height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.mydish h1{
-	margin: 0 auto;
+	margin-left: auto;
 }
 
 dish-overview:not(:first-child){
