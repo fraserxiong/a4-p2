@@ -52,6 +52,5 @@ export abstract class SignupComponent {
 
 	onSignupPass(){
 		this._router.navigate(['Home']);
-
 	}
 }

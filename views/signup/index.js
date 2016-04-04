@@ -201,6 +201,8 @@ exports.signupTwitter = function(req, res, next) {
       return res.redirect('/signup/');
     }
 
+    console.log(info.profile.id);
+
     req.app.db.models.User.findOne({ 'twitter.id': info.profile.id }, function(err, user) {
       if (err) {
         return next(err);
@@ -208,7 +210,8 @@ exports.signupTwitter = function(req, res, next) {
 
       if (!user) {
         req.session.socialProfile = info.profile;
-        res.render('signup/social', { email: '' });
+        res.redirect('/angular/signup/callback')
+        // res.render('signup/social', { email: '' });
       }
       else {
         res.render('signup/index', {
