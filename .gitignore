@@ -6,3 +6,4 @@ app/*.js
 app/*.js.map
 *.zip
 npm-debug.log
+uploads
