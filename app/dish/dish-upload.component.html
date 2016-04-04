@@ -1,7 +1,7 @@
 
 <div id="dishupload-container">
 <h1>New Dish</h1>
-<form id="dishupload-form" (ngSubmit)="onUpload(name.value, location.value, description.value, categories.value, price.value, url.value)" #uploadForm="ngForm">
+<form id="dishupload-form" (ngSubmit)="onUpload(name.value, location.value, description.value, categories.value, price.value)" #uploadForm="ngForm">
  		Name:<br>
  		<label for="dishupload-name" class="sr-only">Name</label>
  		<input #name type="text" id="dishupload-name" class="form-control" placeholder="{{nameHint}}" required autofocus />
@@ -28,9 +28,10 @@
  		<br> -->
 
 
-       <form action="/upload" method="post" enctype="multipart/form-data">
-           <input type="file" name='recfile' placeholder="Select file"/>
-       </form>
+        <!-- <label class="tag btn is-danger"> -->
+            <!-- <i class="fa fa-upload icon is-small"></i> Choose file -->
+        <input type="file" [ng-file-select]="options" (onUpload)="handleUpload($event)">
+        <!-- </label> -->
         <br />
         <button id="dishupload-btn" type="submit">Upload</button>
 </form>

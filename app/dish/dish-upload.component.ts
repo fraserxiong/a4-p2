@@ -36,15 +36,16 @@ export class DishUploadComponent{
 	private friends: User[] = [];
 	private curId: number;
 
-	uploadFile: any;
+	uploadFile: string = "";
 
 	options: Object = {
-		url: '/upload'
+		url: '/uploadFile'
 	};
 
 	handleUpload(data): void {
 		if (data && data.response) {
-	  		data = JSON.parse(data.response);
+			console.log(data);
+	  		data = String(data.response);
 	  		this.uploadFile = data;
 		}
 	}
@@ -56,14 +57,14 @@ export class DishUploadComponent{
 		private _router: Router){}
 
 
-	onUpload(name: string ,location: string, description: string, categories: string, price: number, url: string){
+	onUpload(name: string ,location: string, description: string, categories: string, price: number){
 		let dish: Dish = {
 			name: name,
 			location: location,
 			description: description,
 			categories: categories.split(","),
 			price: price,
-			url: url
+			url: this.uploadFile
 		};
 
 		this._dishUploadService.uploadDish(dish)

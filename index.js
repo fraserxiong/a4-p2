@@ -69,30 +69,29 @@ app.use(function(req, res, next) {
   next();
 });
 
+
 // upload stuff
-var multer  = require('multer');
-var upload = multer({ dest: 'upload/'});
+var multiparty = require('multiparty');
 var fs = require('fs');
+app.post('/uploadFile', function(req, res) {
+    var form = new multiparty.Form();
+    form.on('file', function(name,file){
+        console.log(file.path);
+        console.log(__dirname);
+        var tmp_path = file.path
+        var target_path = './uploads/' + path.parse(file.path).base;
+        fs.rename(tmp_path, target_path, function(err) {
+            if(err) console.error(err.stack);
 
-var type = upload.single('photo');
-
-app.post('/upload', type, function (req,res) {
-
-  /** When using the "single"
-      data come in "req.file" regardless of the attribute "name". **/
-  var tmp_path = req.file.path;
-
-  /** The original name of the uploaded file
-      stored in the variable "originalname". **/
-  var target_path = 'uploads/' + req.file.originalname;
-
-  /** A better way to copy the uploaded file. **/
-  var src = fs.createReadStream(tmp_path);
-  var dest = fs.createWriteStream(target_path);
-  src.pipe(dest);
-  src.on('end', function() { res.render('complete'); });
-  src.on('error', function(err) { res.render('error'); });
-
+            res.writeHead(200, {'Content-type': 'text/plain'});
+            res.write('/uploads/' + path.parse(file.path).base);
+            res.end();
+        });
+    });
+    form.on('error', function(err){
+        console.log(err);
+    });
+    form.parse(req);
 });
 
 //global locals
@@ -123,6 +122,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use('/css',express.static(path.resolve(__dirname,'css')));
 app.use('/images', express.static(path.resolve(__dirname, 'images')));
+app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
 app.use('/app', express.static(path.resolve(__dirname,'app')));
 app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')));
 
