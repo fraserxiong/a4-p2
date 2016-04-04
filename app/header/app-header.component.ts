@@ -31,8 +31,13 @@ export class AppHeaderComponent implements OnInit{
 	}
 
 	logOut() {
-		//this._authenticator.logOut();
-		this._router.navigate(['Home']);
-		this._authenticator.logOut();
+		this._authenticator.logOut()
+			.subscribe(
+			(success: string) => {
+				this._router.navigate(['./Home']);
+			},
+			(err: any) => {
+				console.log('Cannot logout');
+			});
 	}
 }

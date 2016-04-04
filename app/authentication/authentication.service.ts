@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { User } from '../model/user';
 import { Observable } from 'rxjs/Observable';
+import { Http, Response } from 'angular2/http';
 
 export interface LoginPayload{
 	errfor: Object,
@@ -12,6 +13,7 @@ export interface LoginPayload{
 
 @Injectable()
 export abstract class Authenticator{
+	constructor(private _http: Http){}
 
 	abstract authenticate(username: string, password: string): Observable<string>;
 
@@ -47,7 +49,15 @@ export abstract class Authenticator{
 	}
 
 
-	logOut(){
-		sessionStorage.removeItem('user');
+	logOut() : Observable<string>{
+		return this._http.get('/logout/')
+			.map((res: Response) => {
+				sessionStorage.removeItem('user');
+				return <string>res.statusText 
+			})
+			.do(res => console.log(res))
+			.catch((err: any) => {
+				return Observable.throw(err.json() || "Server Error");
+			});
 	}
 }
