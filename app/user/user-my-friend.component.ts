@@ -16,7 +16,7 @@ import { UserFriendService } from './user-my-friend.service'
 	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserAvatarComponent,UserSidebarComponent ],
 	providers:[UserFriendService]
 })
-export class UserMyFriendComponent{
+export class UserMyFriendComponent implements OnInit{
 	@Input('user') curUser: User;
 	private curId: number;
 	private friends: User[] = [];
@@ -26,7 +26,7 @@ export class UserMyFriendComponent{
 		private _routeParams: RouteParams,
 		private _FriendService:UserFriendService){}
 
-	myfriend(){
+	ngOnInit(){
 		this._FriendService.friend.subscribe(
 			(res: User[])=>this.friends=res,
 			error => console.log(error)
