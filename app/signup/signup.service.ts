@@ -20,4 +20,24 @@ export class UserSignupService{
 				return Observable.throw(err.json() || "Server Error");
 			});
 	}
+
+	oauthSignup(email: string): Observable<string>{
+		let body: string = JSON.stringify(
+			{ email: email,
+			  errfor: {},
+			  errors: []
+			});
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options: RequestOptions = new RequestOptions({ headers: headers });
+
+		return this._http.post('/signup/social/', body, options)
+			.map((res: Response) => {
+				return <string>res.statusText;
+			})
+			.do((res: string) => console.log(res))
+			.catch((err: any) => {
+				console.log(err);
+				return Observable.throw(err.json() || "Sign Up Error");
+			})
+	}
 }

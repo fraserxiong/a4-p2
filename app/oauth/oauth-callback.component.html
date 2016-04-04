@@ -1,0 +1,8 @@
+<article>
+	<h2>Complete Sign Up</h2>
+	<form (ngSubmit)="onSignup(email.value)" #oauthSignupForm="ngForm">
+		<label for="signup-email">Enter Your Email: </label>
+		<input #email="ngForm" id="signup-email" type="text" class="form-control" placeholder="Email..." required autofocus ngControl="email"/>
+		 <button id="signup-btn" type="submit" class="btn btn-primary btn-block" [disabled]="!oauthSignupForm.form.valid">Sign Up</button>
+	</form>
+</article>

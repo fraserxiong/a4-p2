@@ -28,6 +28,7 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 import { UserMainComponent } from './user/user-main.component';
 import { UserMainService } from './user/user-main.service';
 import { OrderMainComponent } from './order/order-main.component';
+import { OAuthCallbackComponent } from './oauth/oauth-callback.component';
 
 @Component(
 {
@@ -55,6 +56,11 @@ import { OrderMainComponent } from './order/order-main.component';
 			path: '/signup',
 			name: 'UserSignup',
 			component: SignupComponent
+		},
+		{
+			path: '/angular/signup/callback',
+			name: 'TwitterCallback',
+			component: OAuthCallbackComponent
 		},
 		{
 			path: '/mydish/:id',
