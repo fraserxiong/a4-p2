@@ -7,21 +7,24 @@ import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
 import { UserAvatarComponent } from './user-avatar.component';
 import { UserSidebarComponent } from './user-sidebar.component';
+import { UserMainService} from './user-main.service';
 
 @Component({
 	selector: 'user-my-dish',
 	templateUrl: 'app/user/user-my-dish.component.html',
 	styleUrls: ['app/user/user-my-dish.component.css'],
-	directives: [ROUTER_DIRECTIVES, UserProfileComponent,UserSidebarComponent],
+	directives: [ROUTER_DIRECTIVES, DishOverviewComponent, UserProfileComponent,UserSidebarComponent],
 })
 export class UserMyDishComponent{
-	@Input('dishes') dishes: Dish[];
+	private dishes: Dish[] = [];
 	private curUser: User;
 	private curId: number;
 
 	constructor(
 		private _profileService: UserProfileService,
-		private _routeParams: RouteParams){}
+		private _routeParams: RouteParams,
+		private _userMainService: UserMainService
+	){}
 
 	ngOnInit(){
 		let id: number = + this._routeParams.get('id');
@@ -30,6 +33,9 @@ export class UserMyDishComponent{
 				this.curUser = user;
 				this.curId = user.id;
 			});
+
+		this._userMainService.get_posts_by_user()
+			.then(dishes => this.dishes = dishes);
 
 	}
 }
