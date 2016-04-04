@@ -10,7 +10,7 @@ import {Headers, RequestOptions} from 'angular2/http';
 import { UserSidebarComponent } from '../user/user-sidebar.component';
 import { DishUploadService } from './dish-upload.service';
 import { Dish } from './dish.payload';
-
+import {UPLOAD_DIRECTIVES} from '../ng2-uploader/ng2-uploader';
 
 @Component({
 	selector: 'dish-upload',
@@ -20,7 +20,8 @@ import { Dish } from './dish.payload';
 //	directives: [ROUTER_DIRECTIVES,DishOverviewComponent,UserSidebarComponent],
 //	providers: [HTTP_PROVIDERS]
 
-	directives: [ROUTER_DIRECTIVES, DishOverviewComponent,UserSidebarComponent],
+	directives: [UPLOAD_DIRECTIVES, ROUTER_DIRECTIVES, DishOverviewComponent,
+		UserSidebarComponent],
 	providers: [DishUploadService]
 
 })
@@ -34,6 +35,19 @@ export class DishUploadComponent{
 	private curUser: User;
 	private friends: User[] = [];
 	private curId: number;
+
+	uploadFile: any;
+
+	options: Object = {
+		url: '/upload'
+	};
+
+	handleUpload(data): void {
+		if (data && data.response) {
+	  		data = JSON.parse(data.response);
+	  		this.uploadFile = data;
+		}
+	}
 
 	constructor(
 		private _profileService: UserProfileService,
@@ -78,7 +92,7 @@ export class DishUploadComponent{
 				this.curId = user.id;
 			})
 			.then(() => {
-				if (this.curUser.friends) { 
+				if (this.curUser.friends) {
 					for (var i: number = 0; i < this.curUser.friends.length; i++) {
 						this._profileService.findUserById(this.curUser.friends[i])
 							.then(friend => this.friends.push(friend));

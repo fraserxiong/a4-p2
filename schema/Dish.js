@@ -10,7 +10,7 @@ exports = module.exports = function(app, mongoose){
         name: String,
         categories: Array,
         price: Number,
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
         comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
     });
     postSchema.plugin(autoIncrement.plugin, {

@@ -252,7 +252,7 @@ exports = module.exports = function (app, passport) {
                       console.log(err);
                    account.dishes.push(post);
                    account.save(function(err, result){
-                      if (err)
+                      if (err)routers
                           console.log(err);
                       res.writeHead(200, {'Content-type': 'text/plain'});
                       res.end('Success!' + message);
@@ -274,7 +274,9 @@ exports = module.exports = function (app, passport) {
       post_api.delete(id, onSuccessFactory(res));
   });
 
-  app.get('/posts/posts_by_user', function(req, res){
+  app.get('/posts/auth/posts_by_user', function(req, res){
+      console.log("Handling post by user request");
+      console.log(req.user.roles.account.id);
       post_api.find_by_user(req.user.roles.account.id, onSuccessWithReturnFactory(res));
   });
 
@@ -370,6 +372,25 @@ exports = module.exports = function (app, passport) {
         res.end();
     });
   });
+
+  app.get('/accounts/:account_id/orders', function(req, res){
+    console.log(req.params.account_id);
+    var accountId = req.params.account_id;
+    Order.find({'user': accountId}, {'user': 0})
+      .populate('dishes.dish')
+      .then(function orderRetrieval (orders){
+        res.writeHead(200, {'Content-type': 'application/json'});
+        res.write(JSON.stringify(orders));
+        res.end();
+      })
+      .catch(function(error){
+        res.writeHead(404, {'Content-type' : 'text/plain'});
+        res.write("Can't Find Orders: " + error);
+        res.end();
+      });
+    });
+
+
 };
 
 function onSuccessFactory(res){
@@ -393,6 +414,7 @@ function onSuccessWithReturnFactory(res){
         if(err)
             console.log(err);
 
+        console.log(results);
         res.writeHead(200, {'Content-type': 'application/json'});
         res.write(JSON.stringify(results));
         res.end();

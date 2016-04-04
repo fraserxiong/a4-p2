@@ -14,11 +14,16 @@
     </div>
     <!--Change Password-->
     <div id="dashboard_changepassword" class="container-fluid" *ngSwitchWhen="stateEnum.ChangePassword">
-      <user-change-password [user]='user'></user-change-password>
+      <user-change-password [user]='user' (stateSelected)="selectState($event)"></user-change-password>
     </div>
   <!-- User My Friends-->
     <div id="dashboard_friends" class="container-fluid" *ngSwitchWhen="stateEnum.Friends">
       <user-my-friend [user]='user'></user-my-friend>
+    </div>
+
+      <!-- User Add Friends-->
+    <div id="dashboard_addfriends" class="container-fluid" *ngSwitchWhen="stateEnum.AddFriend">
+      <user-add-friend [user]='user'></user-add-friend>
     </div>
 
     <!-- User My Dish-->
