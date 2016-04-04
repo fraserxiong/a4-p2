@@ -7,7 +7,13 @@ import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
 import { UserAvatarComponent } from './user-avatar.component';
 import { UserSidebarComponent } from './user-sidebar.component';
-import { AddFriendService } from './user-add-friend.service'
+import { AddFriendService } from './user-add-friend.service';
+
+interface FriendRequest{
+	friend: User;
+	success: boolean;
+	submitted: boolean;
+}
 
 @Component({
 	selector: 'user-add-friend',
@@ -19,7 +25,7 @@ import { AddFriendService } from './user-add-friend.service'
 export class AddFriendComponent{
 	@Input('user') curUser: User;
 	private curId: number;
-	private results: User[] = [];
+	private results: FriendRequest[] = [];
 
 	constructor(
 		private _profileService: UserProfileService,
@@ -28,7 +34,15 @@ export class AddFriendComponent{
 
 	search(keyword){
 		this._FriendService.friend_search(keyword).subscribe(
-			(response: User[]) => this.results=response,
+			(response: User[]) => {
+				response.forEach((user: User)=>{
+					this.results.push({
+						friend: user,
+						success : false,
+						submitted : false,
+					});
+				});
+			},
 			error => console.log(error)
 			);
 	}
