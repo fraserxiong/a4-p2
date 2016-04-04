@@ -1,13 +1,7 @@
-
-
-.add-friend{
-	display: flex;
-	flex-direction: column;
-	
-}
-
 #search-friend{
-	margin: 0 auto;
+
+    float: right;
+    display: inline;
 }
 
 input {
@@ -18,16 +12,17 @@ input {
     color: #6b6b70;
     flex: 1 0px;
     padding: 10px;
+    height: 30px;
     margin-right: 10px;
-    text-align: center;
-    width: 60%;
+    text-align: left;
+    width: 80%;
 }
 
 button {
-    width: 30%;
-    height: 40px;
+    width: 15%;
+    height: 30px;
     font-size: 20px;
-    background-color: #b2bd0d;
+    background-color: #337ab7;;
     color: white;
     border: none;
     font-family: 'Lato', sans-serif;
