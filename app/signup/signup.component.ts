@@ -3,13 +3,15 @@ import { Authenticator } from '../authentication/authentication.service';
 import { UserSignupService } from './signup.service'
 import { User } from '../model/user'
 import { Router} from 'angular2/router';
+import { TwitterButtonComponent } from '../oauth/twitter-button.component';
 
 @Component(
 {
 	selector: 'signup',
 	templateUrl: 'app/signup/signup.component.html',
 	styleUrls: ['app/signup/signup.component.css'],
-	providers:[UserSignupService]
+	providers:[UserSignupService],
+	directives: [TwitterButtonComponent]
 })
 
 export abstract class SignupComponent {
