@@ -26,28 +26,11 @@ export class UserMyFriendComponent{
 		private _routeParams: RouteParams,
 		private _FriendService:UserFriendService){}
 
-	search(keyword){
-		this._FriendService.friend_search(keyword).subscribe(
-			(response: User[]) => this.friends=response,
+	myfriend(){
+		this._FriendService.friend.subscribe(
+			(res: User[])=>this.friends=res,
 			error => console.log(error)
-			);
+			)
 	}
 
-	ngOnInit(){
-		let id: number = + this._routeParams.get('id');
-		this._profileService.findUserById(id)
-			.then(user => {
-				this.curUser = user;
-				this.curId = user.id;
-			})
-			.then(() => {
-				if (this.curUser.friends) { 
-					for (var i: number = 0; i < this.curUser.friends.length; i++) {
-						this._profileService.findUserById(this.curUser.friends[i])
-							.then(friend => this.friends.push(friend));
-					}
-				}
-			});
-
-	}
 }
