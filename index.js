@@ -61,7 +61,6 @@ app.use(passport.session());
 helmet(app);
 
 //response locals
-
 app.use(function(req, res, next) {
   // res.cookie('_csrfToken', req.csrfToken());
   res.locals.user = {};
@@ -70,6 +69,30 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+// upload stuff
+var multiparty = require('multiparty');
+var fs = require('fs');
+app.post('/uploadFile', function(req, res) {
+    var form = new multiparty.Form();
+    form.on('file', function(name,file){
+        console.log(file.path);
+        console.log(__dirname);
+        var tmp_path = file.path
+        var target_path = './uploads/' + path.parse(file.path).base;
+        fs.rename(tmp_path, target_path, function(err) {
+            if(err) console.error(err.stack);
+
+            res.writeHead(200, {'Content-type': 'text/plain'});
+            res.write('/uploads/' + path.parse(file.path).base);
+            res.end();
+        });
+    });
+    form.on('error', function(err){
+        console.log(err);
+    });
+    form.parse(req);
+});
 
 //global locals
 app.locals.projectName = app.config.projectName;
@@ -99,6 +122,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use('/css',express.static(path.resolve(__dirname,'css')));
 app.use('/images', express.static(path.resolve(__dirname, 'images')));
+app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
 app.use('/app', express.static(path.resolve(__dirname,'app')));
 app.use('/node_modules', express.static(path.resolve(__dirname,'node_modules')));
 

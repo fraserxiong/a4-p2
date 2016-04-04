@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserProfileService{
 
-	private _get_avatar_url = '/api/account/user/';
+	private _get_avatar_url = '/unauth/api/account/user/';
 
 	constructor(
 		private http: Http
