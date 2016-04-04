@@ -76,9 +76,11 @@ exports.get_user = function(req, res, next){
 
 exports.add_friend = function(req, res, next){
   req.app.db.models.Account.findById(req.params.friend_id)
+  .populate('user.id')
   .exec(function (err, friend_ref) {
     if (err) throw err;
     req.app.db.models.Friend.findOne({user:req.user.roles.account.id, })
+    .populate('user')
     .exec(function (err, friend_obj) {
       if (err) throw err;
       if(friend_ref && friend_obj){
@@ -90,7 +92,8 @@ exports.add_friend = function(req, res, next){
         }else{
           friend_obj.friend.push(friend_ref);
           friend_obj.save();
-          msg_api.friend_request(req.app, friend_ref, friend_obj);
+          // console.log(friend_obj);
+          msg_api.friend_request(req.app, friend_ref, friend_obj.user);
           res.status(200).send("Add friend success");
         }
       }else{

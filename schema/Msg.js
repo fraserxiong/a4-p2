@@ -10,7 +10,7 @@ exports = module.exports = function(app, mongoose) {
       timeCreated: { type: Date, default: Date.now }
     }],
     friendMsg: [{
-      req_acc_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Friend'},
+      req_acc_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
       timeCreated: { type: Date, default: Date.now }
     }]
   });
