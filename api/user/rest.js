@@ -122,35 +122,38 @@ exports.search_user = function(req, res, next){
   req.app.db.models.User.find({'email':query})
   .select('roles')
   .exec(function(err, user_list){
-    // console.log(user_list);
-    var id_list = [];
-    for(var i=0; i<user_list.length; i++){
-      id_list.push(user_list[i].roles.account);
-    }
-    var acc_q = {
-        $or: [
-            {'name.full': query},
-            {'phone': query},
-            {'_id': { $in: id_list}}
-        ]
-    };
-    // console.log(id_list);
-    req.app.db.models.Account.find(acc_q)
-    .exec(function(err, accounts){
-      // console.log(accounts);
-      if (err) {console.log(err); throw err};
-      var result = [];
-      for(var i = 0; i < accounts.length; i++){
-        var account = accounts[i];
-        result.push({
-          'id': account._id,
-          'name': account.name.full,
-          'avatar': account.avatar
-        });
+    if(user_list){// console.log(user_list);
+      var id_list = [];
+      for(var i=0; i<user_list.length; i++){
+        id_list.push(user_list[i].roles.account);
+      }
+      var acc_q = {
+          $or: [
+              {'name.full': query},
+              {'phone': query},
+              {'_id': { $in: id_list}}
+          ]
       };
-      res.send(JSON.stringify(result));
-      // res.status(200).send("Test pass");
-    });
+      // console.log(id_list);
+      req.app.db.models.Account.find(acc_q)
+      .exec(function(err, accounts){
+        // console.log(accounts);
+        if (err) {console.log(err); throw err};
+        var result = [];
+        for(var i = 0; i < accounts.length; i++){
+          var account = accounts[i];
+          result.push({
+            'id': account._id,
+            'name': account.name.full,
+            'avatar': account.avatar
+          });
+        };
+        res.send(JSON.stringify(result));
+        // res.status(200).send("Test pass");
+      });
+    }else{
+      res.status(403).send("Find user error");
+    }
   });
 };
 
@@ -163,7 +166,7 @@ exports.del_friend = function(req, res, next){
     req.app.db.models.Friend.findOne({user:req.user.roles.account.id, })
     .exec(function (err, friend_obj) {
       if (err) throw err;
-      if(friend_obj){
+      if(friend_obj && friend_ref){
         var isInArray = friend_obj.friend.some(function (friend) {
           return friend.equals(friend_ref._id);
         });
