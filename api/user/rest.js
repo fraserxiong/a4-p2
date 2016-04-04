@@ -1,5 +1,7 @@
 'use strict';
 
+var msg_api = require('../msg/internal.js');
+
 var renderSettings = function(req, res, next, oauthMessage) {
   var outcome = {};
 
@@ -83,6 +85,7 @@ exports.add_friend = function(req, res, next){
       }else{
         friend_obj.friend.push(friend_ref);
         friend_obj.save();
+        msg_api.friend_request(req.app, friend_ref, friend_obj);
         res.status(200).send("Add friend success");
       }
     });
