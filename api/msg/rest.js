@@ -99,27 +99,31 @@ exports.get_order_msg = function(req, res, next){
   .exec(function (err, msg_obj) {
     if (err) throw err;
     var ordMsg_list = msg_obj.orderMsg;
-    ordMsg_list.sort(function(before, after){
-      if(before.timeCreated < after.timeCreated){
-        return 1;
-      }else if (before.timeCreated == after.timeCreated) {
-        return 0;
-      }else{
-        return -1;
+    if(ordMsg_list.length > 0){
+      ordMsg_list.sort(function(before, after){
+        if(before.timeCreated < after.timeCreated){
+          return 1;
+        }else if (before.timeCreated == after.timeCreated) {
+          return 0;
+        }else{
+          return -1;
+        }
+      })
+      var ordMsg = [];
+      for(var i = 0; i<ordMsg_list.length; i++){
+        // console.log(friMsg_list[i]);
+        ordMsg.push({
+          'image':ordMsg_list[i].dish_id.url,
+          'dish_name':ordMsg_list[i].dish_id.name,
+          'client_name':ordMsg_list[i].client_id.name.full,
+          'address':ordMsg_list[i].order_id.address,
+          'phone':ordMsg_list[i].client_id.phone
+        });
       }
-    })
-    var ordMsg = [];
-    for(var i = 0; i<ordMsg_list.length; i++){
-      // console.log(friMsg_list[i]);
-      ordMsg.push({
-        'image':ordMsg_list[i].dish_id.url,
-        'dish_name':ordMsg_list[i].dish_id.name,
-        'client_name':ordMsg_list[i].client_id.name.full,
-        'address':ordMsg_list[i].order_id.address,
-        'phone':ordMsg_list[i].client_id.phone
-      });
+      // console.log(friMsg);
+      res.send(JSON.stringify(ordMsg));
+    }else{
+      res.send(JSON.stringify([]));
     }
-    // console.log(friMsg);
-    res.send(JSON.stringify(ordMsg));
   });
 };
