@@ -60,21 +60,22 @@ exports.accept_friend_msg = function(req, res, next){
           .populate('user')
           .exec(function (err, friend_obj) {
             if (err) throw err;
-            if(friend_ref && friend_obj){var isInArray = friend_obj.friend.some(function (friend) {
-              return friend.equals(friend_ref._id);
-            });
-            if(friend_obj.friend.length > 0 && isInArray){
-              res.status(403).send("Already added");
+            if(friend_ref && friend_obj){
+              var isInArray = friend_obj.friend.some(function (friend) {
+                return friend.equals(friend_ref._id);
+              });
+              if(friend_obj.friend.length > 0 && isInArray){
+                res.status(200).send("Success But Already added");
+              }else{
+                friend_obj.friend.push(friend_ref);
+                friend_obj.save();
+                // console.log(friend_obj);
+                msg_api.friend_request(req.app, friend_ref, friend_obj.user);
+                res.status(200).send("Add friend success");
+              }
             }else{
-              friend_obj.friend.push(friend_ref);
-              friend_obj.save();
-              // console.log(friend_obj);
-              msg_api.friend_request(req.app, friend_ref, friend_obj.user);
-              res.status(200).send("Add friend success");
+              res.status(403).send("User error");
             }
-          }else{
-            res.status(403).send("Already added");
-          }
         });
       });
       }
