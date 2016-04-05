@@ -38,4 +38,13 @@ export class UserMyDishComponent{
 			.then(dishes => this.dishes = dishes);
 
 	}
+
+	onDelete(){
+		var scope = this;
+		return function(id: String){
+			scope._userMainService.delete_post(id)
+				.then(dishes => scope.dishes = dishes);
+		}
+
+	}
 }
