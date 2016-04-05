@@ -10,7 +10,7 @@ import { TwitterButtonComponent } from '../oauth/twitter-button.component';
 	selector: 'signup',
 	templateUrl: 'app/signup/signup.component.html',
 	styleUrls: ['app/signup/signup.component.css'],
-	providers:[UserSignupService],
+	providers:[UserSignupService, Location],
 	directives: [TwitterButtonComponent]
 })
 
@@ -19,6 +19,8 @@ export abstract class SignupComponent {
 	private emailHint: string = "Email"
 	private passwordHint: string = "Please enter password";
 	private repasswordHint: string = "Please confirm password";
+
+	private twitterSignupHint: string = "Sign Up With Twitter";
 
 	// Add this user to database.
 
@@ -48,6 +50,11 @@ export abstract class SignupComponent {
 										error => console.log('error: ' + error));
 			},
 			 error => console.log('Error: ' + error));
+	}
+
+	signUpWithTwitter(){
+		console.log('GO');
+		window.location.href="/signup/twitter/"
 	}
 
 	onSignupPass(){

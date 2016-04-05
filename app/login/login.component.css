@@ -2,11 +2,13 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 #signin-form {
   width: 330px;
   margin: auto;
+  margin-bottom: 10px;
 }
 #signin-form .form-signin-heading,
 #signin-checkbox {

@@ -27,8 +27,6 @@
  		<button id="signup-btn" type="submit">Sign up</button>
  	</form>
 
- 	<a href="/signup/twitter">
-	 	<twitter-button (click)="signUpWithTwitter()">
-	 	</twitter-button>
- 	</a>
+ 	<twitter-button (click)="signUpWithTwitter()" [hintText]="twitterSignupHint">
+ 	</twitter-button>
  </div>
