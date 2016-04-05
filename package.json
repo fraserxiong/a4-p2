@@ -59,7 +59,7 @@
     "mongodb": "~2.1",
     "mongoose" : "~4.4",
     "mongoose-auto-increment": "5.0.1",
-    "ng2-file-upload": "1.0.0-beta.1"
+    "ng2-uploader": "0.5.0"
   },
   "engines": {
     "node": "5.9.1",

@@ -4,29 +4,25 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../model/user';
 
 @Injectable()
-export class UserFriendService{
+export class AddFriendService{
 	constructor(private _http: Http){}
 
-	get friend():Observable<User[]>{
 
-		return this._http.get('/api/account/user/friend/')
+	friend_search(keyword):Observable<User[]>{
+		let search = '/api/account/?search='+keyword;
+		return this._http.get(search)
 			.map((res:Response)=>{
 				let user_list =res.json();
-				let result_list:User[]=[];
+				let search_result:User[]=[];
 				for (var i=0; i< user_list.length; i++){
-
 					let user:User={
 						id:user_list[i].id,
 						name:user_list[i].name,
-						avatar_url:user_list[i].avatar,
-						postcode:user_list[i].zip,
-						address:user_list[i].address,
-						email:user_list[i].email,
-						phone_number:user_list[i].phone		
+						avatar_url:user_list[i].avatar			
 					}
-					result_list.push(user)
+					search_result.push(user)
 				}
-				return result_list; 
+				return search_result; 
 			})
 			.do((res: User) => console.log(res))
 			.catch((err: Response) => {
@@ -35,6 +31,15 @@ export class UserFriendService{
 			});
 	}
 
+	addfriend(id){
+		let add = '/api/account/user/add_friend/'+id +'/';
+		return this._http.put(add,'{}')
+					.map((res:Response)=>{return 'success'} )
+					.catch((err: Response) => {
+						console.log(err);
+						return Observable.throw(err.json() || "Server Error");
+					});
+	}
 
 
 
