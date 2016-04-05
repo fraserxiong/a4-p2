@@ -4,13 +4,25 @@ import { UserProfileService } from './user-profile.service';
 import { Authenticator, LoginPayload } from '../authentication/authentication.service';
 import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
+import { UserMainService } from '../user/user-main.service';
 
 
 @Injectable()
 export class UserAuthenticationService extends Authenticator{
 
-	constructor(private _userProfileService: UserProfileService, @Inject(Http) private http: Http) {
+	constructor(private _userProfileService: UserProfileService, 
+				@Inject(Http) private http: Http, 
+				private _userSessionService: UserMainService) {
 		super(http);
+	}
+
+	refresh(){
+		this._userSessionService.user.subscribe(
+				(user: User) => {this.authenticationPassed(user)},
+				(err: any) => {
+					sessionStorage.removeItem('user');
+				}
+			)
 	}
 
 	authenticate(username: string, password: string): Observable<string>{

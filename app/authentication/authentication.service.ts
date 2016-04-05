@@ -17,6 +17,8 @@ export abstract class Authenticator{
 
 	abstract authenticate(username: string, password: string): Observable<string>;
 
+	abstract refresh();
+
 	get signedIn(): boolean{
 		if (typeof(Storage) === "undefined"){
 			return false;

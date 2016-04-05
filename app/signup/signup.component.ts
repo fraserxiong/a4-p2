@@ -22,6 +22,8 @@ export abstract class SignupComponent {
 	private submitted=false;
 	private not_match=false;
 	private errorMessage:string;
+	private twitterSignupHint: string = "Sign Up With Twitter";
+
 	// Add this user to database.
 
 	constructor(private _authenticator: Authenticator,
@@ -55,6 +57,11 @@ export abstract class SignupComponent {
 										error => console.log('error: ' + error));
 			},
 			 error => console.log('Error: ' + error));
+	}
+
+	signUpWithTwitter(){
+		console.log('GO');
+		window.location.href="/signup/twitter/"
 	}
 
 	onSignupPass(){
