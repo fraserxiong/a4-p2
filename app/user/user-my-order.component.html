@@ -2,7 +2,8 @@
   <h1>My Order</h1>
   <section class="orders_list">
     <div class='order_info' *ngFor="#order of orders">
-    <p>Order {{order.num}}</p>
+    <h2>Order {{order.num}}</h2>
+    <p><i class="fa fa-truck"></i>  Address: {{order.address}}</p>
     <article class='dish_overview' *ngFor='#dish of order?.dishes'>
 
     <div class="dish_image">
@@ -27,7 +28,6 @@
     </div>
 
     </article>
-    <p>
     <hr>
     </div>
     </section>

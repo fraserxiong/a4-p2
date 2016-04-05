@@ -1,11 +1,13 @@
 import { Component, Output, EventEmitter}       from 'angular2/core';
 import { Authenticator } from '../authentication/authentication.service';
+import { TwitterButtonComponent } from '../oauth/twitter-button.component';
 
 @Component(
 {
 	selector: 'login',
 	templateUrl: 'app/login/login.component.html',
 	styleUrls: ['app/login/login.component.css'],
+	directives: [TwitterButtonComponent]
 })
 export abstract class LoginComponent {
 	private usernameHint: string = "Username/Email";
@@ -14,6 +16,8 @@ export abstract class LoginComponent {
 	private authenticationPassed = false;
 	private submitted = false;
 	private errorMessage: string;
+
+	private twitterLoginHint = "Log In With Twitter";
 	
 	constructor(private _authenticator: Authenticator) {
 	}
@@ -42,5 +46,9 @@ export abstract class LoginComponent {
 		this.authenticationPassed = false;
 		if (error)
 			this.errorMessage = error;
+	}
+
+	loginWithTwitter(){
+		window.location.href = "/login/twitter";
 	}
 }
