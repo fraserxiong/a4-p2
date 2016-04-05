@@ -1,5 +1,6 @@
 #search-friend{
-
+    margin-left: 100px;
+    margin-right: 100px;
     float: right;
     display: inline;
 }
@@ -52,6 +53,8 @@ button {
 }
 .user_info{
     margin-top: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .user_info img{

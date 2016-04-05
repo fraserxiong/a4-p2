@@ -19,7 +19,9 @@ export abstract class SignupComponent {
 	private emailHint: string = "Email"
 	private passwordHint: string = "Please enter password";
 	private repasswordHint: string = "Please confirm password";
-
+	private submitted=false;
+	private not_match=false;
+	private errorMessage:string;
 	// Add this user to database.
 
 	constructor(private _authenticator: Authenticator,
@@ -27,8 +29,13 @@ export abstract class SignupComponent {
 				private _router: Router) {
 	}
 
-	onSignup(username: string, email:string, password: string){
-		
+	onSignup(username: string, email:string, password: string, confirm:string){
+		this.submitted=true;
+		if (password != confirm){
+			this.not_match = true;
+			this.errorMessage = 'Password and Confirmed password does not match!'
+			return
+		}
 		let user= {
 			username: username,
 

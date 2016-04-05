@@ -1,5 +1,5 @@
  <div id="signup-container">
- 	<form id="signup-form" (ngSubmit)="onSignup(username.value, email.value, password.value)" #signupForm="ngForm">
+ 	<form id="signup-form" (ngSubmit)="onSignup(username.value, email.value, password.value, repassword.value)" #signupForm="ngForm">
  		<h2 class="form-signup-heading">Please sign up</h2>
 
  		Username:<br>
@@ -17,7 +17,11 @@
  		<br>Confirm Password:<br>
  		<label for="signup-password" class="sr-only">RePassword</label>
  		<input #repassword type="password" id="signup-password" class="form-control" placeholder="{{repasswordHint}}" required />
- 		
+
+ 		<div [hidden]="!submitted || !not_match" class="alert alert-danger">
+ 			{{errorMessage}}
+ 		</div>
+
  		<br>
  		<div id="signup-checkbox">
  			<label>
