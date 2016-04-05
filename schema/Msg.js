@@ -5,7 +5,8 @@ exports = module.exports = function(app, mongoose) {
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'Account' },
     orderMsg: [{
       order_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Order'},
-      dish_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Order'},
+      dish_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Post'},
+      client_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
       quantity:{type: Number},
       timeCreated: { type: Date, default: Date.now }
     }],
