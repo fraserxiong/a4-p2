@@ -11,7 +11,8 @@ import { FriendMessageService } from './user-friend-message.service'
 
 interface fmessage{
     user:User,
-    dealed: boolean
+    dealed: boolean,
+    accept: boolean
 }
 
 @Component({
@@ -38,6 +39,7 @@ export class FriendMessageComponent implements OnInit{
                     this.friendmessages.push({
                         user: user,
                         dealed : false,
+                        accept:false
                     });
                 });
             },
@@ -46,12 +48,22 @@ export class FriendMessageComponent implements OnInit{
     }
 
     accept(msg){
-        msg.dealed = true;
+        this._FriendService.accept(msg.user.id)
+            .subscribe(
+                (response: string) => {msg.dealed = true;
+                                        msg.accept=true},
+                error => console.log(error)
+                )
 
     }
 
     declined(msg){
-        msg.dealed=true;
+        this._FriendService.declined(msg.user.id)
+            .subscribe(
+                (response: string) => {msg.dealed = true;
+                                        msg.accept=false},
+                error => console.log(error)
+                )
 
     }
 }

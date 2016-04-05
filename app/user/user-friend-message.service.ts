@@ -30,4 +30,24 @@ export class FriendMessageService{
 				return Observable.throw(err.json() || "Server Error");
 			});
 	}
+
+	accept(id){
+		let url = '/api/msg/friend/' + id +'/';
+		return this._http.put(url,'{}')
+					.map((res:Response)=>{return 'success'} )
+					.catch((err: Response) => {
+						console.log(err);
+						return Observable.throw(err.json() || "Server Error");
+					});
+	}
+
+	declined(id){
+		let url='/api/msg/friend/'+id+'/';
+		return this._http.delete(url)
+					.map((res:Response)=>{return 'success'} )
+					.catch((err: Response) => {
+						console.log(err);
+						return Observable.throw(err.json() || "Server Error");
+					});
+	}
 }

@@ -1,8 +1,10 @@
-<article class="well">
+<article class="well" *ngIf='!deleted'>
 	<header>
-		<a [routerLink]="['/UserProfile', {id: curUser?.id}]"><img class="img-circle" [src]="curUser?.avatar_url" /></a>
+		<button class='delete' *ngIf='isfriend' (click)='delete(curUser?.id)'><i class="fa fa-times"></i></button>
+		<img class="img-circle" [src]="curUser?.avatar_url" />
 	</header>
 	<section>
+	
 		<h2>{{curUser?.name}}</h2>
 		<p class="user_avatar_email"><span class="glyphicon glyphicon-envelope"></span>{{curUser?.email}}</p>
 		<p class="user_avatar_phone"><span class="glyphicon glyphicon-phone"></span>{{curUser?.phone_number}}</p>

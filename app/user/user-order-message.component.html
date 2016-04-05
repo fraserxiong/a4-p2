@@ -1,0 +1,14 @@
+<div class="container-fluid dashboard_omessage">
+<h1>Order Messages</h1>
+  <section class="result_list">
+    <div class= "user_info" *ngFor="#msg of ordermessage">
+    	<img class="img-circle" [src]="msg?.image" />
+    	<p>{{msg?.dish_name}}</p>
+    	<p><i class="fa fa-user"></i> {{msg?.client_name}}</p>
+    	<p><i class="fa fa-home"></i> {{msg?.address}}</p>
+    	<p><i class="fa fa-mobile"></i> {{msg?.phone}}</p>
+    	<hr>
+    </div>
+    </section>
+    <br>
+</div>

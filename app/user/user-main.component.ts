@@ -8,6 +8,7 @@ import {UserSidebarComponent } from './user-sidebar.component';
 import { DishUploadComponent} from '../dish/dish-upload.component';
 import { UserMyOrderComponent } from './user-my-order.component';
 import { FriendMessageComponent } from './user-friend-message.component';
+import { OrderMessageComponent } from './user-order-message.component';
 import { UserEditComponent } from './user-edit.component';
 import { ChangePasswordComponent } from './user-change-password.component';
 import {User } from '../model/user';
@@ -19,7 +20,7 @@ import { State } from './user-main.state';
 	selector: 'user-main',
 	templateUrl: 'app/user/user-main.component.html',
 	styleUrls: ['app/user/user-main.component.css'],
-	directives: [ROUTER_DIRECTIVES, UserSidebarComponent, UserProfileComponent, UserMyDishComponent,UserMyFriendComponent, DishUploadComponent,UserMyOrderComponent, UserEditComponent,ChangePasswordComponent, AddFriendComponent,FriendMessageComponent]
+	directives: [ROUTER_DIRECTIVES, UserSidebarComponent, UserProfileComponent, UserMyDishComponent,UserMyFriendComponent, DishUploadComponent,UserMyOrderComponent, UserEditComponent,ChangePasswordComponent, AddFriendComponent,FriendMessageComponent,OrderMessageComponent]
 })
 
 export class UserMainComponent implements OnInit{
