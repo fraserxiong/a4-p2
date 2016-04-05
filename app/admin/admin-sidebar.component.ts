@@ -7,7 +7,7 @@ import { State } from './admin-dashboard.state';
 	styleUrls: ['app/admin/admin-sidebar.component.css'],
 })
 export class AdminSidebarComponent implements OnInit{
-	@Output('stateSelected') stateSelected: EventEmitter<State> = new EventEmitter<State>();
+	@Output('stateSelected') stateEmitter= new EventEmitter<State>();
 
 	private stateEnum = State;
 
@@ -17,12 +17,12 @@ export class AdminSidebarComponent implements OnInit{
 
 	private gotoState(state: State){
 		this.curState = state;
-		this.stateSelected.emit(state);
+		this.stateEmitter.emit(state);
 	}
 
 	ngOnInit(){
-		for (var i = 0; i < State.Count; i++){
-			this.stateEnumArray.push(i);
-		}
+		// for (var i = 0; i < State.Count; i++){
+		// 	this.stateEnumArray.push(i);
+		// }
 	}
 }

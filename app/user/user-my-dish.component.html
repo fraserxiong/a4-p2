@@ -1,6 +1,6 @@
 <div class='mydish'>
 	<h1>My dish</h1>
 	<section class="dish_list">
-		<dish-overview *ngFor="#dish of dishes" [dish]="dish"></dish-overview>
+		<dish-overview *ngFor="#dish of dishes" [dish]="dish" [onDelete]="onDelete()"></dish-overview>
 	</section>
 </div>

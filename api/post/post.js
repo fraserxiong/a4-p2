@@ -52,6 +52,10 @@ exports = module.exports = function(app){
             Post.find({
                 user: id
             }).lean().exec(callback);
+        },
+
+        find_all: function(callback){
+            Post.find().lean().exec(callback);
         }
     }
 }

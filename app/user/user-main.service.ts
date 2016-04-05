@@ -9,14 +9,30 @@ import 'rxjs/Rx';
 export class UserMainService{
 
 	private _get_post_by_user_url = '/posts/auth/posts_by_user';
+	private _get_post_for_admin_url = '/posts/admin';
 	constructor(private _http: Http){}
 
 	private _delete_post_url = '/posts/delete/';
+	private _admin_delete_post_url = '/posts/admin/delete/';
 
 	delete_post(id) : Promise<Dish[]>{
 		return this._http.delete(this._delete_post_url + id)
 						.toPromise()
-						.then( _ => {return this.get_posts_by_user();}, this.handleError);
+						.then( _ => {return this.get_posts_by_user()}, this.handleError);
+	}
+
+	admin_delete_post(id) : Promise<Dish[]>{
+		return this._http.delete(this._admin_delete_post_url + id)
+						.toPromise()
+						.then( _ => {return this.get_all_post_for_admin()}, this.handleError);
+	}
+
+	get_all_post_for_admin(): Promise<Dish[]> {
+
+		return this._http.get(this._get_post_for_admin_url)
+						 .toPromise()
+						 .then(res => <Dish[]> res.json(), this.handleError)
+						 .then(data => {console.log(data); return data});
 	}
 
 	get user():Observable<User>{

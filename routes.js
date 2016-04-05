@@ -210,6 +210,18 @@ exports = module.exports = function (app, passport) {
   // posts
   var post_api = require('./api/post/post')(app);
 
+  app.all('/posts/admin*', ensureAuthenticated);
+  app.all('/posts/admin*', ensureAdmin);
+  app.get('/posts/admin', function(req, res){
+      console.log("Handling post by admin request");
+      post_api.find_all(onSuccessWithReturnFactory(res));
+  });
+
+  app.delete('/posts/admin/delete/:id', function(req, res){
+      var id = req.params.id;
+      post_api.delete(id, onSuccessFactory(res));
+  });
+
   app.get('/posts/recommended', function(req, res){
       post_api.all(onSuccessWithReturnFactory(res));
   });
