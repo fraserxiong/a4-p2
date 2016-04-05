@@ -339,6 +339,7 @@ exports = module.exports = function (app, passport) {
   app.all('/orders/*', ensureAuthenticated);
   app.all('/orders/*', ensureAccount);
 
+  var MessageInternal = require('./api/msg/internal');
   app.post('/orders', function(req, res){
     var payload = req.body; //Body is already parsed as an json object thanks to body-parser.json() middleware
     var dishes = payload.dishes;
@@ -363,12 +364,24 @@ exports = module.exports = function (app, passport) {
       })
     }))
     .then(function orderSave(){
-    return order.save()
-        .then(function(order){
-          res.writeHead(200, {'Content-type': 'application/json'});
-          res.write(JSON.stringify(order));
-          res.end();
-        });
+      return order.save()
+          .then(function(order){
+            res.writeHead(200, {'Content-type': 'application/json'});
+            res.write(JSON.stringify(order));
+            res.end();
+            return order;
+        })
+    })
+    .then(function orderMsg(order){
+      var orderId = order._id;
+      var clientId = order.user;
+      var address = order.address;
+      return Promise.all(order.dishes.map(function orderDishesIterator(dishInfo){
+        return app.db.models.Post.findOne({'_id': dishInfo.dish})
+              .then(function(post){
+                return MessageInternal.add_order_msg(app, post.user, orderId, post._id, clientId, dishInfo.quantity);
+              })
+      }));
     })
     .catch(function(error){
         res.writeHead(404, {'Content-type': 'text/plain'});
@@ -378,7 +391,6 @@ exports = module.exports = function (app, passport) {
   });
 
   app.get('/accounts/:account_id/orders', function(req, res){
-    console.log(req.params.account_id);
     var accountId = req.params.account_id;
     Order.find({'user': accountId}, {'user': 0})
       .populate('dishes.dish')

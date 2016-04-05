@@ -11,6 +11,14 @@ export class UserMainService{
 	private _get_post_by_user_url = '/posts/auth/posts_by_user';
 	constructor(private _http: Http){}
 
+	private _delete_post_url = '/posts/delete/';
+
+	delete_post(id) : Promise<Dish[]>{
+		return this._http.delete(this._delete_post_url + id)
+						.toPromise()
+						.then( _ => {return this.get_posts_by_user();}, this.handleError);
+	}
+
 	get user():Observable<User>{
 
 		return this._http.get('/api/account/user/settings')

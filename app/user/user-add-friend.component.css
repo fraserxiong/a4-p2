@@ -1,8 +1,6 @@
 #search-friend{
-    margin-left: 100px;
-    margin-right: 100px;
-    float: right;
-    display: inline;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input {
@@ -27,7 +25,6 @@ button {
     color: white;
     border: none;
     font-family: 'Lato', sans-serif;
-
 }
 
 .dashboard_addfriends {
@@ -42,8 +39,6 @@ button {
     margin: 0 auto;
 }
 
-
-
 .result_list{
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -53,8 +48,18 @@ button {
 }
 .user_info{
     margin-top: 10px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user_info > section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user_info .friend_button_div{
+    flex: 1 0 0px;
 }
 
 .user_info img{
@@ -74,8 +79,6 @@ button {
     margin-right: 50px;
     background-color: #337ab7;
     width: 60px;
-    height:30px;
+    height: 30px;
     font-size:15;
-    margin-top: auto;
-    margin-bottom: auto;
 }
