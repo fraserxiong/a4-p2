@@ -1,6 +1,34 @@
 <div class="container-fluid dashboard_orders">
   <h1>My Order</h1>
   <section class="orders_list">
-    <user-avatar *ngFor="#order of orders" [order]="order"></user-avatar>
+    <div class='order_info' *ngFor="#order of orders">
+    <p>Order {{order.num}}</p>
+    <article class='dish_overview' *ngFor='#dish of order?.dishes'>
+
+    <div class="dish_image">
+            <img class="thumbnail img-responsive" [src]="dish?.dish.url" alt="{{dish?.name}}" />
+    </div>
+    <div class="dish_tags">
+        <ul>
+            <li>
+                <i class="glyphicon glyphicon-home"></i>
+                <span>{{dish?.dish.location}}</span>
+            </li>
+            <li *ngFor="#category of dish?.dish.categories">
+                <i class="glyphicon glyphicon-tags"></i>
+                <span >{{category}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="dish_description">
+        <h3>Dish Name: {{dish?.dish.name}}</h3>
+        <p>Dish Description: {{dish?.dish.description}}</p>
+        <p>Quantity: {{dish?.quantity}}</p>
+    </div>
+
+    </article>
+    <p>
+    <hr>
+    </div>
     </section>
 </div>
