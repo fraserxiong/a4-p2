@@ -1,12 +1,13 @@
 'use strict';
 
-exports.add_order_msg = function(app, account, dish, order, quantity){
+exports.add_order_msg = function(app, account, order, dish, client, quantity){
   app.db.models.Msg.findOne({user:account})
   .exec(function (err, msg_obj) {
     if (err) {throw err; return false};
     msg_obj.orderMsg.push({
       order_id: order,
       dish_id: dish,
+      client_id: client,
       quantity: quantity
     });
     msg_obj.save();
