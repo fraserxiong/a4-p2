@@ -93,7 +93,9 @@ exports.decline_friend_msg = function(req, res, next){
 
 exports.get_order_msg = function(req, res, next){
   req.app.db.models.Msg.findOne({user:req.user.roles.account.id})
-  .populate('orderMsg.order_id', 'orderMsg.dish_id', 'orderMsg.client_id')
+  .populate('orderMsg.order_id')
+  .populate('orderMsg.dish_id')
+  .populate('orderMsg.client_id')
   .exec(function (err, msg_obj) {
     if (err) throw err;
     var ordMsg_list = msg_obj.orderMsg;
@@ -109,12 +111,12 @@ exports.get_order_msg = function(req, res, next){
     var ordMsg = [];
     for(var i = 0; i<ordMsg_list.length; i++){
       // console.log(friMsg_list[i]);
-      friMsg.push({
+      ordMsg.push({
         'image':ordMsg_list[i].dish_id.url,
         'dish_name':ordMsg_list[i].dish_id.name,
-        'client_name':ordMsg_list[i].user_id.name.full,
+        'client_name':ordMsg_list[i].client_id.name.full,
         'address':ordMsg_list[i].order_id.address,
-        'phone':ordMsg_list[i].user_id.name.phone
+        'phone':ordMsg_list[i].client_id.phone
       });
     }
     // console.log(friMsg);
