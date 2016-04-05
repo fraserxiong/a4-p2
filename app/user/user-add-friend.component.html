@@ -5,12 +5,16 @@
   </div>
   <section class="result_list">
     <div class= "user_info" *ngFor="#result of results">
-    	<img class="img-circle" [src]="result?.friend.avatar_url" />
-    	<p>{{result?.friend.name}}</p>
-    	<button *ngIf='!result.success && !result.submitted' (click)="add(result)">Add</button>
-    	<button  *ngIf='result.success && result.submitted' (click)="add(result)" style="background-color: green">Success</button>
-    	<button  *ngIf='!result.success && result.submitted' (click)="add(result)" style='background-color: red'>Fail</button>
-    	<hr>
+        <section>
+        	<img class="img-circle" [src]="result?.friend.avatar_url" />
+        	<p>{{result?.friend.name}}</p>
+            <div class="friend_button_div">
+            	<button *ngIf='!result.success && !result.submitted' (click)="add(result)">Add</button>
+            	<button  *ngIf='result.success && result.submitted' (click)="add(result)" style="background-color: green">Success</button>
+            	<button  *ngIf='!result.success && result.submitted' (click)="add(result)" style='background-color: red'>Fail</button>
+            </div>
+        </section>
+        <hr />
     </div>
     </section>
     <br>
