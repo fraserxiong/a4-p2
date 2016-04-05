@@ -70,6 +70,9 @@ exports = module.exports = function (app, passport) {
   app.all('/api/msg*', apiEnsureAuthenticated);
   app.all('/api/msg*', apiEnsureAccount);
   app.get('/api/msg/friend/', require("./api/msg/rest").get_friend_msg);
+  app.put('/api/msg/friend/:acc_id/', require("./api/msg/rest").accept_friend_msg);
+  app.delete('/api/msg/friend/:acc_id/', require("./api/msg/rest").decline_friend_msg);
+  app.get('/api/msg/Order/', require("./api/msg/rest").get_order_msg);
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
