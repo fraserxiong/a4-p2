@@ -20,12 +20,16 @@ exports.friend_request = function(app, account, friend_account){
   app.db.models.Msg.findOne({user:account})
   .exec(function (err, msg_obj) {
     if (err) {throw err; return false};
-    console.log(msg_obj);
-    msg_obj.friendMsg.push({
-      req_acc_id: friend_account
-    });
-    msg_obj.save();
-    return true;
+    if(msg_obj){
+      // console.log(msg_obj);
+      msg_obj.friendMsg.push({
+        req_acc_id: friend_account
+      });
+      msg_obj.save();
+      return true;
+    }else{
+      return false;
+    }
   });
   return false;
 };

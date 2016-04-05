@@ -62,31 +62,42 @@ exports.get_user = function(req, res, next){
   req.app.db.models.Account.findById(req.user.roles.account.id)
   .exec(function (err, user) {
     if (err) throw err;
-    var result_obj = {
-      'name': user.name.full,
-      'avatar': user.avatar,
+    if(user){
+      var result_obj = {
+        'name': user.name.full,
+        'avatar': user.avatar,
+      }
+      res.send(JSON.stringify(result_obj));
+    }else{
+      res.status(403).send("User does not exist");
     }
-    res.send(JSON.stringify(result_obj));
   });
 };
 
 exports.add_friend = function(req, res, next){
   req.app.db.models.Account.findById(req.params.friend_id)
+  .populate('user.id')
   .exec(function (err, friend_ref) {
     if (err) throw err;
     req.app.db.models.Friend.findOne({user:req.user.roles.account.id, })
+    .populate('user')
     .exec(function (err, friend_obj) {
       if (err) throw err;
-      var isInArray = friend_obj.friend.some(function (friend) {
-        return friend.equals(friend_ref._id);
-      });
-      if(friend_obj.friend.length > 0 && isInArray){
-        res.status(403).send("Already added");
+      if(friend_ref && friend_obj){
+        var isInArray = friend_obj.friend.some(function (friend) {
+          return friend.equals(friend_ref._id);
+        });
+        if(friend_obj.friend.length > 0 && isInArray){
+          res.status(403).send("Already added");
+        }else{
+          friend_obj.friend.push(friend_ref);
+          friend_obj.save();
+          // console.log(friend_obj);
+          msg_api.friend_request(req.app, friend_ref, friend_obj.user);
+          res.status(200).send("Add friend success");
+        }
       }else{
-        friend_obj.friend.push(friend_ref);
-        friend_obj.save();
-        msg_api.friend_request(req.app, friend_ref, friend_obj);
-        res.status(200).send("Add friend success");
+        res.status(403).send("Already added");
       }
     });
   });
@@ -96,11 +107,15 @@ exports.get_basic_user_info = function(req, res, next){
   req.app.db.models.Account.findOne({_id:req.params.user_id})
   .exec(function (err, user) {
     if (err) throw err;
-    var result_obj = {
-      'name': user.name.full,
-      'avatar': user.avatar,
+    if(user){
+      var result_obj = {
+        'name': user.name.full,
+        'avatar': user.avatar,
+      }
+      res.send(JSON.stringify(result_obj));
+    }else{
+      res.status(403).send("User does not exist");
     }
-    res.send(JSON.stringify(result_obj));
   });
 };
 
@@ -110,35 +125,38 @@ exports.search_user = function(req, res, next){
   req.app.db.models.User.find({'email':query})
   .select('roles')
   .exec(function(err, user_list){
-    // console.log(user_list);
-    var id_list = [];
-    for(var i=0; i<user_list.length; i++){
-      id_list.push(user_list[i].roles.account);
-    }
-    var acc_q = {
-        $or: [
-            {'name.full': query},
-            {'phone': query},
-            {'_id': { $in: id_list}}
-        ]
-    };
-    // console.log(id_list);
-    req.app.db.models.Account.find(acc_q)
-    .exec(function(err, accounts){
-      // console.log(accounts);
-      if (err) {console.log(err); throw err};
-      var result = [];
-      for(var i = 0; i < accounts.length; i++){
-        var account = accounts[i];
-        result.push({
-          'id': account._id,
-          'name': account.name.full,
-          'avatar': account.avatar
-        });
+    if(user_list){// console.log(user_list);
+      var id_list = [];
+      for(var i=0; i<user_list.length; i++){
+        id_list.push(user_list[i].roles.account);
+      }
+      var acc_q = {
+          $or: [
+              {'name.full': query},
+              {'phone': query},
+              {'_id': { $in: id_list}}
+          ]
       };
-      res.send(JSON.stringify(result));
-      // res.status(200).send("Test pass");
-    });
+      // console.log(id_list);
+      req.app.db.models.Account.find(acc_q)
+      .exec(function(err, accounts){
+        // console.log(accounts);
+        if (err) {console.log(err); throw err};
+        var result = [];
+        for(var i = 0; i < accounts.length; i++){
+          var account = accounts[i];
+          result.push({
+            'id': account._id,
+            'name': account.name.full,
+            'avatar': account.avatar
+          });
+        };
+        res.send(JSON.stringify(result));
+        // res.status(200).send("Test pass");
+      });
+    }else{
+      res.status(403).send("Find user error");
+    }
   });
 };
 
@@ -151,7 +169,7 @@ exports.del_friend = function(req, res, next){
     req.app.db.models.Friend.findOne({user:req.user.roles.account.id, })
     .exec(function (err, friend_obj) {
       if (err) throw err;
-      if(friend_obj){
+      if(friend_obj && friend_ref){
         var isInArray = friend_obj.friend.some(function (friend) {
           return friend.equals(friend_ref._id);
         });
@@ -189,7 +207,8 @@ exports.get_friend_list = function(req, res, next){
               'avatar': friend_list[i].avatar,
               'zip': friend_list[i].zip,
               'address': friend_list[i].address,
-              'email':friend_list[i].user.id.email
+              'email':friend_list[i].user.id.email,
+              'phone':friend_list[i].phone
             });
           }
           return res.send(JSON.stringify(result));
