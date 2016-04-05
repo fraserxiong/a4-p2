@@ -105,7 +105,7 @@ import { OAuthCallbackComponent } from './oauth/oauth-callback.component';
 	]
 )
 
-export class AppRouterComponent{
+export class AppRouterComponent implements OnInit{
 
 	constructor(private _authenticator: Authenticator) { }
 
@@ -113,6 +113,10 @@ export class AppRouterComponent{
 
 	getCurUser() : string{
 		return this._authenticator.user;
+	}
+
+	ngOnInit(){
+		this._authenticator.refresh();
 	}
 
 	private toggleCart(toggle: boolean){
