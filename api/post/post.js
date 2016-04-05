@@ -24,7 +24,7 @@ exports = module.exports = function(app){
         },
 
         all: function(callback){
-            Post.find().limit(12).lean().exec(callback);
+            Post.find().sort({id: -1}).limit(12).lean().exec(callback);
         },
 
         search_by_tag: function(id, tags, callback){
