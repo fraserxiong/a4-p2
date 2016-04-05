@@ -93,7 +93,7 @@ import { OAuthCallbackComponent } from './oauth/oauth-callback.component';
 			component: DetailsComponent,
 		},
 		{
-			path: '/user/:id',
+			path: '/user',
 			name: 'UserProfile',
 			component: UserMainComponent,
 		},
