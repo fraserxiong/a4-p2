@@ -43,9 +43,9 @@ export class AdminManageComponent implements OnInit, OnActivate{
 	}
 
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction){
-		if(!this._authenticator.signedIn || !this._authenticator.curUser.isAdmin){
-			console.log(this._authenticator.curUser);
-			this._router.navigate(['AdminLogin']);
-		}
+		// if(!this._authenticator.signedIn || !this._authenticator.curUser.isAdmin){
+		// 	console.log(this._authenticator.curUser);
+		// 	this._router.navigate(['AdminLogin']);
+		// }
 	}
 }
