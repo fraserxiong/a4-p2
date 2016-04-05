@@ -141,8 +141,8 @@ exports.loginTwitter = function(req, res, next){
           if (err) {
             return next(err);
           }
-
-          res.redirect(getReturnUrl(req));
+          res.redirect('/home');
+          // res.redirect(getReturnUrl(req));
         });
       }
     });

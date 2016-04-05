@@ -2,10 +2,11 @@ import { Injectable } from 'angular2/core';
 import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../model/user';
+import { Authenticator } from '../authentication/authentication.service';
 
 @Injectable()
 export class UserSignupService{
-	constructor(private _http: Http){}
+	constructor(private _http: Http, private _authenticator: Authenticator){}
 
 	usersignup(user): Observable<string>{
 		let body: string = JSON.stringify(user);
@@ -32,6 +33,7 @@ export class UserSignupService{
 
 		return this._http.post('/signup/social/', body, options)
 			.map((res: Response) => {
+				this._authenticator.refresh();
 				return <string>res.statusText;
 			})
 			.do((res: string) => console.log(res))

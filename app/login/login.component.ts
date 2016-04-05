@@ -47,4 +47,8 @@ export abstract class LoginComponent {
 		if (error)
 			this.errorMessage = error;
 	}
+
+	loginWithTwitter(){
+		window.location.href = "/login/twitter";
+	}
 }
