@@ -13,7 +13,7 @@ import {HTTP_PROVIDERS}    from 'angular2/http';
 })
 
 export class AppOfferComponent implements OnInit{
-	offerImages: Dish[];
+	offerImages: Dish[] = [];
 	displayImages: Dish[][];
 	max: number;
 

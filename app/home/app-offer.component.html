@@ -14,6 +14,6 @@
                 <img src={{offerImage.url}} (click)="get_details(offerImage)"/>
             </div>
         </div>
-        <button id="viewmore" class="center" (click)="expand()" *ngIf="max < 12">VIEW MORE</button>
+        <button id="viewmore" class="center" (click)="expand()" *ngIf="max < offerImages.length">VIEW MORE</button>
     </div>
 </div>

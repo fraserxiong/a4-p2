@@ -20,8 +20,10 @@ exports = module.exports = function(app){
             Post.findOne({id: id})
                 .populate("comments")
                 .exec(function(err, result){
-                    if(err)
-                        console.log(err);
+                    if(err || !result){
+                        callback(err, []);
+                        return;
+                    }
                     var comments = result.comments;
                     var copy = JSON.parse(JSON.stringify(comments));
                     for(var i = 0; i < copy.length; i++){
