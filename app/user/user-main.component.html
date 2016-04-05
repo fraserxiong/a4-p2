@@ -40,6 +40,16 @@
     <div id="dashboard_myorder" class="container-fluid" *ngSwitchWhen="stateEnum.Myorder" >
       <user-my-order [user]='user'></user-my-order>
     </div>
+
+    <!-- User Friend message-->
+    <div id="dashboard_fmessage" class="container-fluid" *ngSwitchWhen="stateEnum.FriendMessage" >
+      <user-friend-message [user]='user'></user-friend-message>
+    </div>
+
+    <!-- User Order message-->
+    <div id="dashboard_omessage" class="container-fluid" *ngSwitchWhen="stateEnum.OrderMessage" >
+      <user-order-message [user]='user'></user-order-message>
+    </div>
     
 
 

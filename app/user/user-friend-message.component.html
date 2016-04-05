@@ -1,0 +1,17 @@
+<div class="container-fluid dashboard_fmessage">
+<h1>Friend Messages</h1>
+  <section class="result_list">
+    <div class= "user_info" *ngFor="#msg of friendmessages">
+    	<img class="img-circle" [src]="msg?.user.avatar_url" />
+    	<p>{{msg?.user.name}}</p>
+        <div class='action'>
+    	<button *ngIf='!msg.dealed' (click)="accept(msg)" style="background-color: green">Accept</button>
+    	<button  *ngIf='!msg.dealed' (click)="declined(msg)" style="background-color: #808080">Declined</button>
+        <div *ngIf = 'msg.dealed'><i class="fa fa-check"></i></div>
+        </div>
+
+    	<hr>
+    </div>
+    </section>
+    <br>
+</div>
