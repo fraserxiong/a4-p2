@@ -241,7 +241,8 @@ exports = module.exports = function (app, passport) {
                       description: payload.description,
                       name: payload.name,
                       categories: payload.categories,
-                      user: req.user.roles.account.id});
+                      user: req.user.roles.account.id,
+                      price:payload.price});
 
       post.save().then(function createPostSuccess(message){
           app.db.models.Account
