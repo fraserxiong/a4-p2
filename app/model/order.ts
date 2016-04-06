@@ -15,6 +15,9 @@ export class Order{
 	}
 
 	addDish(dish: Dish, quantity: number = 1){
+		if (!dish){
+			return;
+		}
 		quantity = quantity < 1 ? 1 : quantity;
 
 		let dishExist: number = -1;
@@ -45,6 +48,10 @@ export class Order{
 		if (!this._id){
 			this._id = id;
 		}
+	}
+
+	get id():string{
+		return this._id;
 	}
 
 	isEmpty(): boolean{

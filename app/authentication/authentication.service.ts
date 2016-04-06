@@ -23,7 +23,7 @@ export abstract class Authenticator{
 		if (typeof(Storage) === "undefined"){
 			return false;
 		}
-		return sessionStorage.getItem('user');
+		return Boolean(sessionStorage.getItem('user'));
 	}
 
 	get curUser(): User{

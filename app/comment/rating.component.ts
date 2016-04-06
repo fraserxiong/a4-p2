@@ -11,7 +11,7 @@ export class RatingComponent implements OnInit{
 	private range: number[];
 
 	ngOnInit(){
-		this.range = new Array<number>(this.rate);
+		this.range = new Array<number>(this.rate < 0? 0 : this.rate);
 	}
 
 }

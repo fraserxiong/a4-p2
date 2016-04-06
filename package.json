@@ -9,7 +9,8 @@
     "typings": "typings",
     "postinstall": "typings install",
     "ui": "concurrently \"npm run tsc:w\" \"npm run lite\"",
-    "windows": "concurrently \"npm run tsc:w\" \"node index.js\""
+    "windows": "concurrently \"npm run tsc:w\" \"node index.js\"",
+    "test": "live-server --open=unit-test.html"
   },
   "license": "ISC",
   "dependencies": {
@@ -68,11 +69,8 @@
     "mongodb": "3.2.4"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
-    "lite-server": "^2.1.0",
-    "typescript": "^1.8.2",
-    "typings": "^0.6.8",
     "bootstrap": "3.x.x",
+    "concurrently": "^2.0.0",
     "font-awesome": "4.x.x",
     "grunt": "0.4.x",
     "grunt-cli": "0.1.13",
@@ -86,9 +84,13 @@
     "grunt-newer": "1.x.x",
     "grunt-nodemon": "0.4.x",
     "html5shiv": "3.x.x",
+    "jasmine-core": "2.4.1",
     "jquery": "2.x.x",
     "jquery.cookie": "1.x.x",
+    "lite-server": "^2.1.0",
     "moment": "2.11.x",
-    "respond.js": "1.x.x"
+    "respond.js": "1.x.x",
+    "typescript": "^1.8.2",
+    "typings": "^0.6.8"
   }
 }
