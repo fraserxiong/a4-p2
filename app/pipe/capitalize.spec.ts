@@ -7,7 +7,15 @@ describe('Capitalize Pipe', ()=>{
 		pipe = new CapitalizePipe();
 	});
 
-	it('transforms "hello world" to "Hello World"', () => {
+	it ("guard against null", ()=>{
+		expect(pipe.transform(null)).toEqual(undefined);
+	});
+
+	it ('transform one word', ()=>{
+		expect(pipe.transform('ok')).toEqual('Ok');
+	})
+
+	it('transforms "hello world" to "Hello World" (multiword)', () => {
 		expect(pipe.transform("hello world")).toEqual('Hello World');
 	});
 

@@ -10,7 +10,7 @@
     "postinstall": "typings install",
     "ui": "concurrently \"npm run tsc:w\" \"npm run lite\"",
     "windows": "concurrently \"npm run tsc:w\" \"node index.js\"",
-    "test": "live-server --open=tests/unit-test.html"
+    "test": "live-server --open=unit-test.html"
   },
   "license": "ISC",
   "dependencies": {
