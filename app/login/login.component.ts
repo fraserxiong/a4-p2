@@ -57,6 +57,9 @@ export abstract class LoginComponent implements OnActivate{
 	}
 
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction){
+		if (!prev){
+			return;
+		}
 		if (prev.urlPath.match(/^signup\/callback\/.+$/i)){
 			this.oauthLogin = true;
 		}

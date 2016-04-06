@@ -13,11 +13,16 @@ var config = require('./config'),
     helmet = require('helmet'),
     // compress  = require('compression'),
     // csrf = require('csurf');
+    redis = require('redis'),
     autoIncrement = require('mongoose-auto-increment');
 
 //create express app
 var app = express();
 
+var	compress = require('compression');
+app.use(compress());
+
+var client = redis.createClient();
 //keep reference to config
 app.config = config;
 
@@ -60,7 +65,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use(csrf({ cookie: { signed: true } }));
-helmet(app);
+app.use(helmet());
 
 //response locals
 app.use(function(req, res, next) {
@@ -106,7 +111,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport);
+require('./routes')(app, passport, client);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);
