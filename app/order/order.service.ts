@@ -11,14 +11,7 @@ export class OrderService{
 	private _order: Order;
 
 	constructor(private _http: Http){
-		let user1: User = {
-			id: 10000,
-			name: "Bill Gates",
-			email: "gates.bill@gmail.com",
-			password: "lalala",
-		};
-		
-		this._order = new Order(user1);
+		this._order = new Order();
 	}
 
 	add(dish: Dish, quantity: number){
@@ -49,6 +42,10 @@ export class OrderService{
 	}
 
 	saveOrder(): Observable<string>{
+		if (this._order.dishes.length <= 0){
+			return Observable.throw('Error: Empty Order');
+		}
+
 		let body = JSON.stringify(this._order);
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options: RequestOptions = new RequestOptions({ headers: headers });

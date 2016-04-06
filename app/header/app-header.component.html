@@ -19,13 +19,13 @@
           <li><a (click)="toggleCart(true)" class="glyphicon glyphicon-shopping-cart"></a></li>
         </ul>
       </div>
-      <div *ngIf="!curUser">
+      <div id="not-signed-in-block" *ngIf="!curUser">
         <ul class="nav navbar-nav navbar-right">
           <li><a [routerLink]="['UserLogin']">Login</a></li>
           <li><a [routerLink]="['UserSignup']">Sign Up</a></li>
         </ul>
       </div>
-      <div *ngIf="curUser">
+      <div id="signed-in-block" *ngIf="curUser">
         <ul class="nav navbar-nav navbar-right">
           <li><a [routerLink]="['UserProfile']">Hello! {{curUser}}</a></li>
           <li><a (click)="logOut()">Log Out</a></li>

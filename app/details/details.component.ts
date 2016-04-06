@@ -8,6 +8,7 @@ import { CommentService } from '../comment/comment.service';
 import { CommentComponent } from '../comment/comment.component';
 import { HTTP_PROVIDERS }    from 'angular2/http';
 import { OrderService } from '../order/order.service';
+import { Authenticator } from '../authentication/authentication.service';
 
 @Component(
 {
@@ -32,7 +33,8 @@ export class DetailsComponent implements OnInit {
 		private _router: Router,
 		private _routeParams: RouteParams,
 		private _commentService: CommentService,
-		private _orderService: OrderService
+		private _orderService: OrderService,
+		private _authenticator: Authenticator
 	){}
 
 	ngOnInit(){
@@ -57,8 +59,10 @@ export class DetailsComponent implements OnInit {
 	}
 
 	private comment(comment: String){
-		this._commentService.submit_comment(this.get_id(), comment, this.ratingsVal)
-			.then(comments => this.comments = comments);
+		if (!this._authenticator.signedIn) {
+			this._commentService.submit_comment(this.get_id(), comment, this.ratingsVal)
+				.then(comments => this.comments = comments);
+		}
 	}
 
 	onDelete(){
