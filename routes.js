@@ -22,7 +22,7 @@ function ensureAdmin(req, res, next) {
   if (req.user.canPlayRoleOf('admin')) {
     return next();
   }
-  res.redirect('/');
+  res.redirect('/home');
 }
 
 function ensureAccount(req, res, next) {
@@ -98,7 +98,7 @@ exports = module.exports = function (app, passport) {
   // app.get('/signup/tumblr/callback/', require('./views/signup/index').signupTumblr);
 
   //login/out
-  app.get('/login/', require('./views/login/index').init);
+  // app.get('/login/', require('./views/login/index').init);
   app.post('/login/', require('./views/login/index').login);
   app.get('/login/forgot/', require('./views/login/forgot/index').init);
   app.post('/login/forgot/', require('./views/login/forgot/index').send);
@@ -110,14 +110,14 @@ exports = module.exports = function (app, passport) {
   //social login
   app.get('/login/twitter/', passport.authenticate('twitter', { callbackURL: '/login/twitter/callback/' }));
   app.get('/login/twitter/callback/', require('./views/login/index').loginTwitter);
-  app.get('/login/github/', passport.authenticate('github', { callbackURL: '/login/github/callback/' }));
-  app.get('/login/github/callback/', require('./views/login/index').loginGitHub);
-  app.get('/login/facebook/', passport.authenticate('facebook', { callbackURL: '/login/facebook/callback/' }));
-  app.get('/login/facebook/callback/', require('./views/login/index').loginFacebook);
-  app.get('/login/google/', passport.authenticate('google', { callbackURL: '/login/google/callback/', scope: ['profile email'] }));
-  app.get('/login/google/callback/', require('./views/login/index').loginGoogle);
-  app.get('/login/tumblr/', passport.authenticate('tumblr', { callbackURL: '/login/tumblr/callback/', scope: ['profile email'] }));
-  app.get('/login/tumblr/callback/', require('./views/login/index').loginTumblr);
+  // app.get('/login/github/', passport.authenticate('github', { callbackURL: '/login/github/callback/' }));
+  // app.get('/login/github/callback/', require('./views/login/index').loginGitHub);
+  // app.get('/login/facebook/', passport.authenticate('facebook', { callbackURL: '/login/facebook/callback/' }));
+  // app.get('/login/facebook/callback/', require('./views/login/index').loginFacebook);
+  // app.get('/login/google/', passport.authenticate('google', { callbackURL: '/login/google/callback/', scope: ['profile email'] }));
+  // app.get('/login/google/callback/', require('./views/login/index').loginGoogle);
+  // app.get('/login/tumblr/', passport.authenticate('tumblr', { callbackURL: '/login/tumblr/callback/', scope: ['profile email'] }));
+  // app.get('/login/tumblr/callback/', require('./views/login/index').loginTumblr);
 
   //admin
   app.all('/admin*', ensureAuthenticated);
