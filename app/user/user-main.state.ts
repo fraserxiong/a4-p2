@@ -6,5 +6,7 @@ export enum State{
 	Mydish,
 	Newdish,
 	Myorder,
-	AddFriend
+	AddFriend,
+	FriendMessage,
+	OrderMessage
 }

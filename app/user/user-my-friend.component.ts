@@ -7,7 +7,7 @@ import { User } from '../model/user';
 import { UserProfileService } from './user-profile.service';
 import { UserAvatarComponent } from './user-avatar.component';
 import { UserSidebarComponent } from './user-sidebar.component';
-import { UserFriendService } from './user-my-friend.service'
+import { UserFriendService } from './user-my-friend.service';
 
 @Component({
 	selector: 'user-my-friend',

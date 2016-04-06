@@ -8,7 +8,8 @@
     "lite": "lite-server",
     "typings": "typings",
     "postinstall": "typings install",
-    "ui": "concurrently \"npm run tsc:w\" \"npm run lite\""
+    "ui": "concurrently \"npm run tsc:w\" \"npm run lite\"",
+    "windows": "concurrently \"npm run tsc:w\" \"node index.js\""
   },
   "license": "ISC",
   "dependencies": {
