@@ -9,6 +9,9 @@ import { ComponentInstruction, Router, RouteParams, OnActivate } from 'angular2/
 	providers: [UserSignupService]
 })
 export class OAuthCallbackComponent implements OnActivate{
+	private signUpResult: boolean = false;
+	private submitted: boolean = false;
+
 	constructor(private _signupService: UserSignupService,
 				private _routeParams: RouteParams,
 				private _router: Router){}
@@ -16,9 +19,15 @@ export class OAuthCallbackComponent implements OnActivate{
 	onSignup(email: string){
 		this._signupService.oauthSignup(email)
 			.subscribe(
-				(success: string) => window.alert('success'),
-				(err: any) => window.alert('error')
-				);
+			(success: string) => {
+				this.signUpResult = true;
+				this.submitted = true;
+				this._router.navigate(['Home']);
+			},
+			(err: any) => {
+				this.signUpResult = false;
+				this.submitted = true;
+			});
 	}
 
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction){
