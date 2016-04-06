@@ -51,9 +51,9 @@ function apiEnsureAccount(req, res, next) {
 
 exports = module.exports = function (app, passport) {
   //front end
-  app.get('/', require('./views/index').init);
-  app.get('/about/', require('./views/about/index').init);
-  app.get('/contact/', require('./views/contact/index').init);
+  // app.get('/', require('./views/index').init);
+  // app.get('/about/', require('./views/about/index').init);
+  // app.get('/contact/', require('./views/contact/index').init);
   app.post('/contact/', require('./views/contact/index').sendMessage);
 
   // User info
@@ -75,7 +75,7 @@ exports = module.exports = function (app, passport) {
   app.get('/api/msg/Order/', require("./api/msg/rest").get_order_msg);
 
   //sign up
-  app.get('/signup/', require('./views/signup/index').init);
+  // app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);
 
   //social sign up
@@ -102,10 +102,10 @@ exports = module.exports = function (app, passport) {
   app.post('/login/', require('./views/login/index').login);
   app.get('/login/forgot/', require('./views/login/forgot/index').init);
   app.post('/login/forgot/', require('./views/login/forgot/index').send);
-  app.get('/login/reset/', require('./views/login/reset/index').init);
-  app.get('/login/reset/:email/:token/', require('./views/login/reset/index').init);
+  // app.get('/login/reset/', require('./views/login/reset/index').init);
+  // app.get('/login/reset/:email/:token/', require('./views/login/reset/index').init);
   app.put('/login/reset/:email/:token/', require('./views/login/reset/index').set);
-  app.get('/logout/', require('./views/logout/index').init);
+  // app.get('/logout/', require('./views/logout/index').init);
 
   //social login
   app.get('/login/twitter/', passport.authenticate('twitter', { callbackURL: '/login/twitter/callback/' }));
@@ -122,7 +122,7 @@ exports = module.exports = function (app, passport) {
   //admin
   app.all('/admin*', ensureAuthenticated);
   app.all('/admin*', ensureAdmin);
-  app.get('/admin/', require('./views/admin/index').init);
+  // app.get('/admin/', require('./views/admin/index').init);
 
   //admin > users
   app.get('/admin/users/', require('./views/admin/users/index').find);
@@ -186,15 +186,15 @@ exports = module.exports = function (app, passport) {
   //account
   app.all('/account*', ensureAuthenticated);
   app.all('/account*', ensureAccount);
-  app.get('/account/', require('./views/account/index').init);
+  // app.get('/account/', require('./views/account/index').init);
 
   //account > verification
-  app.get('/account/verification/', require('./views/account/verification/index').init);
+  // app.get('/account/verification/', require('./views/account/verification/index').init);
   app.post('/account/verification/', require('./views/account/verification/index').resendVerification);
   app.get('/account/verification/:token/', require('./views/account/verification/index').verify);
 
   //account > settings
-  app.get('/account/settings/', require('./views/account/settings/index').init);
+  // app.get('/account/settings/', require('./views/account/settings/index').init);
   app.put('/account/settings/', require('./views/account/settings/index').update);
   app.put('/account/settings/identity/', require('./views/account/settings/index').identity);
   app.put('/account/settings/password/', require('./views/account/settings/index').password);
