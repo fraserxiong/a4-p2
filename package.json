@@ -2,7 +2,7 @@
   "name": "home-cooking",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"node index.js\" \"mongod\"",
+    "start": "concurrently \"npm run tsc:w\" \"node index.js\" \"mongod\" \"redis-server\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
@@ -59,7 +59,9 @@
     "typescript": "^1.8.2",
     "typings": "^0.6.8",
     "underscore": "1.x.x",
-    "zone.js": "0.5.15"
+    "zone.js": "0.5.15",
+    "redis": "2.6.0-1",
+    "redis-server": "0.0.1"
   },
   "engines": {
     "node": "5.9.1",

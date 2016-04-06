@@ -49,7 +49,7 @@ function apiEnsureAccount(req, res, next) {
   res.status(404).send("Account Error");
 }
 
-exports = module.exports = function (app, passport) {
+exports = module.exports = function (app, passport, client) {
   //front end
   app.get('/', require('./views/index').init);
   app.get('/about/', require('./views/about/index').init);
@@ -237,7 +237,27 @@ exports = module.exports = function (app, passport) {
 
   app.get('/posts/:id', function(req, res){
       var id = req.params.id;
-      post_api.find(id, onSuccessWithReturnFactory(res));
+      client.get("__post" + id, function(err, val){
+          if(val){
+              res.writeHead(200, {'Content-type': 'application/json'});
+              res.write(val);
+              res.end();
+          } else {
+              post_api.find(id, function(err, results){
+                  if(err){
+                      res.writeHead(500, {'Content-type': 'text/plain'});
+                      res.write('Error!' + err);
+                      res.end();
+                  } else {
+                      console.log("Find post...");
+                      client.set("__post" + id, JSON.stringify(results));
+                      res.writeHead(200, {'Content-type': 'application/json'});
+                      res.write(JSON.stringify(results));
+                      res.end();
+                  }});
+          }
+      });
+    //   post_api.find(id, onSuccessWithReturnFactory(res));
   });
 
   app.get('/posts/related/:id/:tags', function(req, res){
@@ -249,7 +269,7 @@ exports = module.exports = function (app, passport) {
 
   app.get('/posts/search/:query', function(req, res){
       var query = req.params.query;
-      post_api.fuzzy_search(query, onSuccessWithReturnFactory(res))
+      post_api.fuzzy_search(query, onSuccessWithReturnFactory(res));
   });
 
   app.all('/posts/*', ensureAuthenticated);
@@ -345,6 +365,7 @@ exports = module.exports = function (app, passport) {
                        post.save(function(err, result){
                           if (err)
                               console.log(err);
+                          client.set("__post" + post.id, JSON.stringify(result));
                           res.writeHead(200, {'Content-type': 'text/plain'});
                           res.end('Success!' + message);
                        });
