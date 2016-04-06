@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter}       from 'angular2/core';
 import { Authenticator } from '../authentication/authentication.service';
 import { TwitterButtonComponent } from '../oauth/twitter-button.component';
+import { ComponentInstruction, OnActivate } from 'angular2/router';
 
 @Component(
 {
@@ -9,7 +10,7 @@ import { TwitterButtonComponent } from '../oauth/twitter-button.component';
 	styleUrls: ['app/login/login.component.css'],
 	directives: [TwitterButtonComponent]
 })
-export abstract class LoginComponent {
+export abstract class LoginComponent implements OnActivate{
 	private usernameHint: string = "Username/Email";
 	private passwordHint: string = "Password";
 
@@ -18,6 +19,9 @@ export abstract class LoginComponent {
 	private errorMessage: string;
 
 	private twitterLoginHint = "Log In With Twitter";
+
+	private oauthLogin: boolean = false;
+	private oauthLoginMessage: string = "We found a user linked to your Twitter account. Try logging in with twitter";
 	
 	constructor(private _authenticator: Authenticator) {
 	}
@@ -50,5 +54,11 @@ export abstract class LoginComponent {
 
 	loginWithTwitter(){
 		window.location.href = "/login/twitter";
+	}
+
+	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction){
+		if (prev.urlPath.match(/^signup\/callback\/.+$/i)){
+			this.oauthLogin = true;
+		}
 	}
 }

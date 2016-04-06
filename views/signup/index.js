@@ -207,18 +207,19 @@ exports.signupTwitter = function(req, res, next) {
 
       if (!user) {
         req.session.socialProfile = info.profile;
-        res.redirect('/angular/signup/callback')
+        res.redirect('/signup/callback/')
         // res.render('signup/social', { email: '' });
       }
       else {
-        res.render('signup/index', {
-          oauthMessage: 'We found a user linked to your Twitter account.',
-          oauthTwitter: !!req.app.config.oauth.twitter.key,
-          oauthGitHub: !!req.app.config.oauth.github.key,
-          oauthFacebook: !!req.app.config.oauth.facebook.key,
-          oauthGoogle: !!req.app.config.oauth.google.key,
-          oauthTumblr: !!req.app.config.oauth.tumblr.key
-        });
+        res.redirect('/signup/callback/' + user._id);
+        // res.render('signup/index', {
+        //   oauthMessage: 'We found a user linked to your Twitter account.',
+        //   oauthTwitter: !!req.app.config.oauth.twitter.key,
+        //   oauthGitHub: !!req.app.config.oauth.github.key,
+        //   oauthFacebook: !!req.app.config.oauth.facebook.key,
+        //   oauthGoogle: !!req.app.config.oauth.google.key,
+        //   oauthTumblr: !!req.app.config.oauth.tumblr.key
+        // });
       }
     });
   })(req, res, next);

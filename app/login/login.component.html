@@ -15,5 +15,8 @@
  		</div>
  		<button id="signin-btn" type="submit">Sign in</button>
  	</form>
+ 	<article *ngIf="oauthLogin" class="alert alert-info">
+ 		{{oauthLoginMessage}}
+ 	</article>
  	<twitter-button [hintText]="twitterLoginHint" (click)="loginWithTwitter()"></twitter-button>
  </div>

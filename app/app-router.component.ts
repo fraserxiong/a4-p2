@@ -58,8 +58,13 @@ import { OAuthCallbackComponent } from './oauth/oauth-callback.component';
 			component: SignupComponent
 		},
 		{
-			path: '/angular/signup/callback',
+			path: '/signup/callback/',
 			name: 'TwitterCallback',
+			component: OAuthCallbackComponent
+		},
+		{
+			path: '/signup/callback/:id',
+			name: 'TwitterCallbackId',
 			component: OAuthCallbackComponent
 		},
 		{
