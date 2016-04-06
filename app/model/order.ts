@@ -15,6 +15,9 @@ export class Order{
 	}
 
 	addDish(dish: Dish, quantity: number = 1){
+		if (!dish){
+			return;
+		}
 		quantity = quantity < 1 ? 1 : quantity;
 
 		let dishExist: number = -1;
