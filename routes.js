@@ -213,6 +213,18 @@ exports = module.exports = function (app, passport) {
   // posts
   var post_api = require('./api/post/post')(app);
 
+  app.all('/posts/admin*', ensureAuthenticated);
+  app.all('/posts/admin*', ensureAdmin);
+  app.get('/posts/admin', function(req, res){
+      console.log("Handling post by admin request");
+      post_api.find_all(onSuccessWithReturnFactory(res));
+  });
+
+  app.delete('/posts/admin/delete/:id', function(req, res){
+      var id = req.params.id;
+      post_api.delete(id, onSuccessFactory(res));
+  });
+
   app.get('/posts/recommended', function(req, res){
       post_api.all(onSuccessWithReturnFactory(res));
   });
@@ -252,15 +264,19 @@ exports = module.exports = function (app, passport) {
                .findOne(req.user.roles.account.id)
                .populate("dishes")
                .exec(function(err, account){
-                   if(err)
-                      console.log(err);
-                   account.dishes.push(post);
-                   account.save(function(err, result){
-                      if (err)routers
-                          console.log(err);
-                      res.writeHead(200, {'Content-type': 'text/plain'});
-                      res.end('Success!' + message);
-                   });
+                   if(err){
+                       res.writeHead(500, {'Content-type': 'text/plain'});
+                       res.write('Error!' + err);
+                       res.end();
+                   } else {
+                       account.dishes.push(post);
+                       account.save(function(err, result){
+                          if (err)routers
+                              console.log(err);
+                          res.writeHead(200, {'Content-type': 'text/plain'});
+                          res.end('Success!' + message);
+                       });
+                   }
                });
       }).catch(function createPostError(error){
           res.writeHead(403, {'Content-type' : 'text/plain'});
@@ -313,15 +329,20 @@ exports = module.exports = function (app, passport) {
                .findOne({id: payload.target_id})
                .populate("comments")
                .exec(function(err, post){
-                   if(err)
-                      console.log(err);
-                   post.comments.push(comment);
-                   post.save(function(err, result){
-                      if (err)
-                          console.log(err);
-                      res.writeHead(200, {'Content-type': 'text/plain'});
-                      res.end('Success!' + message);
-                   });
+                   if(err || !post){
+                       console.log(err);
+                       res.writeHead(200, {'Content-type': 'text/plain'});
+                       res.write('Error! ' + err);
+                       res.end();
+                   } else {
+                       post.comments.push(comment);
+                       post.save(function(err, result){
+                          if (err)
+                              console.log(err);
+                          res.writeHead(200, {'Content-type': 'text/plain'});
+                          res.end('Success!' + message);
+                       });
+                   }
                });
       }).catch(function createPostError(error){
           res.writeHead(403, {'Content-type' : 'text/plain'});
@@ -411,28 +432,32 @@ exports = module.exports = function (app, passport) {
 
 function onSuccessFactory(res){
     return function(err, result){
-        if(err)
+        if(err){
             console.log(err);
-        res.writeHead(200, {'Content-type': 'text/plain'});
-        res.write("Success!");
-        res.end();
+            res.writeHead(500, {'Content-type': 'text/plain'});
+            res.write('Error!' + err);
+            res.end();
+        } else {
+            res.writeHead(200, {'Content-type': 'text/plain'});
+            res.write("Success!");
+            res.end();
+        }
     }
 }
 
-function onErrorFactory(err){
-    res.writeHead(500, {'Content-type': 'text/plain'});
-    res.write('Error!' + err);
-    res.end();
-}
 
 function onSuccessWithReturnFactory(res){
     return function(err, results){
-        if(err)
+        if(err){
             console.log(err);
-
-        console.log(results);
-        res.writeHead(200, {'Content-type': 'application/json'});
-        res.write(JSON.stringify(results));
-        res.end();
+            res.writeHead(500, {'Content-type': 'text/plain'});
+            res.write('Error!' + err);
+            res.end();
+        } else {
+            console.log(results);
+            res.writeHead(200, {'Content-type': 'application/json'});
+            res.write(JSON.stringify(results));
+            res.end();
+        }
     }
 }

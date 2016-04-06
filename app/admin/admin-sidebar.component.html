@@ -1,5 +1,8 @@
 <ul>
-	<li *ngFor="#state of stateEnumArray" (click)="gotoState(state)">
-		<span class="circle-o"></span><span class="state-text">{{stateEnum[state]}}</span>
+	<li (click)="gotoState(stateEnum.Users)">
+		<span class="circle-o"></span><span class="state-text">Users</span>
+	</li>
+	<li (click)="gotoState(stateEnum.Dishes)">
+		<span class="circle-o"></span><span class="state-text">Dishes</span>
 	</li>
 </ul>
