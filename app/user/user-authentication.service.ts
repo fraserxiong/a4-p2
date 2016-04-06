@@ -1,6 +1,5 @@
 import { Injectable, Inject } from 'angular2/core';
 import { User } from '../model/user';
-import { UserProfileService } from './user-profile.service';
 import { Authenticator, LoginPayload } from '../authentication/authentication.service';
 import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,8 +9,7 @@ import { UserMainService } from '../user/user-main.service';
 @Injectable()
 export class UserAuthenticationService extends Authenticator{
 
-	constructor(private _userProfileService: UserProfileService, 
-				@Inject(Http) private http: Http, 
+	constructor(@Inject(Http) private http: Http, 
 				private _userSessionService: UserMainService) {
 		super(http);
 	}
@@ -43,7 +41,7 @@ export class UserAuthenticationService extends Authenticator{
 				let success: boolean = res.json().success;
 				if (success)
 					this.authenticationPassed(user);
-				return <string> res.json().errors[0];
+				return success ? 'Login Success' : <string> res.json().errors[0];
 			})
 			.do((res: string) => console.log(res))
 			.catch(err => {

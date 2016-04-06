@@ -50,6 +50,10 @@ export class Order{
 		}
 	}
 
+	get id():string{
+		return this._id;
+	}
+
 	isEmpty(): boolean{
 		return this.dishes.length <= 0;
 	}
