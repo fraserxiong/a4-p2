@@ -145,11 +145,12 @@ exports.search_user = function(req, res, next){
         var result = [];
         for(var i = 0; i < accounts.length; i++){
           var account = accounts[i];
+          if(account._id != req.user.roles.account.id){
           result.push({
             'id': account._id,
             'name': account.name.full,
             'avatar': account.avatar
-          });
+          });}
         };
         res.send(JSON.stringify(result));
         // res.status(200).send("Test pass");
@@ -201,15 +202,16 @@ exports.get_friend_list = function(req, res, next){
           if (err) throw err;
           var result = []
           for(var i = 0; i < friend_list.length; i++){
-            result.push({
-              'id': friend_list[i]._id,
-              'name': friend_list[i].name.full,
-              'avatar': friend_list[i].avatar,
-              'zip': friend_list[i].zip,
-              'address': friend_list[i].address,
-              'email':friend_list[i].user.id.email,
-              'phone':friend_list[i].phone
-            });
+            if(friend_list[i]._id != req.user.roles.account.id){
+              result.push({
+                'id': friend_list[i]._id,
+                'name': friend_list[i].name.full,
+                'avatar': friend_list[i].avatar,
+                'zip': friend_list[i].zip,
+                'address': friend_list[i].address,
+                'email':friend_list[i].user.id.email,
+                'phone':friend_list[i].phone
+              });}
           }
           return res.send(JSON.stringify(result));
         }

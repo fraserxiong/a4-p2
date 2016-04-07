@@ -51,9 +51,9 @@ function apiEnsureAccount(req, res, next) {
 
 exports = module.exports = function (app, passport) {
   //front end
-  app.get('/', require('./views/index').init);
-  app.get('/about/', require('./views/about/index').init);
-  app.get('/contact/', require('./views/contact/index').init);
+  // app.get('/', require('./views/index').init);
+  // app.get('/about/', require('./views/about/index').init);
+  // app.get('/contact/', require('./views/contact/index').init);
   app.post('/contact/', require('./views/contact/index').sendMessage);
 
   // User info
@@ -62,8 +62,8 @@ exports = module.exports = function (app, passport) {
   app.all('/api/account*', apiEnsureAccount);
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
   app.get('/api/account/user/friend/', require("./api/user/rest").get_friend_list);
-  app.put('/api/account/user/add_friend/:friend_id/', require('./api/user/rest').add_friend);
-  app.delete('/api/account/user/del_friend/:friend_id/', require("./api/user/rest").del_friend);
+  app.put('/api/account/user/:friend_id/', require('./api/user/rest').add_friend);
+  app.delete('/api/account/user/:friend_id/', require("./api/user/rest").del_friend);
   app.get('/api/account/user', require('./api/user/rest').get_user);
   app.get('/api/account/', require("./api/user/rest").search_user);
 
@@ -75,7 +75,7 @@ exports = module.exports = function (app, passport) {
   app.get('/api/msg/Order/', require("./api/msg/rest").get_order_msg);
 
   //sign up
-  app.get('/signup/', require('./views/signup/index').init);
+  // app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);
 
   //social sign up
@@ -122,7 +122,7 @@ exports = module.exports = function (app, passport) {
   //admin
   app.all('/admin*', ensureAuthenticated);
   app.all('/admin*', ensureAdmin);
-  app.get('/admin/', require('./views/admin/index').init);
+  // app.get('/admin/', require('./views/admin/index').init);
 
   //admin > users
   app.get('/admin/users/', require('./views/admin/users/index').find);
@@ -186,15 +186,15 @@ exports = module.exports = function (app, passport) {
   //account
   app.all('/account*', ensureAuthenticated);
   app.all('/account*', ensureAccount);
-  app.get('/account/', require('./views/account/index').init);
+  // app.get('/account/', require('./views/account/index').init);
 
   //account > verification
-  app.get('/account/verification/', require('./views/account/verification/index').init);
+  // app.get('/account/verification/', require('./views/account/verification/index').init);
   app.post('/account/verification/', require('./views/account/verification/index').resendVerification);
   app.get('/account/verification/:token/', require('./views/account/verification/index').verify);
 
   //account > settings
-  app.get('/account/settings/', require('./views/account/settings/index').init);
+  // app.get('/account/settings/', require('./views/account/settings/index').init);
   app.put('/account/settings/', require('./views/account/settings/index').update);
   app.put('/account/settings/identity/', require('./views/account/settings/index').identity);
   app.put('/account/settings/password/', require('./views/account/settings/index').password);
@@ -255,7 +255,7 @@ exports = module.exports = function (app, passport) {
   app.all('/posts/*', ensureAuthenticated);
   app.all('/posts/*', ensureAccount);
 
-  app.post('/posts/create', function(req, res){
+  app.post('/posts', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
       var post = post_api.create({url: payload.url,
                       location: payload.location,
@@ -295,7 +295,7 @@ exports = module.exports = function (app, passport) {
       post_api.update(id, req.body, onSuccessFactory(res));
   });
 
-  app.delete('/posts/delete/:id', function(req, res){
+  app.delete('/posts/:id', function(req, res){
       var id = req.params.id;
       post_api.delete(id, onSuccessFactory(res));
   });
@@ -322,7 +322,7 @@ exports = module.exports = function (app, passport) {
   app.all('/comments/*', ensureAuthenticated);
   app.all('/comments/*', ensureAccount);
 
-  app.post('/comments/create', function(req, res){
+  app.post('/comments', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
       var comment = comment_api.create({
                       message: payload.message,
@@ -356,7 +356,7 @@ exports = module.exports = function (app, passport) {
       });
   });
 
-  app.delete('/comments/delete/:id', function(req, res){
+  app.delete('/comments/:id', function(req, res){
      var id = req.params.id;
      comment_api.delete(id, onSuccessFactory(res));
   });

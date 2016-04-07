@@ -32,7 +32,7 @@ export class AddFriendService{
 	}
 
 	addfriend(id){
-		let add = '/api/account/user/add_friend/'+id +'/';
+		let add = '/api/account/user/'+id +'/';
 		return this._http.put(add,'{}')
 					.map((res:Response)=>{return 'success'} )
 					.catch((err: Response) => {
