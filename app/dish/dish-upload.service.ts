@@ -12,7 +12,7 @@ export class DishUploadService{
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options: RequestOptions = new RequestOptions({ headers: headers });
 
-		return this._http.post('/posts/create', body, options)
+		return this._http.post('/posts', body, options)
 			.map((res: Response) => <string>res.statusText)
 			.do((res: string) => console.log(res))
 			.catch((err: Response) => {

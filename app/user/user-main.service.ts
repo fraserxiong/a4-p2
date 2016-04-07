@@ -12,7 +12,7 @@ export class UserMainService{
 	private _get_post_for_admin_url = '/posts/admin';
 	constructor(private _http: Http){}
 
-	private _delete_post_url = '/posts/delete/';
+	private _delete_post_url = '/posts/';
 	private _admin_delete_post_url = '/posts/admin/delete/';
 
 	delete_post(id) : Promise<Dish[]>{
