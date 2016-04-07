@@ -41,7 +41,8 @@ exports.find = function(req, res, next){
     }
     else {
       results.filters = req.query;
-      res.render('admin/users/index', { data: { results: JSON.stringify(results) } });
+      // res.render('admin/users/index', { data: { results: JSON.stringify(results) } });
+      res.send(JSON.stringify(results));
     }
   });
 };

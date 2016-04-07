@@ -4,6 +4,7 @@ import { AdminAuthenticationService } from './admin-authentication.service';
 import { AdminLoginComponent } from './admin-login.component';
 import { AdminManageComponent } from './admin-manage.component';
 import { Authenticator } from '../authentication/authentication.service';
+import { AdminUsersService } from './admin-users.service';
 
 
 @Component(
@@ -11,7 +12,7 @@ import { Authenticator } from '../authentication/authentication.service';
 	selector: 'admin-main',
 	templateUrl: 'app/admin/admin-main.component.html',
 	directives: [ROUTER_DIRECTIVES],
-	providers: [provide(Authenticator, {useClass: AdminAuthenticationService})]
+	providers: [provide(Authenticator, { useClass: AdminAuthenticationService }), AdminUsersService]
 })
 
 @RouteConfig([

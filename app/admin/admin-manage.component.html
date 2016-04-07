@@ -11,9 +11,8 @@
 
     <!-- Food Management-->
     <div id="dashboard_dishes" class="container-fluid" *ngSwitchWhen="stateEnum.Dishes">
-      <!-- <dish-list [dishes]="dishes"></dish-list> -->
       <section class="dish_list">
-  		<dish-overview *ngFor="#dish of dishes" [dish]="dish" [onDelete]="onDelete()"></dish-overview>
+  		  <dish-overview *ngFor="#dish of dishes" [dish]="dish" [onDelete]="onDelete()"></dish-overview>
   	  </section>
     </div>
 

@@ -11,6 +11,7 @@ import { DishListComponent } from '../dish/dish-list.component';
 import { State } from './admin-dashboard.state';
 import { AdminSidebarComponent } from './admin-sidebar.component';
 import {DishOverviewComponent} from "../dish/dish-overview.component";
+import { AdminUsersService } from './admin-users.service';
 
 @Component({
 	selector: 'admin-manage',
@@ -31,13 +32,17 @@ export class AdminManageComponent implements OnInit, OnActivate{
 		private _userProfileSerivce: UserProfileService,
 		private _router: Router,
 		private _authenticator: Authenticator,
-		private _userMainService: UserMainService
+		private _userMainService: UserMainService,
+		private _adminUsersService: AdminUsersService
 	){}
 
 	ngOnInit(){
 		this._offerService.search_by_query('abc')
 			.then(results => this.dishes = results);
-		this.users = this._userProfileSerivce.allUsers;
+		this._adminUsersService.allUsers().subscribe((users: User[]) => {
+			console.log(users);
+			this.users = users;
+		}, (err) => { console.log(err) });
 		this._userMainService.get_all_post_for_admin()
 							 .then(dishes => this.dishes = dishes);
 		this.state = this.stateEnum.Users;
