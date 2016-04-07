@@ -8,7 +8,7 @@ export class DeleteFriendService{
 	constructor(private _http: Http){}
 	
 	deletefriend(id){
-		let url = '/api/account/user/del_friend/'+id+'/'
+		let url = '/api/account/user/'+id+'/'
 		return this._http.delete(url)
 					.map((res:Response)=>{return 'success'} )
 					.catch((err: Response) => {

@@ -1,0 +1,14 @@
+ <div id="forgot-pw-container">
+ 	<form id="forgot-pw-form" (ngSubmit)="onForgot(email.value)" #forgotForm="ngForm" *ngIf="!resetMessage">
+ 		<h2>Please Enter Your Email Address</h2>
+ 		<label for="forgot-email" class="sr-only">Email</label>
+ 		<input #email="ngForm" type="email" id="forgot-email" class="form-control" placeholder="Email Address" required autofocus ngControl="email"/>
+ 		<article class="alert alert-danger" *ngIf="!email.valid && !email.pristine">
+ 			Please Enter A Valid Email Address
+ 		</article>
+ 		<button id="forgot-btn" [disabled]="!forgotForm.form.valid || email.pristine" type="submit" class="btn btn-primary btn-block">Reset Password</button>
+ 	</form>
+ 	<article class="alert alert-info" *ngIf="resetMessage">
+ 		An email has been sent to the email address.
+ 	</article>
+ </div>

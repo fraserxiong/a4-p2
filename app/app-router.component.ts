@@ -29,6 +29,8 @@ import { UserMainComponent } from './user/user-main.component';
 import { UserMainService } from './user/user-main.service';
 import { OrderMainComponent } from './order/order-main.component';
 import { OAuthCallbackComponent } from './oauth/oauth-callback.component';
+import { LoginForgotComponent } from './login/login-forgot.component';
+import { ResetComponent } from './login/reset.component';
 
 @Component(
 {
@@ -51,6 +53,16 @@ import { OAuthCallbackComponent } from './oauth/oauth-callback.component';
 			path: '/login',
 			name: 'UserLogin',
 			component: UserLoginComponent
+		},
+		{
+			path: '/login/forgot',
+			name: 'LoginForgot',
+			component: LoginForgotComponent
+		},
+		{
+			path: '/login/reset/:email/:token/',
+			name: 'Reset',
+			component: ResetComponent
 		},
 		{
 			path: '/signup',

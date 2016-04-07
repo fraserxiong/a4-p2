@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter}       from 'angular2/core';
 import { Authenticator } from '../authentication/authentication.service';
 import { TwitterButtonComponent } from '../oauth/twitter-button.component';
-import { ComponentInstruction, OnActivate } from 'angular2/router';
+import { ComponentInstruction, OnActivate, Router } from 'angular2/router';
 
 @Component(
 {
@@ -23,7 +23,7 @@ export abstract class LoginComponent implements OnActivate{
 	private oauthLogin: boolean = false;
 	private oauthLoginMessage: string = "We found a user linked to your Twitter account. Try logging in with twitter";
 	
-	constructor(private _authenticator: Authenticator) {
+	constructor(private _authenticator: Authenticator, private _router: Router) {
 	}
 
 	onLogin(username: string, password: string){
@@ -63,5 +63,9 @@ export abstract class LoginComponent implements OnActivate{
 		if (prev.urlPath.match(/^signup\/callback\/.+$/i)){
 			this.oauthLogin = true;
 		}
+	}
+
+	forgotPwd(){
+		this._router.navigate(['LoginForgot'])
 	}
 }

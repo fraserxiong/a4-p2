@@ -62,8 +62,8 @@ exports = module.exports = function (app, passport) {
   app.all('/api/account*', apiEnsureAccount);
   app.get('/api/account/user/settings', require('./api/user/rest').get_user_settings);
   app.get('/api/account/user/friend/', require("./api/user/rest").get_friend_list);
-  app.put('/api/account/user/add_friend/:friend_id/', require('./api/user/rest').add_friend);
-  app.delete('/api/account/user/del_friend/:friend_id/', require("./api/user/rest").del_friend);
+  app.put('/api/account/user/:friend_id/', require('./api/user/rest').add_friend);
+  app.delete('/api/account/user/:friend_id/', require("./api/user/rest").del_friend);
   app.get('/api/account/user', require('./api/user/rest').get_user);
   app.get('/api/account/', require("./api/user/rest").search_user);
 
@@ -100,10 +100,10 @@ exports = module.exports = function (app, passport) {
   //login/out
   app.get('/login/', require('./views/login/index').init);
   app.post('/login/', require('./views/login/index').login);
-  app.get('/login/forgot/', require('./views/login/forgot/index').init);
+  // app.get('/login/forgot/', require('./views/login/forgot/index').init);
   app.post('/login/forgot/', require('./views/login/forgot/index').send);
-  app.get('/login/reset/', require('./views/login/reset/index').init);
-  app.get('/login/reset/:email/:token/', require('./views/login/reset/index').init);
+  // app.get('/login/reset/', require('./views/login/reset/index').init);
+  // app.get('/login/reset/:email/:token/', require('./views/login/reset/index').init);
   app.put('/login/reset/:email/:token/', require('./views/login/reset/index').set);
   app.get('/logout/', require('./views/logout/index').init);
 
