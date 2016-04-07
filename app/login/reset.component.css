@@ -1,0 +1,13 @@
+#resetpassword-container{
+	display: flex;
+	height: 100%;
+}
+
+#resetpassword-container > section{
+	margin: auto;
+}
+
+#resetpassword-container form{
+	display: flex;
+	flex-direction: column;
+}
