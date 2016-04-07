@@ -6,9 +6,9 @@ import 'rxjs/Rx';
 @Injectable()
 export class CommentService{
 
-	private _post_comment_url = '/comments/create';
+	private _post_comment_url = '/comments';
 	private _get_all_comment_url = '/comments/get_all/';
-	private _delete_comment_url = '/comments/delete/';
+	private _delete_comment_url = '/comments/';
 
 	constructor(
 		private http: Http

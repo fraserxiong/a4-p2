@@ -255,7 +255,7 @@ exports = module.exports = function (app, passport) {
   app.all('/posts/*', ensureAuthenticated);
   app.all('/posts/*', ensureAccount);
 
-  app.post('/posts/create', function(req, res){
+  app.post('/posts', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
       var post = post_api.create({url: payload.url,
                       location: payload.location,
@@ -295,7 +295,7 @@ exports = module.exports = function (app, passport) {
       post_api.update(id, req.body, onSuccessFactory(res));
   });
 
-  app.delete('/posts/delete/:id', function(req, res){
+  app.delete('/posts/:id', function(req, res){
       var id = req.params.id;
       post_api.delete(id, onSuccessFactory(res));
   });
@@ -322,7 +322,7 @@ exports = module.exports = function (app, passport) {
   app.all('/comments/*', ensureAuthenticated);
   app.all('/comments/*', ensureAccount);
 
-  app.post('/comments/create', function(req, res){
+  app.post('/comments', function(req, res){
       var payload = req.body; //Payload is the json object representing a post
       var comment = comment_api.create({
                       message: payload.message,
@@ -356,7 +356,7 @@ exports = module.exports = function (app, passport) {
       });
   });
 
-  app.delete('/comments/delete/:id', function(req, res){
+  app.delete('/comments/:id', function(req, res){
      var id = req.params.id;
      comment_api.delete(id, onSuccessFactory(res));
   });
