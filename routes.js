@@ -249,22 +249,7 @@ exports = module.exports = function (app, passport) {
 
   app.get('/posts/search/:query', function(req, res){
       var query = req.params.query;
-      post_api.fuzzy_search(query, function(err, results){
-        if(err){
-            console.log(err);
-            res.writeHead(500, {'Content-type': 'text/plain'});
-            res.write('Error!' + err);
-            res.end();
-        } else {
-            var copy = JSON.parse(JSON.stringify(results));
-            for(var i = 0; i < results.length; i++){
-              copy[i]["deletable"] = false;
-             }
-            res.writeHead(200, {'Content-type': 'application/json'});
-            res.write(JSON.stringify(copy));
-            res.end();
-        }
-    })
+      post_api.fuzzy_search(query, onSuccessWithReturnFactory(res));
   });
 
   app.all('/posts/*', ensureAuthenticated);

@@ -11,6 +11,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 export class DishOverviewComponent{
 	@Input('dish') dish: Dish;
 	@Input('onDelete') onDelete;
+	@Input('deletable') deletable: boolean;
 
 	delete(){
 		this.onDelete(this.dish.id);

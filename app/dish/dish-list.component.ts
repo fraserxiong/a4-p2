@@ -10,4 +10,5 @@ import {DishOverviewComponent} from "./dish-overview.component";
 })
 export class DishListComponent{
 	@Input('dishes') dishes: Dish[];
+	@Input('deletable') deletable: boolean;
 }
