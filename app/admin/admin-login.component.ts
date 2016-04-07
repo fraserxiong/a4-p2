@@ -11,11 +11,11 @@ import { Authenticator } from '../authentication/authentication.service';
 // 	styleUrls: ["app/user/user-login.component.css"]
 // })
 export class AdminLoginComponent extends LoginComponent{
-	constructor(@Inject(Authenticator) private authenticator: Authenticator, @Inject(Router) private _router: Router) {
-		super(authenticator);
+	constructor(@Inject(Authenticator) private authenticator: Authenticator, @Inject(Router) private router: Router) {
+		super(authenticator, router);
 	}
 
 	onAuthenticationPass(){
-		this._router.navigate(['AdminManage']);
+		this.router.navigate(['AdminManage']);
 	}
 }

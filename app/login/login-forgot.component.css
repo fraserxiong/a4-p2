@@ -1,0 +1,12 @@
+#forgot-pw-container{
+	display: flex;
+	height: 100%;
+}
+
+#forgot-pw-container form{
+	margin: auto;
+}
+
+#forgot-pw-container > article{
+	margin: auto;
+}

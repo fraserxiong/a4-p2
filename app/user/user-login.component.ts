@@ -12,11 +12,11 @@ import { Authenticator } from '../authentication/authentication.service';
 
 export class UserLoginComponent extends LoginComponent{
 
-	constructor(@Inject(Authenticator) private authenticator: Authenticator, @Inject(Router) private _router: Router) {
-		super(authenticator);
+	constructor(@Inject(Authenticator) private authenticator: Authenticator, @Inject(Router) private router: Router) {
+		super(authenticator, router);
 	}
 
 	onAuthenticationPass() {
-		this._router.navigate(['Home']);
+		this.router.navigate(['Home']);
 	}
 }
