@@ -249,7 +249,7 @@ exports = module.exports = function (app, passport) {
 
   app.get('/posts/search/:query', function(req, res){
       var query = req.params.query;
-      post_api.fuzzy_search(query, onSuccessWithReturnFactory(res))
+      post_api.fuzzy_search(query, onSuccessWithReturnFactory(res));
   });
 
   app.all('/posts/*', ensureAuthenticated);

@@ -16,6 +16,7 @@ import { SearchInputComponent } from './search-input.component';
 export class SearchComponent implements OnInit {
 	private query: string;
 	private results: Dish[] = [];
+	private deletable = false;
 
 	constructor(
 		private _offerService: AppOfferService,

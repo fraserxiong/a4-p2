@@ -23,6 +23,6 @@
     <div class="dish_description">
         <h3><a [routerLink]="['/Details', {id: dish.id}]" >{{dish.name}}</a></h3>
         <p>{{dish.description}}</p>
-        <button class="btn btn-danger" (click)="delete()">Delete this post...</button>
+        <button *ngIf="deletable" class="btn btn-danger" (click)="delete()">Delete this post...</button>
     </div>
 </article>

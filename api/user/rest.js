@@ -21,7 +21,7 @@ var renderSettings = function(req, res, next, oauthMessage) {
       if (err) {
         callback(err, null);
       }
-
+      console.log(user);
       outcome.user = user;
       return callback(null, 'done');
     });

@@ -19,6 +19,7 @@ export class UserMyDishComponent{
 	private dishes: Dish[] = [];
 	private curUser: User;
 	private curId: number;
+	private deletable = true;
 
 	constructor(
 		private _profileService: UserProfileService,

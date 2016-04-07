@@ -59,7 +59,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	private comment(comment: String){
-		if (!this._authenticator.signedIn) {
+		if (this._authenticator.signedIn) {
 			this._commentService.submit_comment(this.get_id(), comment, this.ratingsVal)
 				.then(comments => this.comments = comments);
 		}
