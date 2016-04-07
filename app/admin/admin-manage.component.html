@@ -12,7 +12,7 @@
     <!-- Food Management-->
     <div id="dashboard_dishes" class="container-fluid" *ngSwitchWhen="stateEnum.Dishes">
       <section class="dish_list">
-  		  <dish-overview *ngFor="#dish of dishes" [dish]="dish" [onDelete]="onDelete()"></dish-overview>
+  		<dish-overview *ngFor="#dish of dishes" [dish]="dish" [deletable]="deletable" [onDelete]="onDelete()"></dish-overview>
   	  </section>
     </div>
 
