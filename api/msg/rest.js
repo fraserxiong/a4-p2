@@ -49,7 +49,7 @@ exports.accept_friend_msg = function(req, res, next){
           return false;
         }
       });
-      if(msg_obj.friendMsg.length  == 0 || !isInArray){
+      if(!isInArray){
         res.status(403).send("Friend request not exist");
       }else{
         req.app.db.models.Account.findById(req.params.acc_id)
