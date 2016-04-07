@@ -98,7 +98,7 @@ exports = module.exports = function (app, passport) {
   // app.get('/signup/tumblr/callback/', require('./views/signup/index').signupTumblr);
 
   //login/out
-  app.get('/login/', require('./views/login/index').init);
+  // app.get('/login/', require('./views/login/index').init);
   app.post('/login/', require('./views/login/index').login);
   // app.get('/login/forgot/', require('./views/login/forgot/index').init);
   app.post('/login/forgot/', require('./views/login/forgot/index').send);
