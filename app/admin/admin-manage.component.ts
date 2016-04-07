@@ -25,6 +25,7 @@ export class AdminManageComponent implements OnInit, OnActivate{
 
 	private stateEnum = State;
 	private state: State;
+	private deletable = true;
 
 	constructor(
 		private _offerService: AppOfferService,
