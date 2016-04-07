@@ -70,7 +70,6 @@ exports.accept_friend_msg = function(req, res, next){
                 friend_obj.friend.push(friend_ref);
                 friend_obj.save();
                 // console.log(friend_obj);
-                msg_api.friend_request(req.app, friend_ref, friend_obj.user);
                 res.status(200).send("Add friend success");
               }
             }else{
